@@ -1,0 +1,78 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>설정</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<!-- <ion-header>
+    <ion-navbar>
+        <span style="color:white; font-size:22px; font-weight: bold;">설정</span>
+    </ion-navbar>
+</ion-header>
+/Users/limchae/martapp/src/assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png -->
+
+<ion-content>
+    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
+        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png" style="width:30px; margin:5px;" alt=""></button>
+        <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:20px;">설정</span>
+    </div>
+    <ion-list>
+        <ion-item>
+            <span><img src="./assets/imgs/065-버튼-PPT 19페이지의  우측 이미지-버전 정보의 i .png" style="width:25px; margin-right:10px" alt="">버전정보 Ver : {{version}}</span>
+        </ion-item>
+
+        <ion-item>
+            <span><img src="./assets/imgs/066-버튼-PPT 19페이지의  우측 이미지-앱 평가하기의 별 모양.png" style="width:25px; margin-right:10px;" alt="">앱 평가하기</span>
+            <button (click)="evaluation()" class="arrow1"><img src="./assets/imgs/071-버튼-PPT 19페이지의  우측 이미지-화살표 ＞ .png" alt="" style="width:30px;"></button>
+        </ion-item>
+
+        <ion-item>
+            <span><img src="./assets/imgs/067-버튼-PPT 19페이지의  우측 이미지-오픈소스 라이선스의 c .png" style="width:25px; margin-right:10px;" alt="">오픈소스 라이센스</span>
+            <button (click)="license()" class="arrow2"><img src="./assets/imgs/071-버튼-PPT 19페이지의  우측 이미지-화살표 ＞ .png" alt="" style="width:30px;"></button>
+        </ion-item>
+
+        <ion-item>
+            <span><img src="./assets/imgs/068-버튼-PPT 19페이지의  우측 이미지-개발자 문의 하기의 편지.png" style="width:25px; margin-right:10px;" alt="">개발자 문의하기</span>
+            <button (click)="email()" class="arrow3"><img src="./assets/imgs/071-버튼-PPT 19페이지의  우측 이미지-화살표 ＞ .png" alt="" style="width:30px;"></button>
+
+        </ion-item>
+
+        <ion-item>
+            <span><img src="./assets/imgs/069-버튼-PPT 19페이지의  우측 이미지-푸쉬 알람 설정의 선셋 점셋.png" style="width:25px; margin-right:10px;" alt="">푸쉬 알람 설정</span>
+
+            <button *ngIf="flag==false" (click)="toggleGroup()" class="arrow4">
+              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072-버튼-PPT 19페이지의  우측 이미지-화살표 ∨-회전1단계(시작).png" alt="" style="width:30px;">
+              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075-버튼-PPT 21페이지의  우측 이미지-화살표 ∧-회전1단계(시작).png" alt="" style="width:30px;">
+            </button>
+            <button *ngIf="flag==true" (click)="alarmcheck()" class="arrow4">
+              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072-버튼-PPT 19페이지의  우측 이미지-화살표 ∨-회전1단계(시작).png" alt="" style="width:30px;">
+              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075-버튼-PPT 21페이지의  우측 이미지-화살표 ∧-회전1단계(시작).png" alt="" style="width:30px;">
+            </button>
+
+
+            <div *ngIf="shownGroup" style="margin:5px;padding:3px;">
+                즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기
+                <div></div>
+                <a class="test" *ngFor="let button of buttontoggle; let i = index">
+
+                    <button ion-button (click)="clickButton(i)" style="width:50px; margin-right:5px;" [ngClass]="button.check===true?'B_on':'B_off'">{{button.name}}</button>
+
+                </a>
+                <div *ngIf="checkbutton()===true">
+                    <ion-item>
+                        <ion-label>Time</ion-label>
+                        <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="DateTime">
+                        </ion-datetime>
+                    </ion-item>
+
+                </div>
+                <button ion-button (click)="alarmcheck()" style="width:50px;">완료</button>
+            </div>
+        </ion-item>
+
+        <ion-item>
+            <span><img src="./assets/imgs/070-버튼-PPT 19페이지의  우측 이미지-개인정보 취급 방침의 신분증.png" style="width:25px; margin-right:10px;" alt="">개인정보 취급방침</span>
+            <button (click)="privacy()" class="arrow2"><img src="./assets/imgs/071-버튼-PPT 19페이지의  우측 이미지-화살표 ＞ .png" alt="" style="width:30px;"></button>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

@@ -1,0 +1,74 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-3258580543591687~9540875496",
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-calendar": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-speechrecognition": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-uniquedeviceid": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "mx.ferreyra.callnumber": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-admob-sdk": {
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    }
+  }
+}

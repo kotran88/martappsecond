@@ -1,0 +1,29 @@
+page-addshoping {}
+
+.saveButton {
+    border-radius: 4px;
+    border: solid 2px rgb(74, 190, 190);
+    background-color: #9FFAFA;
+    width: 45px;
+    height: 28px;
+    font-size: 14px;
+    float: right;
+    margin-right: 20px;
+}
+
+.item-divider-md {
+    padding: 0px;
+}
+
+.inputprice {
+    position: absolute;
+    // bottom: 1px;
+    border: solid 2px;
+    border-radius: 5px;
+    width: 63%;
+    border-color: #71E8E8;
+}
+
+.content-md {
+    color: rgb(0, 0, 0);
+}

@@ -1,0 +1,7 @@
+{
+  "name": "martapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

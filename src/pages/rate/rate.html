@@ -1,0 +1,26 @@
+<ion-content class="main-view" style="background: transparent;
+  background-color: rgb(240, 240, 240);
+  outline-color:black;
+  border: solid 2px;
+  border-radius: 10px;
+  border-color:rgb(0, 167, 179);
+  height: 60%;
+  width:80%;
+  top: 10%;
+  left:10%;
+  " padding>
+
+    <div style="text-align: center;">
+        <img src="./assets/imgs/063-배경 이미지-PPT 18페이지의  우측 이미지-이마 별5개+말얼굴.png" alt="">
+        <span>앱 평가하러 가기</span>
+        <!-- <button ion-button (click)="appstore()"> 앱 평가하기</button> -->
+
+    </div>
+    <div style="text-align:center; margin-left: auto; margin-right:auto;">
+        <button ion-button (click)="dismiss()" ng-show="more_info" style="height:30px; margin-left:50px; margin-right:10px;">아니요</button>
+        <button ion-button (click)="appstore()" style="height:30px; margin-left:10px; margin-right: 50px;">예</button>
+
+    </div>
+
+
+</ion-content>

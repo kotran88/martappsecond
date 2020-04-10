@@ -1,0 +1,218 @@
+<ion-content padding>
+    <div class="upper" style="background-color: #71E8E8; display:flex;">
+        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>
+        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007.png" style="width:25px;"></button>
+
+    </div>
+
+    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
+        <ion-segment-button value="tab1" [ngClass]="tab=='tab1'?'view':'notview'">
+            <span class="tab-font">즐겨찾는곳</span>
+        </ion-segment-button>
+        <ion-segment-button value="tab2" [ngClass]="tab=='tab2'?'view':'notview'">
+            <span class="tab-font">쇼핑예정목록</span>
+        </ion-segment-button>
+        <ion-segment-button value="tab3" [ngClass]="tab=='tab3'?'view':'notview'">
+            <span class="tab-font">인터넷에선 얼마?</span>
+        </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="tab">
+        <ion-list *ngSwitchCase="'tab1'">
+            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003.png"></button></div>
+            <div *ngIf="favoriteList != 0">
+                <div style="padding-left:5px; padding-right:5px;">
+                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">
+                        <table>
+                            <thead>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데마트')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/009.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('이마트')>-1&&i.name.indexOf('트레이더스')==-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/010.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('홈플러스')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/011.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">홈플러스</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('코스트코')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/012.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">코스트코</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('이마트트레이더스')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/013.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트 트레이더스</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데백화점')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/020.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('신세계')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/021.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">신세계백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('현대백화점')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/022.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">현대백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데아울렛')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/023.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데아울렛</a>
+                                </th>
+                                <th class="dayoffimg">
+                                    <img *ngIf="todayoff=='영업'" src="./assets/imgs/043.png " style="width:60%; ">
+                                    <img *ngIf="todayoff=='휴무'" src="./assets/imgs/044.png " style="width:60%; ">
+
+                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white;">
+                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045.png" style="width:100%; " alt=" ">
+                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046.png" style="width:100%; " alt=" ">
+                            </button>
+                                </th>
+                            </thead>
+                            <tbody style="width:100%;" (click)="martview(i)">
+                                <tr class="martname " style="font-weight: 900">
+                                    <span style="margin : 10px; margin-bottom:30px;">{{i.name}}</span>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="margin-left:auto; margin-right:auto">
+                            <tbody>
+                                <tr class="datespan">
+                                    <td class="tabletd" *ngFor="let i of today" (click)="martview(i)" style="margin-top:10px;">
+                                        <span *ngIf="i!='오늘'" style="color:red; font-weight: 500;">{{i}}</span>
+                                        <span *ngIf="i=='오늘'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>
+                                    </td>
+                                </tr>
+                                <tr class="datespan " (click)="martview(i) ">
+                                    <td *ngFor="let i of week " class="tabletd">
+                                        <span>{{i.dayofweek}}</span>
+                                    </td>
+                                </tr>
+                                <tr class="datespan " (click)="martview(i) ">
+                                    <td *ngFor="let i of week " class="tabletd">
+                                        <span>{{i.month}}/{{i.day}}</span>
+                                    </td>
+                                </tr>
+                                <tr class="datespan " (click)="martview(i) ">
+                                    <td *ngFor="let m of i.dayoffarray" class="tabletd ">
+                                        <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
+                                        <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="borderr ">
+                    <button style="background-color:white; width:70%; height:30%; margin:auto; display:block; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047.png " alt=" "></button>
+                </div>
+            </div>
+        </ion-list>
+        <ion-list *ngSwitchCase=" 'tab2' ">
+            <div class="topselector ">
+                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
+                <table style="margin: auto; text-align: center; ">
+
+                    <tbody>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist( 'mart') "><img src="./assets/imgs/079.png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'mart') ">마트</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist( 'dep') "><img src="./assets/imgs/080.png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'dep') ">백화점</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist( 'outlet') "><img src="./assets/imgs/081.png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'outlet') ">아울렛</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist( 'etc') "><img src="./assets/imgs/081.png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'etc') ">기타</button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078.png " alt=" "></div>
+            <div *ngIf="newarraylist!=0 ">
+
+                <div *ngFor="let a of newarraylist " class="border ">
+                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">
+                        <table>
+                            <tr style="text-align: left; ">
+                                <td>
+                                        <button *ngIf="a.flag=='mart' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079.png " style="width:100% " alt=" "></button>
+                    <button *ngIf="a.flag=='dep' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080.png " style="width:100% "alt=" "></button>
+                    <button *ngIf="a.flag=='outlet' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>
+                    <button *ngIf="a.flag=='etc' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>
+
+                    </td>
+                    <td>
+                        <div>
+                            <span *ngIf="a.flag=='mart' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>
+                            <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
+                            <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
+                            <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
+                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
+                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>
+
+                        </div>
+                    </td>
+                    </table>
+
+                    </button>
+                    <div>
+                        <ion-fab style="margin-top:-50px; ">
+                            <img class="rotate " src="./assets/imgs/084.png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
+                            <ion-fab-list side="bottom " style="width:100px; height:150px; margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>
+                            </ion-fab-list>
+                        </ion-fab>
+                    </div>
+                </div>
+
+            </div>
+
+        </ion-list>
+        <ion-list *ngSwitchCase=" 'tab3' ">
+
+            <div style="padding:20px; ">
+                    <select class='slt' id="slt" name="sor" >
+                        <option value="rel" selected>랭킹순</option>
+                        <option value="price_asc">낮은 가격순</option>
+                        <option value="price_dsc">높은 가격순</option>
+                        <option value="date">등록순</option>
+                        <option value="review">리뷰 많은순</option>
+                    </select>
+
+                <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name='text' type="text " [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요. ">
+
+                </ion-input>
+                <button style="padding-left:-15%; margin-left: -15%;margin-top: 1%; float: right; width:60px; height: 50px; background-color: #fff;z-index: 9999; " outline icon-only (click)='select_sort()'>
+
+                    <ion-icon name='search' style="color:rgb(0, 167, 179); font-size:30px " is-active="false "></ion-icon>
+                </button>
+
+            </div>
+            <div>
+                <img  style="
+                width: 70%;
+                margin: auto;
+                display: block;
+                margin-top: 50px;" src="./assets/imgs/07.png " class="cropping " alt=" ">
+            </div>
+        </ion-list>
+
+
+    </div>
+
+</ion-content>

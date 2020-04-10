@@ -1,0 +1,42 @@
+<ion-content>
+    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
+        <img src="./assets/imgs/008png" style="width:50px; margin:5px;" alt="">
+        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">매장 유형을 선택해주세요</span>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>
+    </div>
+    <div>
+        <ion-item-group>
+            <ion-item-divider color="light" style="margin-left:10px;">마트</ion-item-divider>
+            <button ion-item (click)="martmap('lottemart')"><img src="./assets/imgs/009.png" style="width:120px; 
+                height: 100%; margin-right:20px;">롯데마트</button>
+                <button ion-item (click)="martmap('emart')"><img src="./assets/imgs/010.png" style="width:120px; 
+                    height: 60px; margin-right:20px;">이마트</button>
+            <button ion-item (click)="martmap('homeplus')"><img src="./assets/imgs/011.png" style="width:120px; 
+                height: 60px; margin-right:20px;">홈플러스</button>
+            <button ion-item (click)="martmap('costco')"><img src="./assets/imgs/012.png" style="width:120px; 
+                height: 60px; margin-right:20px;">코스트코</button>
+            <button ion-item (click)="martmap('traders')"><img src="./assets/imgs/013.png" style="width:120px; 
+                height: 60px; margin-right:20px;">이마트 트레이더스</button>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider color="light" style="margin-left:10px;">백화점</ion-item-divider>
+            <button ion-item (click)="martmap('lottedep')"><img src="./assets/imgs/020.png" style="width:120px; 
+                height: 60px; margin-right:20px;">롯데 백화점</button>
+            <button ion-item (click)="martmap('ssgdep')"><img src="./assets/imgs/021.png" style="width:120px; 
+                height: 60px; margin-right:20px;">신세계 백화점</button>
+            <button ion-item (click)="martmap('hyundep')"><img src="./assets/imgs/022.png" style="width:120px; 
+                height: 60px; margin-right:20px;">현대 백화점</button>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider color="light" style="margin-left:10px;">아울렛</ion-item-divider>
+            <button ion-item (click)="martmap('lotteout')"><img src="./assets/imgs/023.png" style="width:120px; 
+                height: 60px; margin-right:20px;">롯데 아울렛</button>
+            <button ion-item (click)="martmap('ssgout')"><img src="./assets/imgs/025.png" style="width:120px; 
+                height: 60px; margin-right:20px;">신세계 아울렛</button>
+            <button ion-item (click)="martmap('hyunout')"><img src="./assets/imgs/024.png" style="width:120px; 
+                height: 60px;  margin-right:20px;">현대 아울렛</button>
+        </ion-item-group>
+    </div>
+</ion-content>

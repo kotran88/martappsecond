@@ -1,0 +1,91 @@
+page-martinfoview {
+    [col-1] {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 8.33333%;
+        -ms-flex: 0 0 8.33333%;
+        flex: 0 0 14.285714285714286%;
+        width: 14.285714285714286%;
+        max-width: 14.285714285714286%;
+    }
+    .col {
+        text-align: center;
+        padding: 2%;
+    }
+    .last-month,
+    .next-month {
+        color: #999999;
+        font-size: 90%;
+        font-size: auto;
+    }
+    .currentDate,
+    .offDate,
+    .otherDate {
+        padding: 20%;
+    }
+    .currentDate {
+        font-weight: bold;
+        background-color: green;
+        color: white;
+        // border-radius: 30px;
+    }
+    .offDate {
+        font-weight: vold;
+        color: red;
+    }
+    .calendar-header {
+        background-color: #c6c6c6;
+        color: #FFFFFF;
+        // display: inline-block;
+        width: 100%;
+        height: 8%;
+    }
+    .calendar-body {
+        padding: 8px;
+        .grid {
+            padding: 0;
+        }
+        .col:last-child {
+            border-right: none;
+        }
+        .calendar-weekday,
+        .calendar-date {
+            text-align: center;
+            margin: 0;
+            font-size: 16px;
+        }
+        .calendar-weekday {
+            padding: 3px;
+            font-size: 16px;
+            font-weight: bold;
+            border-top: solid 2px #c6c6c6;
+            border-bottom: solid 2px #c6c6c6;
+            background-color: #fff;
+        }
+        .calendar-month {
+            padding: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+    .toolbar-background-md {
+        background: #71E8E8;
+    }
+    .toolbar-md {
+        padding: 4px;
+        min-height: 18px;
+    }
+}
+
+.aaa {
+    padding: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: solid 2px #c6c6c6;
+    background-color: #fff;
+}
+
+.tableStyle {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}

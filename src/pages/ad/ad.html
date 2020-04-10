@@ -1,0 +1,48 @@
+<ion-content class="main-view" style="background: transparent;
+  background-color: rgb(240, 240, 240);
+  outline-color:rgb(0, 167, 179);
+  border: solid 2px;
+  border-radius: 10px;
+  border-color:rgb(0, 167, 179);
+  height: 80%;
+  width:80%;
+  top: 10%;
+  left:10%;
+  " padding>
+
+    <div style="margin-left:auto; margin-right:auto;">
+        <img src="./assets/imgs/050-배경 이미지-PPT 15페이지의  우측 이미지-이마 프리미엄 글씨+말얼굴.png" alt="">
+        <div style="margin-right:auto; margin-left:auto;">
+
+            <a class="test" *ngFor="let opt of option; let i = index" style="margin-left:auto; margin-right:auto;">
+
+                <button type="button" (click)="clickbutton(i)" [ngClass]="select_option===i?'B_on':'B_off'" *ngIf="more_info||(i==0||i==3)" style="width: 45%; margin-right:auto; margin-left:auto;">
+              <img *ngIf="opt.price==990" src="./assets/imgs/051-버튼-PPT 15페이지의  우측 이미지-990원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+              <img *ngIf="opt.price==1980" src="./assets/imgs/059-버튼-PPT 16페이지의  우측 이미지-1980원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+              <img *ngIf="opt.price==3520" src="./assets/imgs/061-버튼-PPT 16페이지의  우측 이미지-3520원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+              <img *ngIf="opt.price==4730" src="./assets/imgs/053-버튼-PPT 15페이지의  우측 이미지-4730원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+
+        <!-- {{opt.price}}원 -->
+        <br>
+        <!-- {{opt.text}} -->
+        </button>
+
+            </a>
+        </div>
+
+
+        <button type="button" *ngIf="more_info===false" (click)="add_menu()" style="width: 45%; margin-right:auto; margin-left:auto; background-color:rgb(240,240,240);">
+          <img src="./assets/imgs/057-버튼-PPT 15페이지의  우측 이미지-더 많은 정보 보기(선택 전 테두리 없음).png" style="margin-left:auto; margin-right:auto;" alt=" ">
+      <!-- 더 많은 정보 보기 -->
+    </button>
+        <!-- <button ion-button *ngIf="more_info===true " (click)="dismiss() "> -->
+        <!-- 닫기
+        </button> -->
+
+        <button type="button" (click)="purchase() " style="width: 45%; margin-right:auto; margin-left:auto; background-color:rgb(240,240,240);">
+        <img src="./assets/imgs/055-버튼-PPT 15페이지의  우측 이미지-ok 계속하기(선택 전 테두리 없음).png" alt="">
+        <!-- OK계속하기 -->
+        </button>
+
+    </div>
+</ion-content>

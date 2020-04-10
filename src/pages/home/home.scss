@@ -1,0 +1,282 @@
+page-home {
+    .scroll-content {
+        padding: 0px !important;
+    }
+    .btnup {
+        height: 30px;
+        margin-top: 20px;
+        width: 30px;
+        margin: auto;
+        /* padding: 10px; */
+        border: solid 1px;
+        background: white;
+        margin-top: 15px !important;
+    }
+    .fab-md {
+        color: #fff;
+        background-color: #fff;
+        -webkit-box-shadow: 0px;
+        box-shadow: 0px;
+    }
+    .fab {
+        contain: layout;
+        z-index: 9999;
+    }
+    ion-fab {
+        float: right;
+        left: 80%;
+        z-index: 9999;
+    }
+    //     .fab {
+    //         contain: layout;
+    //         width: 20px !important;
+    //         height: 20px !important;
+    //     }
+    //     ion-fab-list {
+    //         margin: -28px -40px;
+    //         min-width: 35px;
+    //         // min-height: 35px;
+    //         background-color: white;
+    //     }
+    //     ion-fab {
+    //         left: 83%;
+    //         position: absolute;
+    //         z-index: 999;
+    //     }
+}
+
+.rotate {
+    transition: all ease 1s;
+}
+
+.rotate:hover {
+    transform: rotate(180deg);
+}
+
+.button-inner {
+    padding: 0px;
+    margin: 0px;
+}
+
+ion-fab-list {
+    margin: 0;
+    position: relative;
+}
+
+.fab-in-list {
+    margin: 0;
+    width: 60px;
+}
+
+.fab-md {
+    color: #fff;
+    background-color: #fff;
+    -webkit-box-shadow: 0px;
+    box-shadow: 0 0 0 0;
+}
+
+.fab-label {
+    // padding: 2px 5px;
+    align-self: center;
+    user-select: none;
+    white-space: nowrap;
+    border-radius: 3px;
+    font-size: 16px;
+    background: #666666;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    // margin-right: 10px;
+}
+
+// select {
+// width: auto;
+// height: 30px;
+// border-radius: 5px;
+// background-color: rgb(120, 247, 247);
+//background: url() no-repeat 95% 50%;/* 화살표 모양의 이미지 */ 
+// }
+select {
+    width: 30%;
+    height: 45px;
+    // background-color: #fff;
+    border-radius: 5px;
+    border: 10px soild;
+    border-color: rgb(0, 167, 179);
+    /* 네이티브 외형 감추기 */
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // appearance: none;
+    /* 화살표 모양의 이미지 */
+    // background: url("./assets/imgs/072-버튼-PPT 19페이지의  우측 이미지-화살표 ∨-회전1단계(시작).png") no-repeat right 95% 50%;
+    padding-left: 10px;
+}
+
+#slt {
+    border: 2px solid;
+    border-color: rgb(0, 167, 179);
+    background-color: #fff;
+}
+
+
+/* IE 10, 11의 네이티브 화살표 숨기기 */
+
+select::-ms-expand {
+    display: none;
+}
+
+.topselector {
+    width: 350px;
+    height: 160px;
+    border: solid 2px rgb(120, 247, 247);
+    border-radius: 5px;
+    /*[위][오른쪽][아래][왼쪽]*/
+    margin: 5px auto;
+    // padding: 5px 5px 5px 5px;
+}
+
+.nnn {
+    color: black;
+}
+
+.button {
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap; //white-space: 연속된 공백 처리
+    background-color: #ffffff;
+    transition: background-color, opacity 100ms linear;
+    font-kerning: none;
+    user-select: none;
+    contain: content;
+    width: 25%;
+    height: 60px;
+    opacity: 1;
+    float: left;
+    color: black;
+}
+
+img {
+    vertical-align: middle;
+}
+
+p {
+    font-weight: bold;
+    text-align: center;
+    color: rgb(88, 189, 207);
+    font-size: 15px;
+}
+
+div.segmentImg {
+    position: relative;
+    vertical-align: middle;
+    width: 50px;
+    height: 40px;
+    top: 0px;
+    left: 0px;
+    float: left;
+}
+
+img.imgindiv {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.segmentText {
+    position: relative;
+    top: 0px;
+    width: 130px;
+    height: auto;
+    float: left;
+}
+
+.modalcopy {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100% !important;
+    height: 50% !important;
+    top: 50%;
+    right: 0% !important;
+    bottom: 0% !important;
+    left: 0% !important;
+}
+
+.label-md {
+    margin: 0px 0px 0px 0;
+}
+
+.tabstyle {
+    background-color: white;
+    letter-spacing: -0.35px;
+}
+
+.tab-font {
+    font-size: 15px;
+    color: black;
+    font-family: 'notomedium';
+    font-weight: 900;
+}
+
+.segment-md .segment-button.activated,
+.segment-md .segment-button.segment-activated {
+    border-color: #71E8E8;
+    border-bottom-width: 5px;
+}
+
+.martname {
+    font-size: 17px;
+    font-weight: 900px;
+    color: #808080;
+    height: 10px;
+    text-align: left;
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.border {
+    background-color: white;
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 2px #71E8E8;
+}
+
+.tabletd {
+    font-size: 13px;
+    width: 400px;
+    height: 20px;
+}
+
+.datespan {
+    // margin: 5px 5px 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dayoffimg {
+    text-align: right;
+    width: 40%;
+    padding-right: 10px;
+}
+
+.borderr {
+    background-color: white;
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 2px #71E8E8;
+}
+
+.heart {
+    z-index: 999px;
+}
+
+.cropping {
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.cropping img {
+    max-height: initial;
+    margin-top: 0%;
+}

@@ -1,0 +1,63 @@
+<ion-content>
+    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
+        <img src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">
+        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>
+    </div>
+    <div style="background-color: #fafafa;">
+        <ion-item-divider  style="  display: flex;
+        align-items:center;   background-color: white;
+        height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;">  <span>{{name}}</span>  </ion-item-divider>
+        <ion-item-group style="background-color: #fafafa;">
+            <div *ngFor="let i of martArray; let idx = index " class="border">
+                <button style="background-color: white;" class="btn1">
+                  <table>
+                    <thead>
+                      <th class="martname" style="margin-top: 10px;" (click)="martview(i)">
+                        {{i.storename}}
+                      </th>
+                      <th class="dayoffimg">
+                        <img (click)="martview(i)"*ngIf="today=='영업'" src="./assets/imgs/043.png" style="width:60%;">
+                        <img (click)="martview(i)" *ngIf="today=='휴무'" src="./assets/imgs/044.png" style="width:60%;">
+                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">
+                          <img class="heart" *ngIf="i.favorite=='false'" src="./assets/imgs/045.png" style="width:100%;" alt="">
+                          <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046.png" style="width:100%;" alt="">
+                          <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045.png" style="width:100%;" alt="">
+                        </button>
+                </th>
+                </thead>
+                </table>
+                <table>
+                    <tbody>
+                        <tr class="datespan">
+                            <td class="tabletd" *ngFor="let i of todayy" style="margin-top:10px;">
+                                <span *ngIf="i!='오늘'" style="color:red; font-weight: 500;">{{i}}</span>
+                                <span *ngIf="i=='오늘'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>
+                            </td>
+                        </tr>
+                        <tr class="datespan">
+                            <td *ngFor="let j of week" class="tabletd">
+                                <span>{{j.dayofweek}}</span>
+                            </td>
+                        </tr>
+                        <tr class="datespan">
+                            <td *ngFor="let j of week" class="tabletd">
+                                <span>{{j.month}}/{{j.day}}</span>
+                            </td>
+                        </tr>
+                        <tr class="datespan">
+                            <td *ngFor="let m of i.dayoffarray" class="tabletd">
+                                <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
+                                <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </button>
+
+            </div>
+        </ion-item-group>
+    </div>
+</ion-content>

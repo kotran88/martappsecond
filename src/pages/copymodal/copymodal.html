@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>쇼핑예정목록복사하기</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">취소</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-checkbox name="check1" [(ngModel)]="data1" (click)="allValue1()"></ion-checkbox>
+        <ion-label>구입하지 않은 목록</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-checkbox name="check2" [(ngModel)]="data2" (click)="allValue2()"></ion-checkbox>
+        <ion-label>구입한 목록</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-checkbox name="check3" [(ngModel)]="data3" (click)="allValue3()"></ion-checkbox>
+        <ion-label>전체 목록</ion-label>
+    </ion-item>
+
+    <button (click)="newCopy()" style="margin-left:30px; margin-top:5px; width:130px; height:30px; font-size:14px; background-color: #71E8E8; border-radius: 5px;">신규로 복사하기</button>
+    <button (click)="btn()" style="margin-right:30px; margin-top:5px; width:130px; height:30px; font-size:14px; background-color: #71E8E8; border-radius: 5px;">기존 목록에 덧붙이기</button>
+</ion-content>

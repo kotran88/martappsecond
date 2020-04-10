@@ -1,0 +1,156 @@
+<ion-content>
+    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
+        <img src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">
+        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">지역을 선택해주세요</span>
+        <button (click)="NoneAd()" style="background-color:#71E8E8; z-index: 999999;"><img src="./assets/imgs/004.png" style="width:25px;"></button>
+        <button (click)="appstore()" style="background-color:#71E8E8; z-index: 999999;"><img src="./assets/imgs/005.png" style="width:25px;"></button>
+        <button (click)="regularShare()" style="background-color:#71E8E8; z-index: 999999;"><img src="./assets/imgs/006.png" style="width:25px;"></button>
+    </div>
+
+    <ion-item-divider  style="  display: flex;
+    align-items:center;   background-color: white;
+    height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;">  <span>{{name}}</span>  </ion-item-divider>
+
+    <div *ngIf="martflag==1">
+        <button (click)="lottemartlist('gangwon')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>
+        <button (click)="lottemartlist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="lottemartlist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="lottemartlist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="lottemartlist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="lottemartlist('chungbuk')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>
+        <!-- <button (click)="lottemartlist('sejong')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button> -->
+        <button (click)="lottemartlist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="lottemartlist('gyeongbuk')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>
+        <button (click)="lottemartlist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="lottemartlist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="lottemartlist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="lottemartlist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="lottemartlist('jeonbuk')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>
+        <button (click)="lottemartlist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <button (click)="lottemartlist('jeonnam')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>
+        <button (click)="lottemartlist('jeju')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==2">
+        <button (click)="emartlist('gangwon')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>
+        <button (click)="emartlist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="emartlist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="emartlist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="emartlist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="emartlist('chungbuk')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>
+        <button (click)="emartlist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="emartlist('gyeongbuk')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>
+        <button (click)="emartlist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="emartlist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="emartlist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="emartlist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="emartlist('jeonbuk')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>
+        <button (click)="emartlist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <button (click)="emartlist('jeonnam')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>
+        <button (click)="emartlist('jeju')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==3">
+        <button (click)="homepluslist('gangwon')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>
+        <button (click)="homepluslist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="homepluslist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="homepluslist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="homepluslist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="homepluslist('chungbuk')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>
+        <button (click)="homepluslist('sejong')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button>
+        <button (click)="homepluslist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="homepluslist('gyeongbuk')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>
+        <button (click)="homepluslist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="homepluslist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="homepluslist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="homepluslist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="homepluslist('jeonbuk')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>
+        <button (click)="homepluslist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <button (click)="homepluslist('jeonnam')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>
+        <button (click)="homepluslist('jeju')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==4">
+        <button (click)="costcolist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="costcolist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="costcolist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="costcolist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="costcolist('sejong')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button>
+        <button (click)="costcolist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="costcolist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="costcolist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="costcolist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==5">
+        <button (click)="traderslist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="traderslist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="traderslist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="traderslist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="traderslist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="traderslist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="traderslist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="traderslist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+
+    </div>
+    <div *ngIf="martflag==6">
+        <button (click)="lottedeplist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="lottedeplist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="lottedeplist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="lottedeplist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="lottedeplist('gyeongbuk')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>
+        <button (click)="lottedeplist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="lottedeplist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="lottedeplist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="lottedeplist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="lottedeplist('jeonbuk')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>
+        <button (click)="lottedeplist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==7">
+        <button (click)="ssgdeplist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="ssgdeplist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="ssgdeplist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="ssgdeplist('daejeon')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>
+        <button (click)="ssgdeplist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="ssgdeplist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="ssgdeplist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="ssgdeplist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==8">
+        <button (click)="hyundeplist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="hyundeplist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="hyundeplist('chungbuk')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>
+        <button (click)="hyundeplist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="hyundeplist('ulsan')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>
+        <button (click)="hyundeplist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==9">
+        <button (click)="lotteoutlist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="lotteoutlist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="lotteoutlist('chungnam')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>
+        <button (click)="lotteoutlist('chungbuk')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>
+        <button (click)="lotteoutlist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <button (click)="lotteoutlist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <button (click)="lotteoutlist('gyeongnam')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>
+        <button (click)="lotteoutlist('jeonbuk')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>
+        <button (click)="lotteoutlist('gwangju')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>
+        <button (click)="lotteoutlist('jeonnam')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==10">
+        <button (click)="ssgoutlist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="ssgoutlist('busan')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+    <div *ngIf="martflag==11">
+        <button (click)="hyunoutlist('seoul')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>
+        <button (click)="hyunoutlist('gyeonggi')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>
+        <button (click)="hyunoutlist('incheon')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>
+        <button (click)="hyunoutlist('daegu')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>
+        <img src=" {{map}} " style="margin-top:-120px; ">
+    </div>
+</ion-content>

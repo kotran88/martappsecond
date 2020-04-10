@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-navbar>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데마트')>-1">
+            <img src="./assets/imgs/009.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">롯데마트</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트')>-1&&martinfo.name.indexOf('트레이더스')==-1">
+            <img src="./assets/imgs/010.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">이마트</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/011.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">홈플러스</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('코스트코')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/012.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">코스트코</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트트레이더스')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/013.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">이마트트레이더스</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데백화점')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/020.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">롯데백화점</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('신세계')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/021.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">신세계백화점</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('현대백화점')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/022.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">현대백화점</a>
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데 아울렛')>-1" (click)="martview(i)">
+            <img src="./assets/imgs/023.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">롯데아울렛</a>
+        </div>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div style="padding-top:20px; padding-left:20px; margin-bottom:10px; ">
+        <span style="font-weight: bold; font-size:18px; color:#808080 ">{{martinfo.storename}}</span>
+    </div>
+    <table class="tableStyle ">
+        <tbody>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; 
+                margin-top: 7px;
+                margin-bottom: 7px; ">1. 정기 휴무일 : {{martinfo.vacation}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; 
+                margin-top: 7px;
+                margin-bottom: 7px; ">2. 대표번호 : {{martinfo.tel}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;  
+                margin-top: 7px;
+                margin-bottom: 7px;">3. 위치 : {{martinfo.addr}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; 
+                margin-top: 7px;
+                margin-bottom: 7px; ">4. 영업시간 : {{martinfo.optime}}</p>
+            </tr>
+
+        </tbody>
+    </table>
+    <div style="margin-left:auto; margin-right:auto; text-align: center; ">
+        <button style="text-align:center; width:45%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; height: 35px; " (click)="calling() "><img src="./assets/imgs/048.png" style="width:20%; margin-right:3px; ">전화걸기</button>
+        <button style="text-align:center; width:45%; letter-spacing: 3px; font-size:15px; margin-left:10px; background-color: #71E8E8; border-radius: 5px; height: 35px;" (click)="map() "><img src="./assets/imgs/049.png" style="width:20%; margin-right:3px; ">지도확인</button>
+    </div>
+    <div class="calendar-body ">
+        <ion-grid>
+            <ion-row class="calendar-month ">
+                {{month}}월
+            </ion-row>
+            <ion-row class="calendar-weekday ">
+                <ion-col style="color:red ">일</ion-col>
+                <ion-col>월</ion-col>
+                <ion-col>화</ion-col>
+                <ion-col>수</ion-col>
+                <ion-col>목</ion-col>
+                <ion-col>금</ion-col>
+                <ion-col style="color:blue ">토</ion-col>
+            </ion-row>
+            <ion-row class="calendar-date ">
+                <ion-col col-1 *ngFor="let day of daysInThisMonth">
+                    <span class="currentDate " *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>
+                    <span class="otherDate" style="color:red" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>
+                    <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>
+                </ion-col>
+                <ion-col col-1 *ngFor="let nextDay of daysInNextMonth " class="next-month">{{nextDay}}</ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
+
+</ion-content>
