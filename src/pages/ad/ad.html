@@ -11,17 +11,20 @@
   " padding>
 
     <div style="margin-left:auto; margin-right:auto;">
-        <img src="./assets/imgs/050-배경 이미지-PPT 15페이지의  우측 이미지-이마 프리미엄 글씨+말얼굴.png" alt="">
+        <img src="./assets/imgs/050.png" alt="">
         <div style="margin-right:auto; margin-left:auto;">
 
             <a class="test" *ngFor="let opt of option; let i = index" style="margin-left:auto; margin-right:auto;">
 
                 <button type="button" (click)="clickbutton(i)" [ngClass]="select_option===i?'B_on':'B_off'" *ngIf="more_info||(i==0||i==3)" style="width: 45%; margin-right:auto; margin-left:auto;">
-              <img *ngIf="opt.price==990" src="./assets/imgs/051-버튼-PPT 15페이지의  우측 이미지-990원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
-              <img *ngIf="opt.price==1980" src="./assets/imgs/059-버튼-PPT 16페이지의  우측 이미지-1980원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
-              <img *ngIf="opt.price==3520" src="./assets/imgs/061-버튼-PPT 16페이지의  우측 이미지-3520원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
-              <img *ngIf="opt.price==4730" src="./assets/imgs/053-버튼-PPT 15페이지의  우측 이미지-4730원(선택 전 테두리 없음).png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
-
+                <img *ngIf="opt.price==990&&flag1==false" src="./assets/imgs/052.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==990&&flag1==true" src="./assets/imgs/051.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==1980&&flag2==false" src="./assets/imgs/059.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==1980&&flag2==true" src="./assets/imgs/060.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==3520&&flag3==false" src="./assets/imgs/061.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==3520&&flag3==true" src="./assets/imgs/062.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==4730&&flag4==false" src="./assets/imgs/053.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
+                <img *ngIf="opt.price==4730&&flag4==true" src="./assets/imgs/054.png" style="width:100%; margin-right:auto; margin-left:auto;" alt="">
         <!-- {{opt.price}}원 -->
         <br>
         <!-- {{opt.text}} -->
@@ -32,16 +35,11 @@
 
 
         <button type="button" *ngIf="more_info===false" (click)="add_menu()" style="width: 45%; margin-right:auto; margin-left:auto; background-color:rgb(240,240,240);">
-          <img src="./assets/imgs/057-버튼-PPT 15페이지의  우측 이미지-더 많은 정보 보기(선택 전 테두리 없음).png" style="margin-left:auto; margin-right:auto;" alt=" ">
+          <img src="./assets/imgs/057.png" style="margin-left:auto; margin-right:auto;" alt=" ">
       <!-- 더 많은 정보 보기 -->
     </button>
-        <!-- <button ion-button *ngIf="more_info===true " (click)="dismiss() "> -->
-        <!-- 닫기
-        </button> -->
-
         <button type="button" (click)="purchase() " style="width: 45%; margin-right:auto; margin-left:auto; background-color:rgb(240,240,240);">
-        <img src="./assets/imgs/055-버튼-PPT 15페이지의  우측 이미지-ok 계속하기(선택 전 테두리 없음).png" alt="">
-        <!-- OK계속하기 -->
+        <img src="./assets/imgs/055.png" alt="">
         </button>
 
     </div>

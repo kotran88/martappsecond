@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { ViewContainerData } from '@angular/core/src/view';
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { v } from '@angular/core/src/render3';
+import { AdMobFreeBannerConfig, AdMobFree } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the AdPage page.
@@ -16,7 +17,10 @@ import { v } from '@angular/core/src/render3';
   templateUrl: 'ad.html',
 })
 export class AdPage {
-
+  flag1:boolean = false;
+  flag2:boolean = false;
+  flag3:boolean = false;
+  flag4:boolean = false;
   more_info=false;
   select_option=-1;
   option=[
@@ -27,7 +31,29 @@ export class AdPage {
   ];
 
   constructor(private iap:InAppPurchase,
-    public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController) {
+    public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController, public admobFree: AdMobFree) {
+      setTimeout(() => {
+        const bannerConfig: AdMobFreeBannerConfig = {
+          // add your config here
+          // for the sake of this example we will just use the test config
+          isTesting: true,
+          autoShow: true
+        };
+        this.admobFree.banner.config(bannerConfig);
+  
+        this.admobFree.banner.prepare()
+          .then(() => {
+            // banner Ad is ready
+            console.log("ok")
+            this.admobFree.banner.show().then(() => {
+              console.log("success");
+            }).catch((e) => {
+              console.log(e);
+            })
+            // if we set autoShow to false, then we will need to call the show method here
+          })
+          .catch(e => console.log(e));
+      }, 500)
   }
 
   ionViewDidLoad() {
@@ -50,6 +76,60 @@ export class AdPage {
     console.log(i);
     if(this.select_option==i) this.select_option=-1;
     else this.select_option=i;
+    if(i==0){
+      this.flag2=false;
+      this.flag3=false;
+      this.flag4=false;
+      if(this.flag1==false){
+        this.flag1 = true;
+        console.log(this.flag1)
+      }else if(this.flag1==true){
+        this.flag1 = false;
+        console.log(this.flag1);
+      }
+      else{this.flag1 = false}
+    }
+    if(i==1){
+      this.flag1=true;
+      this.flag3=false;
+      this.flag4=false;
+      if(this.flag2==false){
+        this.flag2 = true;
+        console.log(this.flag2)
+      }else if(this.flag2==true){
+        this.flag2 = false;
+        console.log(this.flag2);
+      }
+      else{this.flag2 = false}
+    }
+    if(i==2){
+      this.flag1=true;
+      this.flag2=false;
+      this.flag4=false;
+      if(this.flag3==false){
+        this.flag3 = true;
+        console.log(this.flag3)
+      }else if(this.flag3==true){
+        this.flag3 = false;
+        console.log(this.flag3);
+      }
+      else{this.flag3 = false}
+    }
+    if(i==3){
+      this.flag1=true;
+      this.flag2=false;
+      this.flag3=false;
+      if(this.flag4==false){
+        this.flag4 = true;
+        console.log(this.flag4)
+      }else if(this.flag4==true){
+        this.flag4 = false;
+        console.log(this.flag4);
+      }
+      else{this.flag4 = false}
+    }
+    
+  
   }
   
   purchase(){
@@ -81,5 +161,8 @@ export class AdPage {
     this.viewCtrl.dismiss();
   }
 
+  dis(){
+    this.navCtrl.pop();
+  }
   
 }

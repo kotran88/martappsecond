@@ -30,9 +30,9 @@ export class MartlistPage {
   constructor(public view:ViewController,public app:App,public platform:Platform,public navCtrl: NavController, public navParams: NavParams,
     private socialSharing: SocialSharing, public modal: ModalController) {
       this.id=this.navParams.get("id")
-
-
-
+  }
+  goback(){
+    this.navCtrl.pop();
   }
 
   regularShare() {

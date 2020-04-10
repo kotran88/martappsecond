@@ -9,6 +9,7 @@ import { HomePage } from '../home/home';
 import 'hammerjs'
 
 import { Directive, ElementRef, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { ViewlimitmodalPage } from '../viewlimitmodal/viewlimitmodal';
 
 
 /**
@@ -26,7 +27,7 @@ export class ViewshoppinglistPage {
 
   @Output('long-press') onPressRelease: EventEmitter<any> = new EventEmitter();
   [x: string]: any;
-  firstflag:any=false;
+  firstflag: any = false;
   selected: any;
   totalnumber: any = 0;
   key: any;
@@ -49,9 +50,9 @@ export class ViewshoppinglistPage {
   count: any = 0;
   allbuy: boolean = false;
   number = [];
-  checkflag : boolean = false;
+  checkflag: boolean = false;
 
-  constructor(public speechRecognition :SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
+  constructor(public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
     public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController) {
@@ -64,7 +65,7 @@ export class ViewshoppinglistPage {
     console.log(this.shop);
     console.log(this.a);
     console.log(this.a.list);
-    for(var i=0; i<this.a.list.length; i++){
+    for (var i = 0; i < this.a.list.length; i++) {
     }
     console.log(this.id);
     console.log(this.title);
@@ -85,12 +86,58 @@ export class ViewshoppinglistPage {
     for (var i = 1; i <= 50; i++) {
       this.number.push({ "count": i });
     }
-    // console.log(this.number);
   }
 
-  // closeFab(fab:FabContainer){
-  //   fab.close();
-  // }
+  backbutton() {
+    if(this.flag == true){
+      let alert = this.alertCtrl.create({
+
+        title: '작성 중이던 목록을 저장할까요?',
+        buttons: [
+          {
+            text: '아니요',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+              this.goback();
+            }
+          },
+          {
+            text: '예',
+            handler: data => {
+              for (var v = 0; v < this.a.list.length; v++) {
+                console.log(this.a.list[v])
+                console.log(this.a.list[v].name);
+  
+                if (this.a.list[v].name == "") {
+                  window.alert("목록을 입력해주세요");
+                }
+                else {
+                  window.alert("저장되었습니다.");
+                  this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+                  this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+                  this.refreshname();
+                  this.showToastWithCloseButton();
+                  this.checkedbuy();
+                }
+              }
+              console.log(this.a.list);
+              console.log(this.shop);
+              this.goback();
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+    else{
+      this.goback();
+    }
+  }
+
+  goback() {
+    this.navCtrl.pop();
+  }
 
   pressed() {
     console.log("pressed")
@@ -120,14 +167,9 @@ export class ViewshoppinglistPage {
     /*가격받아오기*/
     this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
-        // console.log(snap.val()[a])
-        // console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
-        // console.log(this.sum);
         this.sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);
         this.printsum = this.formatNumber(this.sum);
       }
-      // console.log(this.sum);
-      // console.log(this.printsum);
     })
   }
 
@@ -136,15 +178,11 @@ export class ViewshoppinglistPage {
     var count = 0;
     this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
-        // console.log(snap.val()[a])
-        // console.log(snap.val()[a].checked);
         if (snap.val()[a].checked == true) {
           count++;
-          // console.log(count);
         }
       }
       this.selected = count;
-      // console.log(this.selected);
     })
   }
 
@@ -154,13 +192,13 @@ export class ViewshoppinglistPage {
     var sum = 0;
     this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
-        if (snap.val()[a].name = null) {
+        if (snap.val()[a].name = "") {
           snap.val()[a].name = "-"
         }
         console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
         sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
         this.printsum = this.formatNumber(sum);
-        this.a.list.push({ "name": snap.val()[a].name,"checked2":false, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity, "del":this.checkflag });
+        this.a.list.push({ "name": snap.val()[a].name, "checked2": false, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity, "del": this.checkflag });
       }
       console.log(sum);
     })
@@ -173,21 +211,45 @@ export class ViewshoppinglistPage {
 
   add() {
     console.log(this.a.list);
-    if (this.price < 1 && this.price > 99999999) {
-      this.price = 1;
-      const toast = this.toastCtrl.create({
-        message: '단가는 99,999,999원까지 입력 가능합니다.',
-        duration: 2000,
-      });
-      toast.present();
+    if (this.a.list.length < 50) {
+      if (this.price < 1 && this.price > 99999999) {
+        this.price = 1;
+        const toast = this.toastCtrl.create({
+          message: '단가는 99,999,999원까지 입력 가능합니다.',
+          duration: 2000,
+        });
+        toast.present();
+      }
+      if (this.price == "") { this.price = 1; }
+      if (this.quantity == "") { this.quantity = 1; }
+      this.a.list.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
+      this.totalnumber = this.a.list.length;
+      this.adding = "";
+      this.price = "";
+      this.quantity = "";
     }
-    if (this.price == "") { this.price = 1; }
-    if (this.quantity == "") { this.quantity = 1; }
-    this.a.list.push({ "name": this.adding, "checked2":false,"checked": false, "price": this.price, "quantity": this.quantity });
-    this.totalnumber = this.a.list.length;
-    this.adding = "";
-    this.price = "";
-    this.quantity = "";
+    else if (this.a.list.length >= 50) {
+      let modal = this.modal.create(ViewlimitmodalPage, null, {
+        cssClass: "modalSize"
+      });
+      modal.present();
+      for (var v = 0; v < this.a.list.length; v++) {
+        console.log(this.a.list[v])
+        console.log(this.a.list[v].name);
+
+        if (this.a.list[v].name == "") {
+          window.alert("목록을 입력해주세요");
+        }
+        else {
+          this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+          this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+          this.refreshname();
+          // this.showToastWithCloseButton();
+          // this.checkedbuy();
+        }
+      }
+    }
+
   }
 
   /*가격 및 수량도 입력하기*/
@@ -199,17 +261,17 @@ export class ViewshoppinglistPage {
   cancel() {
     this.flagInput = false;
   }
-  addValue(v,idx) {
+  addValue(v, idx) {
     var count = 0;
     console.log(v);
     console.log(v.checked);
     console.log(idx)
-    if(v.checked){
-      v.checked=false;
-    }else{
+    if (v.checked) {
+      v.checked = false;
+    } else {
       v.checked = true;
     }
-   
+
     console.log(this.a.list);
     console.log(this.a.list.length);
 
@@ -257,7 +319,7 @@ export class ViewshoppinglistPage {
 
   checkValue(v) {
     var count = 0;
-    this.checkflag=true;
+    this.checkflag = true;
     console.log(v);
     console.log(v.checked);
     v.checked = true;
@@ -273,8 +335,6 @@ export class ViewshoppinglistPage {
     this.selected = count;
     console.log(this.a.list);
   }
-
-
   save() {
     this.flag = false;
     this.flagInput = false;
@@ -317,22 +377,20 @@ export class ViewshoppinglistPage {
     });
     alert.present();
   }
-
   /*수정*/
   insertData(fab: FabContainer) {
     this.flag = true;
   }
-
   delflag1: boolean = false;
   /*삭제*/
   delete(fab: FabContainer) {
-   
+
     this.delflag1 = true;
-    if(!this.flag){
+    if (!this.flag) {
 
       this.flag = true;
     }
-    
+
     console.log(this.delflag1);
     const toast = this.toastCtrl.create({
       message: '삭제를 원하시는 품목을 눌러주세요.',
@@ -346,11 +404,29 @@ export class ViewshoppinglistPage {
   del(name) {
     // this.delflag1 = true;
     console.log(name);
-    name.checked2=true;
-    this.delNameArray.push(name.name);
+    if (this.delNameArray.indexOf(name.name) == -1) {
+      name.checked2 = true;
+      this.delNameArray.push(name.name);
+    }
+    else if (this.delNameArray.indexOf(name.name) > -1) {
+      name.checked2 = false;
+      console.log("aready!");
+      console.log(this.delNameArray);
+      for (var a in this.delNameArray) {
+        if (this.delNameArray[a] == name.name) {
+          console.log(this.delNameArray[a]);
+          this.delNameArray[a] = "NC";
+        }
+      }
+      var filtered = this.delNameArray.filter(function (value) {
+        return value != "NC";
+      })
+      this.delNameArray = filtered;
+      console.log(this.delNameArray);
+    }
     console.log(this.delNameArray);
   }
-  del2(){
+  del2() {
     let alert = this.alertCtrl.create({
       title: '정말로 삭제하시겠습니까?',
       buttons: [
@@ -365,14 +441,15 @@ export class ViewshoppinglistPage {
           text: '확인',
           handler: data => {
             console.log(this.a.list);
+            window.alert("삭제되었습니다.");
             for (var i = 0; i < this.a.list.length; i++) {
-              for(var j in this.delNameArray){
+              for (var j in this.delNameArray) {
 
-              if (this.a.list[i].name == this.delNameArray[j]) {
-                this.a.list[i] = "NC"
+                if (this.a.list[i].name == this.delNameArray[j]) {
+                  this.a.list[i] = "NC"
+                }
               }
             }
-          }
 
             var filtered = this.a.list.filter(function (value) {
               return value != "NC";
@@ -404,66 +481,15 @@ export class ViewshoppinglistPage {
               }
               this.refreshname(); //새로고침
             })
-
-    //         //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
-    //         //         for (var i = 0; i < this.a.list.length; i++) {
-    //         //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-    //         //           if (this.a.list[i].checked == true) {
-    //         //             console.log(this.a.list[i].checked);
-    //         //             newlist.push(i);
-    //         //             const toast = this.toastCtrl.create({
-    //         //               message: '삭제되었습니다.',
-    //         //               duration: 2000,
-    //         //             });
-    //         //             toast.present();
-    //         //           }
-    //         //         }
-
-    //         //         for (var i = 0; i < newlist.length; i++) {
-    //         //           this.a.list[newlist[i]] = "NC"
-    //         //         }
-
-    //         //         console.log(this.a.list)
-
-    //         //         var filtered = this.a.list.filter(function (value) {
-    //         //           console.log(value)
-    //         //           return value != "NC";
-
-    //         //         });
-    //         //         console.log(filtered)
-    //         //         this.a.list = filtered
-
-    //         //         console.log(this.a.list);
-    //         //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    //         //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-    //         //           for (var a in snap.val()) {
-    //         //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-    //         //               console.log("success")
-    //         //             }).catch((e) => {
-    //         //               console.log("error" + e);
-    //         //             })
-    //         //           }
-    //         //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-    //         //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-    //         //             console.log(this.a.list);
-    //         //           });
-
-    //         //           /*totalNumber와 Select값 가져오기*/
-    //         //           this.totalnumber = this.a.list.length;
-    //         //           var count = 0;
-    //         //           for (var i = 0; i < this.a.list.length; i++) {
-    //         //             if (this.a.list[i].checked == true) {
-    //         //               count++;
-    //         //             }
-    //         //           }
-    //         //           this.selected = count;
-    //         //           this.refreshname(); //새로고침
-    //         //         })
           }
         }
       ]
     });
     alert.present();
+  }
+  delcancle() {
+    this.delflag1 = false;
+    this.delNameArray = [];
   }
   check: any;
 
@@ -484,21 +510,49 @@ export class ViewshoppinglistPage {
         {
           text: '예',
           handler: data => {
+            var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
+            var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
 
-            // var sortingField = this.check;
-            // console.log(sortingField);
+            for (var i = 0; i < this.a.list.length; i++) {
+              if (this.a.list[i].checked == true) {
+                checked.push(this.a.list[i]);
+                console.log(checked);
+                checked.sort(function (name1, name2) {
+                  return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
+                });
+              }
+              else if (this.a.list[i].checked == false) {
+                unchecked.push(this.a.list[i]);
+                console.log(unchecked);
+                unchecked.sort(function (name1, name2) {
+                  return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
+                });
+              }
+              console.log("checkresult : ");
+              console.log(checked)
+              console.log("uncheckedresult :");
+              console.log(unchecked)
 
-            // this.a.list.sort(function (name1, name2) { // 오름차순
-            // console.log(this.check);
-            // return (a[sortingField] === b[sortingField])? 0 : a[sortingField]? -1 : 1;
-            // var x = name1[sortingField]; var y = name2[sortingField];
-            // return name1.name[sortingField] < name2.name[sortingField] ? -1 : name1.name[sortingField] > name2.name[sortingField] ? 1 : 0;
+            }
+            this.a.list = [];
+
+            for (var i = 0; i < unchecked.length; i++) {
+              this.a.list.push(unchecked[i])
+            }
+            for (var i = 0; i < checked.length; i++) {
+              this.a.list.push(checked[i])
+            }
+            //   var sortingField = "distance";
+            //   this.storearray.sort(function(a,b) { // 오름차순
+            //     // return (a[sortingField] === b[sortingField])? 0 : a[sortingField]? -1 : 1;
+            //     var x = a[sortingField]; var y = b[sortingField];
+            //         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             // });
 
 
-            this.a.list.sort(function (name1, name2) {
-              return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
-            });
+            // this.a.list.sort(function (name1, name2) {
+            //   return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
+            // });
 
             console.log(this.a.list);
             window.alert("정렬되었습니다.");
@@ -535,7 +589,7 @@ export class ViewshoppinglistPage {
       toast.present();
     }
   }
-  speeching2(){
+  speeching2() {
     window.alert("2")
   }
   speeching() {
@@ -548,95 +602,98 @@ export class ViewshoppinglistPage {
       "showPopup": true,  // Android only
       "showPartial": true
     }
-     // Check permission
-     this.speechRecognition.hasPermission()
-     .then((hasPermission: boolean) => {console.log(hasPermission)
-    }).catch((e)=>{
-      window.alert(e)
-    })
-   this.speechRecognition.requestPermission()
-     .then(
-       () => {console.log('ㅎㅎㅎㅎㅎGranteddd')
-       console.log("listened")
-       console.log(options);
-     // Start the recognition process
-      
-        // Check feature available
-        this.speechRecognition.isRecognitionAvailable()
-          .then((available: boolean) =>{console.log(available)
-          console.log("available")
-          }).catch((e) => {
-            console.log("failed")
-            console.log(e);
-          })
-        // Start the recognition process
-        console.log(this.speechRecognition)
-        if(this.firstflag){
- this.speechRecognition.startListening(options)
-          .subscribe(
-            (matches: string[]) =>{
+    // Check permission
+    this.speechRecognition.hasPermission()
+      .then((hasPermission: boolean) => {
+        console.log(hasPermission)
+      }).catch((e) => {
+        window.alert(e)
+      })
+    this.speechRecognition.requestPermission()
+      .then(
+        () => {
+          console.log('ㅎㅎㅎㅎㅎGranteddd')
+          console.log("listened")
+          console.log(options);
+          // Start the recognition process
 
-              console.log("matched!")
-              console.log(matches)
-            } ,
-            (onerror) => console.log('error:', onerror)
-          )
-        }
-       
-        // Stop the recognition process (iOS only)
-        this.speechRecognition.stopListening()
-        // Get the list of supported languages
-        console.log("goto getsupported language")
-        this.speechRecognition.getSupportedLanguages()
-          .then(
-            (languages: string[]) => {
-              console.log("listened")
-              console.log(languages)
-            
-            
-            this.adding=languages[0]
-            },
-            (error) => {
-              console.log("errorrrorr")
-              console.log(error)
-              this.firstflag=true;
-
-
-              this.speechRecognition.startListening(options)
+          // Check feature available
+          this.speechRecognition.isRecognitionAvailable()
+            .then((available: boolean) => {
+              console.log(available)
+              console.log("available")
+            }).catch((e) => {
+              console.log("failed")
+              console.log(e);
+            })
+          // Start the recognition process
+          console.log(this.speechRecognition)
+          if (this.firstflag) {
+            this.speechRecognition.startListening(options)
               .subscribe(
-                (matches: string[]) => console.log(matches),
+                (matches: string[]) => {
+
+                  console.log("matched!")
+                  console.log(matches)
+                },
                 (onerror) => console.log('error:', onerror)
               )
-            // Stop the recognition process (iOS only)
-            this.speechRecognition.stopListening()
-            // Get the list of supported languages
-            this.speechRecognition.getSupportedLanguages()
-              .then(
-                (languages: string[]) => {
-                  console.log("listened")
-                  console.log(languages)
-                
-                
-                this.adding=languages[0]
-                },
-                (error) => {
-                  console.log("errorrrorr")
-                  console.log(error)
-                
-                }
-              )
-         
+          }
+
+          // Stop the recognition process (iOS only)
+          this.speechRecognition.stopListening()
+          // Get the list of supported languages
+          console.log("goto getsupported language")
+          this.speechRecognition.getSupportedLanguages()
+            .then(
+              (languages: string[]) => {
+                console.log("listened")
+                console.log(languages)
+
+
+                this.adding = languages[0]
+              },
+              (error) => {
+                console.log("errorrrorr")
+                console.log(error)
+                this.firstflag = true;
+
+
+                this.speechRecognition.startListening(options)
+                  .subscribe(
+                    (matches: string[]) => console.log(matches),
+                    (onerror) => console.log('error:', onerror)
+                  )
+                // Stop the recognition process (iOS only)
+                this.speechRecognition.stopListening()
+                // Get the list of supported languages
+                this.speechRecognition.getSupportedLanguages()
+                  .then(
+                    (languages: string[]) => {
+                      console.log("listened")
+                      console.log(languages)
+
+
+                      this.adding = languages[0]
+                    },
+                    (error) => {
+                      console.log("errorrrorr")
+                      console.log(error)
+
+                    }
+                  )
 
 
 
-            
-            }
-          )
-     
-     
-     },
-       () => console.log('Denied')
-     )
+
+
+              }
+            )
+
+
+        },
+        () => console.log('Denied')
+      )
     // let options = {
     //   "language": "ko-KR",
     //   "matches": 1,
@@ -652,50 +709,50 @@ export class ViewshoppinglistPage {
     // }).catch((e)=>{
     //   window.alert(e)
     // })
-   // Request permissions
-  //  this.speechRecognition.requestPermission()
-  //    .then(
-  //      () => {console.log('ㅎㅎㅎㅎㅎGranteddd')
-  //    window.alert("1111")
-  //      console.log("listened")
-  //      console.log(options);
-  //    // Start the recognition process
-      
-  //       // Check feature available
-  //       this.speechRecognition.isRecognitionAvailable()
-  //         .then((available: boolean) => console.log(available)).catch((e) => {
-  //           console.log(e);
-  //         })
-  //       // Start the recognition process
-  //       this.speechRecognition.startListening(options)
-  //         .subscribe(
-  //           (matches: string[]) => console.log(matches),
-  //           (onerror) => console.log('error:', onerror)
-  //         )
-  //       // Stop the recognition process (iOS only)
-  //       this.speechRecognition.stopListening()
-  //       // Get the list of supported languages
-  //       this.speechRecognition.getSupportedLanguages()
-  //         .then(
-  //           (languages: string[]) => {
-  //             console.log("listened")
-  //             console.log(languages)
-            
-            
-  //           this.adding=languages[0]
-  //           },
-  //           (error) => {
-  //             console.log("errorrrorr")
-  //             console.log(error)
-            
-  //           }
-  //         )
-     
-     
-  //    },
-  //      () => console.log('Denied')
-  //    )
-     
-   
+    // Request permissions
+    //  this.speechRecognition.requestPermission()
+    //    .then(
+    //      () => {console.log('ㅎㅎㅎㅎㅎGranteddd')
+    //    window.alert("1111")
+    //      console.log("listened")
+    //      console.log(options);
+    //    // Start the recognition process
+
+    //       // Check feature available
+    //       this.speechRecognition.isRecognitionAvailable()
+    //         .then((available: boolean) => console.log(available)).catch((e) => {
+    //           console.log(e);
+    //         })
+    //       // Start the recognition process
+    //       this.speechRecognition.startListening(options)
+    //         .subscribe(
+    //           (matches: string[]) => console.log(matches),
+    //           (onerror) => console.log('error:', onerror)
+    //         )
+    //       // Stop the recognition process (iOS only)
+    //       this.speechRecognition.stopListening()
+    //       // Get the list of supported languages
+    //       this.speechRecognition.getSupportedLanguages()
+    //         .then(
+    //           (languages: string[]) => {
+    //             console.log("listened")
+    //             console.log(languages)
+
+
+    //           this.adding=languages[0]
+    //           },
+    //           (error) => {
+    //             console.log("errorrrorr")
+    //             console.log(error)
+
+    //           }
+    //         )
+
+
+    //    },
+    //      () => console.log('Denied')
+    //    )
+
+
   }
 }

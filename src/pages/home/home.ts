@@ -20,6 +20,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { MartlistPage } from '../martlist/martlist';
 import { MartinfoviewPage } from '../martinfoview/martinfoview';
 import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
+import { DeletemodalPage } from '../deletemodal/deletemodal';
 
 
 @Component({
@@ -102,7 +103,7 @@ export class HomePage {
 
       if (dayofweek >= 7) { dayofweek = 0; }
       if (this.currentDate + i <= thisNumOfDays) {
-        this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
+        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
         // console.log(dayofweek);
       }
       else if (this.currentDate + i > thisNumOfDays) {
@@ -139,8 +140,8 @@ export class HomePage {
   kindofmart: any;
   favorite() {
     var count = 0;
-    this.favoriteList=[];
-    console.log("this id is : "+this.id);
+    this.favoriteList = [];
+    console.log("this id is : " + this.id);
     this.firemain.child("users").child(this.id).child("favorite").once("value", (sn) => {
       // console.log(sn.val());
       for (var i in sn.val()) {
@@ -159,13 +160,11 @@ export class HomePage {
       }
 
     })
-    // console.log(this.favoriteList);
-    // console.log(this.favoriteList.length);
-    if (this.favoriteList.length >= 6) {
+  
+    if (this.favoriteList.length >= 20) {
       let modal = this.modal.create(FavoritemodalPage);
       modal.present();
 
-      // this.firemain.child("users").child(this.id).child("favorte").remove();
     }
   }
 
@@ -197,13 +196,13 @@ export class HomePage {
     console.log(returnvalue);
     return returnvalue
   }
-  cnt:any;
+  cnt: any;
   dayoffarray = [];
   vacationFunc(week, mart, count) {
     // console.log(week);
     // console.log(mart.vacation);
     // console.log(count);
-    this.cnt=count;
+    this.cnt = count;
     // console.log(this.cnt);
     var counting = 0;
     this.dayoffarray = [];
@@ -333,20 +332,12 @@ export class HomePage {
         }
       }
       else {
-        console.log("hi");
-        
+
         if (this.dayoffarray.length <= 6) {
           this.dayoffarray.push("영업");
         }
       }
-
-      console.log(count);
-      console.log(this.favoriteList);
       this.favoriteList[count - 1].dayoffarray = this.dayoffarray;
-      // console.log(this.favoriteList[count-1].dayoffarry);
-
-
-      // this.favoriteList[count-1].dayoffarray = this.dayoffarray;
     }
 
   }
@@ -359,8 +350,8 @@ export class HomePage {
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    console.log(this.martkind[idx]);
-    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx]).child(a.key).remove();
+    console.log(this.martkind[idx-1]);
+    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx-1]).child(a.key).remove();
     const toast = this.toastCtrl.create({
       message: '삭제되었습니다.',
       duration: 2000,
@@ -593,66 +584,18 @@ export class HomePage {
     alert.present();
   }
 
+
   deleteDB(key) {
     console.log("delete come");
     console.log(key);
     console.log(this.nextdirectory);
     console.log(key.title);
     console.log(key.flag);
-    let alert = this.alertCtrl.create({
-      title: '선택된 품목(들)을 정말로 삭제하시겠습니까?',
-      buttons: [
-        {
-          text: '취소',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '확인',
-          handler: data => {
-            if (key.flag == "mart") {
-              this.nextdirectory.child("mart").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "dep") {
-              this.nextdirectory.child("dep").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "outlet") {
-              this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "etc") {
-              this.nextdirectory.child("etc").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
+    let modal = this.modal.create(DeletemodalPage, { "key": key, "Id":this.id })
+    modal.onDidDismiss(() => {
+      this.refreshname();
+    })
+    modal.present();
   }
 
   viewshoppinglist(a) {
@@ -840,9 +783,21 @@ export class HomePage {
 
   }
   select_sort() {
-    this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
-    //            https://search.shopping.naver.com/search/all.nhn?origQuery=신라면&pagingIndex=1&pagingSize=40&viewType=list&sort=review&frm=NVSHATC&query=신라면
-
+    if ($('.slt').val() == 'rel') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
+    }
+    if ($('.slt').val() == 'price_asc') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=price_asc'
+    }
+    if ($('.slt').val() == 'price_dsc') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=price_dsc'
+    }
+    if ($('.slt').val() == 'date') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=date'
+    }
+    if ($('.slt').val() == 'review') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=review'
+    }
     console.log($('#slt').val());
     console.log(this.srct.text);
     console.log(this.srct.url);

@@ -45,6 +45,11 @@ page-home {
     //     }
 }
 
+.searchbar-md .searchbar-input {
+    padding: 6px 35px;
+    font-size: 1.4rem;
+}
+
 .rotate {
     transition: all ease 1s;
 }
@@ -245,6 +250,11 @@ div.segmentText {
     font-size: 13px;
     width: 400px;
     height: 20px;
+}
+
+.tablestyle {
+    margin-top: -10px;
+    margin-bottom: -5px;
 }
 
 .datespan {

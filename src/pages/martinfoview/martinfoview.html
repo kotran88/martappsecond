@@ -1,49 +1,71 @@
 <ion-header>
     <ion-navbar>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데마트')>-1">
+        <div style="text-align: center; " *ngIf="martinfo.name.indexOf('롯데마트')>-1">
             <img src="./assets/imgs/009.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">롯데마트</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%;" alt=" ">
         </div>
         <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트')>-1&&martinfo.name.indexOf('트레이더스')==-1">
             <img src="./assets/imgs/010.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">이마트</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스')>-1">
             <img src="./assets/imgs/011.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">홈플러스</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('코스트코')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('코스트코')>-1">
             <img src="./assets/imgs/012.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">코스트코</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트트레이더스')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트트레이더스')>-1">
             <img src="./assets/imgs/013.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">이마트트레이더스</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데백화점')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데백화점')>-1">
             <img src="./assets/imgs/020.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">롯데백화점</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('신세계')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('신세계')>-1">
             <img src="./assets/imgs/021.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">신세계백화점</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('현대백화점')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('현대백화점')>-1">
             <img src="./assets/imgs/022.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">현대백화점</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데 아울렛')>-1" (click)="martview(i)">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데 아울렛')>-1">
             <img src="./assets/imgs/023.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">롯데아울렛</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
 
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div style="padding-top:20px; padding-left:20px; margin-bottom:10px; ">
+    <div style="padding-top:15px; padding-left:20px; margin-bottom:10px;">
         <span style="font-weight: bold; font-size:18px; color:#808080 ">{{martinfo.storename}}</span>
+        <img *ngIf="martinfo.dayoffarray[0]=='영업'" style="float:right; margin-right:10px; margin-top:-23px; height: 55px;" src="./assets/imgs/043.png " alt="">
+        <img *ngIf="martinfo.dayoffarray[0]=='휴무'" src="./assets/imgs/044.png " alt="">
     </div>
+
+
     <table class="tableStyle ">
         <tbody>
             <tr>
@@ -87,13 +109,26 @@
                 <ion-col>금</ion-col>
                 <ion-col style="color:blue ">토</ion-col>
             </ion-row>
-            <ion-row class="calendar-date ">
-                <ion-col col-1 *ngFor="let day of daysInThisMonth">
-                    <span class="currentDate " *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>
-                    <span class="otherDate" style="color:red" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>
-                    <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>
+            <ion-row class="calendar-date">
+                <ion-col col-1 style="height: 45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>
+                <ion-col col-1 style="height:45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let day of daysInThisMonth">
+                    <ion-col col-1 style="text-align: center" *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">
+                        {{day}}
+                        <br><span style="font-size:12px; color:green">오늘</span>
+                    </ion-col>
+                    <ion-col col-1 style="padding-left:8px; padding-right:8px; padding-top:10px; padding-bottom:20px;background-color: #ffbfbf;" *ngIf="truecheck(day)==-1">
+                        {{day.substring(1)}}
+                    </ion-col>
+                    <ion-col col-1 *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear )">
+                        {{day}}
+                    </ion-col>
                 </ion-col>
-                <ion-col col-1 *ngFor="let nextDay of daysInNextMonth " class="next-month">{{nextDay}}</ion-col>
+                <!-- <ion-col col-1 style="height:45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let day of daysInThisMonth">
+                    <span class="currentDate" *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>
+                    <span class="otherDate" style="background-color:#ffbfbf" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>
+                    <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>
+                </ion-col> -->
+                <ion-col col-1 style="border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let nextDay of daysInNextMonth " class="next-month">{{nextDay}}</ion-col>
             </ion-row>
 
         </ion-grid>

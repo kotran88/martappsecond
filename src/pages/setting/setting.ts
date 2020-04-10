@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController,Platform,ViewController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController,Platform,ViewController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { LocaleDataIndex, LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import 'rxjs/add/operator/map';
-import {Http} from '@angular/http';
-import { isTrueProperty } from 'ionic-angular/umd/util/util';
-import { componentFactoryName } from '@angular/compiler';
-import undefined from 'firebase/empty-import';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
+
+
 import { HomePage } from '../home/home';
 
 /**
@@ -22,6 +20,32 @@ import { HomePage } from '../home/home';
   templateUrl: 'setting.html',
 })
 export class SettingPage {
+  constructor(public modal:ModalController,
+    private iab:InAppBrowser,private socialSharing:SocialSharing,private alertCtrl:AlertController,
+    public navCtrl: NavController, public navParams: NavParams, public admobFree: AdMobFree) {
+      setTimeout(() => {
+        const bannerConfig: AdMobFreeBannerConfig = {
+          // add your config here
+          // for the sake of this example we will just use the test config
+          isTesting: true,
+          autoShow: true
+        };
+        this.admobFree.banner.config(bannerConfig);
+  
+        this.admobFree.banner.prepare()
+          .then(() => {
+            // banner Ad is ready
+            console.log("ok")
+            this.admobFree.banner.show().then(() => {
+              console.log("success");
+            }).catch((e) => {
+              console.log(e);
+            })
+            // if we set autoShow to false, then we will need to call the show method here
+          })
+          .catch(e => console.log(e));
+      }, 500)
+  }
   version='V1.10.01';
   shownGroup = null;
   flag : boolean = false;
@@ -79,10 +103,7 @@ export class SettingPage {
     this.flag=false;
   }
 
-  constructor(public modal:ModalController,
-    private iab:InAppBrowser,private socialSharing:SocialSharing,private alertCtrl:AlertController,
-    public navCtrl: NavController, public navParams: NavParams) {
-  }
+  
 
   evaluation(){
     //window.alert('evaluation');

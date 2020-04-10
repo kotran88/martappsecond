@@ -8,6 +8,7 @@ import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
 import { MartinfoviewPage } from '../martinfoview/martinfoview';
 import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the MartinfoPage page.
@@ -103,6 +104,10 @@ export class MartinfoPage {
 
   }
 
+  goback(){
+    this.navCtrl.push(HomePage);
+  }
+
   favchange() {
     for (var a in this.favoriteList) {
       console.log("1111111111");
@@ -119,7 +124,7 @@ export class MartinfoPage {
 
   martview(martinfo) {
     console.log(martinfo);
-    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo,"id":this.userId });
   }
 
   regularShare() {
@@ -640,8 +645,8 @@ export class MartinfoPage {
     var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
 
-    // this.currentMonth = this.date.getMonth() + 1;
-    this.currentMonth = this.date.getMonth() - 1;
+    this.currentMonth = this.date.getMonth() + 1;
+    // this.currentMonth = this.date.getMonth() - 1;
 
     this.currentYear = this.date.getFullYear();
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();

@@ -28070,6 +28070,11 @@ page-home ion-fab {
   z-index: 9999;
 }
 
+.searchbar-md .searchbar-input {
+  padding: 6px 35px;
+  font-size: 1.4rem;
+}
+
 .rotate {
   -webkit-transition: all ease 1s;
   transition: all ease 1s;
@@ -28266,6 +28271,11 @@ div.segmentText {
   font-size: 13px;
   width: 400px;
   height: 20px;
+}
+
+.tablestyle {
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 .datespan {

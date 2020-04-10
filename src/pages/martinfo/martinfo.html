@@ -1,15 +1,15 @@
 <ion-content>
     <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
-        <img src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">
+        <img src="./assets/imgs/008.png" (click)="goback()" style="width:50px; margin:5px;" alt="">
         <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>
         <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>
         <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>
         <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>
     </div>
     <div style="background-color: #fafafa;">
-        <ion-item-divider  style="  display: flex;
+        <ion-item-divider style="  display: flex;
         align-items:center;   background-color: white;
-        height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;">  <span>{{name}}</span>  </ion-item-divider>
+        height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;"> <span>{{name}}</span> </ion-item-divider>
         <ion-item-group style="background-color: #fafafa;">
             <div *ngFor="let i of martArray; let idx = index " class="border">
                 <button style="background-color: white;" class="btn1">
