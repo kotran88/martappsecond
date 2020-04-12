@@ -113,5 +113,6 @@
         <variable name="BILLING_KEY" value="2ffcb9950267246691efe8ecf2df99debc1bcf5a" />
     </plugin>
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.2" />
+    <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
     <engine name="android" spec="^8.0.0" />
 </widget>

@@ -3,6 +3,7 @@ import { Platform ,App,AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility';
 
 import { HomePage } from '../pages/home/home';
 import { MartinfoviewPage } from '../pages/martinfoview/martinfoview'
@@ -13,22 +14,22 @@ export class MyApp {
   rootPage:any = HomePage;
   // rootPage:any = MartinfoviewPage;
 
-  constructor(public screen:ScreenOrientation,public alertCtrl : AlertController,public app:App,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public mobiel:MobileAccessibility,public screen:ScreenOrientation,public alertCtrl : AlertController,public app:App,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
 
-
+      this.mobiel.setTextZoom(100)
       if(platform.is('android') ) {
-        statusBar.backgroundColorByHexString('#ffffff');
+        // statusBar.backgroundColorByHexString('#ffffff');
       };
      
 
       if(platform.is("android")||platform.is("ios")){
     
-        screen.lock(screen.ORIENTATIONS.PORTRAIT_PRIMARY);
+        // screen.lock(screen.ORIENTATIONS.PORTRAIT_PRIMARY);
   
       }
       platform.registerBackButtonAction(() => {

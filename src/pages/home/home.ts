@@ -1,4 +1,4 @@
-import { Component, ContentChild } from '@angular/core';
+import { Component, ViewChild,ContentChild } from '@angular/core';
 import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer, UrlSerializer, ToastController, LoadingController, Img } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
@@ -28,6 +28,8 @@ import { DeletemodalPage } from '../deletemodal/deletemodal';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  
+  fabButtonOpened:any=false;
   [x: string]: any;
   selectedvalue: any;
   value: any;
@@ -38,6 +40,7 @@ export class HomePage {
   id:any;
   tab = "tab1";
   title: any;
+  backdrop:any=true;
   key: any;
   nextdirectory :any;
   count: any = 0;
@@ -47,7 +50,6 @@ export class HomePage {
   tocopylist: any;
   tocopy: any;
   selectedflagtocpy: any;
-  fabButtonOpened: boolean;
   listcount: any = 0;
   afterValue: any;
   favoriteList = [];
@@ -371,6 +373,7 @@ export class HomePage {
   }
 
   openFabButton() {
+    console.log("openfab button")
     if (this.fabButtonOpened == false) {
       this.fabButtonOpened = true;
     } else {
@@ -585,7 +588,8 @@ export class HomePage {
   }
 
 
-  deleteDB(key) {
+  deleteDB(key,fab) {
+    fab.close();
     console.log("delete come");
     console.log(key);
     console.log(this.nextdirectory);
@@ -827,9 +831,29 @@ export class HomePage {
     let modal = this.modal.create(RatePage);
     modal.present();
   }
+  fabclicked(event,fab){
 
+    console.log(this.fabButtonOpened)
+    this.fabButtonOpened=true;
+    if(event.target.name=="rotate"){
+      if(this.fab._listsActive){
+        this.fab.close();
+      }
+      this.fab=fab;
+    }
+
+  }
+closingfab(event){
+
+  this.fabButtonOpened=false;
+  if(event.target.name!="rotate"){
+    this.fab.close();
+  }
+}
   /*목록명 변경*/
-  changeName(key) {
+  changeName(key,fab) {
+    fab.close;
+
     console.log(key);
     console.log(key.title);
     let alert = this.alertCtrl.create({
@@ -907,7 +931,8 @@ export class HomePage {
   }
 
   /*공유*/
-  share(key) {
+  share(key,fab) {
+    fab.close();
     var name = "";
     console.log(key.flag);
     console.log(key);
@@ -1086,7 +1111,8 @@ export class HomePage {
     this.copyflag = true;
   }
 
-  openModal(key) {
+  openModal(key,fab) {
+    fab.close();
     console.log(key);
     this.tocopylist = key.list;
     this.tocopy = key;
@@ -1170,14 +1196,16 @@ export class HomePage {
   }
 
 
-  constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
+  constructor( public fab: FabContainer,public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController,
     public platform: Platform, public navParams: NavParams,
     public oneSignal: OneSignal, public toastCtrl: ToastController,
     public loadingCtrl: LoadingController) {
 
-
+      $('#fabb').click(function(event){
+        event.stopPropagation();
+      });
 
 
     //   this.platform.registerBackButtonAction(() => {

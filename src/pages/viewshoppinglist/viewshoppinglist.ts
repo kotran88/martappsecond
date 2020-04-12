@@ -52,7 +52,7 @@ export class ViewshoppinglistPage {
   number = [];
   checkflag: boolean = false;
 
-  constructor(public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
+  constructor(public fab: FabContainer,public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
     public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController) {
@@ -87,7 +87,23 @@ export class ViewshoppinglistPage {
       this.number.push({ "count": i });
     }
   }
+  fabclicked(event,fab){
+    console.log("fab clicked")
+    console.log(event.target.name);
+    if(event.target.name=="rotate"){
+      this.fab=fab;
+    }
 
+    this.fabButtonOpened=true;
+  }
+  closingfab(event){
+    console.log("closingfab");
+    console.log(this.fab);
+    console.log(event.target.name);
+    if(event.target.name==undefined){
+      this.fab.close();
+    }
+  }
   backbutton() {
     if(this.flag == true){
       let alert = this.alertCtrl.create({

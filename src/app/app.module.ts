@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, FabContainer,IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { CallNumber } from '@ionic-native/call-number';
@@ -20,7 +20,7 @@ import { AddshopingPage } from '../pages/addshoping/addshoping';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ViewshoppinglistPage } from '../pages/viewshoppinglist/viewshoppinglist';
 
-
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility';
 import{SocialSharing}from'@ionic-native/social-sharing';
 import { SettingPage, licenseModalPage, privacyModalPage } from '../pages/setting/setting';
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
@@ -105,7 +105,9 @@ firebase.initializeApp(firebaseConfig);
     CallNumber,
     SplashScreen,
     InAppBrowser,
+    MobileAccessibility,
     OneSignal,
+    FabContainer,
     CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

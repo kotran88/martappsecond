@@ -27991,6 +27991,13 @@ ion-navbar.toolbar {
   min-height: 46px;
 }
 
+* {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
 page-ad .B_on {
   background-color: #f0f0f0;
 }
@@ -28237,7 +28244,7 @@ div.segmentText {
 }
 
 .tab-font {
-  font-size: 15px;
+  font-size: 18px;
   color: black;
   font-family: 'notomedium';
   font-weight: 900;
@@ -28247,6 +28254,15 @@ div.segmentText {
 .segment-md .segment-button.segment-activated {
   border-color: #71E8E8;
   border-bottom-width: 5px;
+}
+
+.back-drop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(100, 100, 100, 0.5);
 }
 
 .martname {
@@ -28492,6 +28508,10 @@ page-martinfoview .toolbar-md {
   margin-bottom: 5px;
 }
 
+page-martmap .scroll-content {
+  overflow-y: hidden !important;
+}
+
 page-setting .image {
   width: 35%;
   height: 100%;
@@ -28721,6 +28741,23 @@ page-viewshoppinglist .fab-in-list {
 
 page-viewshoppinglist .text-input-md {
   margin: 10px 8px;
+}
+
+button[ion-fab] {
+  overflow: visible;
+  position: relative;
+  contain: layout;
+}
+
+button[ion-fab] ion-label {
+  position: absolute;
+  top: 0px;
+  right: 60px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .chk {

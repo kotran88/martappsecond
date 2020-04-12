@@ -57,6 +57,9 @@
     },
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "phonegap-plugin-mobile-accessibility": {
+      "PACKAGE_NAME": "io.ionic.baekma"
     }
   },
   "dependent_plugins": {
@@ -68,6 +71,9 @@
       "PACKAGE_NAME": "io.ionic.baekma"
     },
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-network-information": {
       "PACKAGE_NAME": "io.ionic.baekma"
     }
   }

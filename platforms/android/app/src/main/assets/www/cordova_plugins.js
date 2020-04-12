@@ -139,6 +139,39 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.plugins.screenorientation"
       ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "phonegap-plugin-mobile-accessibility.mobile-accessibility",
+      "file": "plugins/phonegap-plugin-mobile-accessibility/www/mobile-accessibility.js",
+      "pluginId": "phonegap-plugin-mobile-accessibility",
+      "clobbers": [
+        "window.MobileAccessibility"
+      ]
+    },
+    {
+      "id": "phonegap-plugin-mobile-accessibility.MobileAccessibilityNotifications",
+      "file": "plugins/phonegap-plugin-mobile-accessibility/www/MobileAccessibilityNotifications.js",
+      "pluginId": "phonegap-plugin-mobile-accessibility",
+      "clobbers": [
+        "MobileAccessibilityNotifications"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -160,6 +193,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-x-socialsharing": "5.6.3",
     "mx.ferreyra.callnumber": "0.0.2",
     "onesignal-cordova-plugin": "2.4.0",
-    "cordova-plugin-screen-orientation": "3.0.2"
+    "cordova-plugin-screen-orientation": "3.0.2",
+    "cordova-plugin-network-information": "2.0.3-dev",
+    "phonegap-plugin-mobile-accessibility": "1.0.5-dev"
   };
 });

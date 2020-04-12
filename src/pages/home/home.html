@@ -1,4 +1,6 @@
-<ion-content padding>
+
+
+<div  class="up">
     <div class="upper" style="background-color: #71E8E8; display:flex;">
         <ion-searchbar *ngIf="tab=='tab1'||tab=='tab2'" style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>
         <img *ngIf="tab=='tab3'" src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">
@@ -21,6 +23,11 @@
             <span class="tab-font">인터넷에선 얼마?</span>
         </ion-segment-button>
     </ion-segment>
+</div>
+   
+<ion-content name="aa" (click)="closingfab($event);"  style="
+margin-top: 100px;" padding>
+
     <div [ngSwitch]="tab">
         <ion-list *ngSwitchCase="'tab1'">
             <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003.png"></button></div>
@@ -105,7 +112,7 @@
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase=" 'tab2' ">
+        <ion-list  style="z-index: 99999;"  *ngSwitchCase=" 'tab2' ">
             <div class="topselector ">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
                 <table style="margin: auto; text-align: center; ">
@@ -161,13 +168,13 @@
 
                     </button>
                     <div>
-                        <ion-fab style="margin-top:-50px; ">
-                            <img class="rotate " src="./assets/imgs/084.png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
+                        <ion-fab  (click)="fabclicked($event,fab)" #fab style="margin-top:-50px; z-index: 99; ">
+                            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
                             <ion-fab-list side="bottom " style="width:100px; height:150px; margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
-                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
-                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>
-                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>
-                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a,fab) ">목록명 변경</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a,fab) ">공유</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a,fab) ">삭제</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a,fab) ">복사</button>
                             </ion-fab-list>
                         </ion-fab>
                     </div>
@@ -179,8 +186,8 @@
         <ion-list *ngSwitchCase=" 'tab3' ">
 
             <div style="padding:20px;">
-                <select class='slt' id="slt" name="sor" [(ngModel)]="kindof">
-                    <option value="rel" selected="selected">랭킹순</option>
+                <select class='slt' id="slt" name="sor" >
+                    <option value="rel" selected>랭킹순</option>
                     <option value="price_asc">낮은 가격순</option>
                     <option value="price_dsc">높은 가격순</option>
                     <option value="date">등록순</option>

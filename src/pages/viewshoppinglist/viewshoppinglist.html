@@ -7,7 +7,7 @@
 
     <!-- </ion-navbar> -->
 </ion-header>
-<ion-content padding>
+<ion-content name="a" (click)="closingfab($event)" padding>
     <ion-row>
         <ion-col col-10>
             <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>
@@ -78,20 +78,19 @@
     </div>
 
     <div>
-        <ion-fab right bottom>
-            <button ion-fab mini style="background-color:white">
-                <img class="rotate" src="./assets/imgs/084.png " alt=" ">
-            </button>
-            <ion-fab-list side="top">
-                <button ion-fab class="fab-close" style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084.png" alt=" "></button>
-                <!-- <ion-label class="labelClass">삭제하기</ion-label> -->
-                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093.png" alt=" "></button>
+        <ion-fab  (click)="fabclicked($event,fab)" #fab right bottom>
+
+            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="background-color:white " alt=" " ion-fab>
+            <ion-fab-list side="top " >
+                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093.png" alt=" "> <ion-label>삭제하기</ion-label></button>
                 <!-- <ion-label class="labelClass">수정하기</ion-label> -->
-                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092.png" alt=" "></button>
+                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092.png" alt=" ">  <ion-label>수정하기</ion-label></button>
                 <!-- <ion-label class="labelClass">"가나다"순 정렬하기</ion-label> -->
 
-                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091.png" style="width:100% " alt=" "></button>
+                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091.png" style="width:100% " alt=" ">  <ion-label>"가나다" 순 정렬하기</ion-label></button>
             </ion-fab-list>
+            
+          
         </ion-fab>
     </div>
 </ion-content>
