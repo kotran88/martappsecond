@@ -785,7 +785,6 @@ export class MartinfoPage {
       //   }
       // }
       console.log(this.martArray);
-        console.log(this.favoriteList);
         if (this.favoriteList.length < 20) {
           this.martArray[idx].favorite = true;
           this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
@@ -794,6 +793,7 @@ export class MartinfoPage {
           const toast = this.toastCtrl.create({
             message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
             duration: 2000,
+            position: 'bottom',
           });
           toast.present();
         }

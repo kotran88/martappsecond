@@ -45,6 +45,31 @@ page-home {
     //     }
 }
 
+.myToast {
+    .toast-wrapper {
+        width: 80%;
+        border-radius: 5px;
+        background-color: rgb(88, 189, 207);
+        transform: translateY(450px) !important;
+    }
+}
+
+.addClass {
+    .title {
+        font-weight: 900;
+    }
+    .alert-wrapper {
+        border-radius: 20px;
+        transform: translateY(150px) !important;
+        min-width: 310px;
+        max-height: 50%;
+    }
+}
+
+.alert-md .alert-button-group {
+    padding: 0px 0px 0px 0px;
+}
+
 .searchbar-md .searchbar-input {
     padding: 6px 35px;
     font-size: 1.4rem;
@@ -101,7 +126,7 @@ ion-fab-list {
 //background: url() no-repeat 95% 50%;/* 화살표 모양의 이미지 */ 
 // }
 select {
-    width: 30%;
+    // width: 30%;
     height: 45px;
     // background-color: #fff;
     border-radius: 5px;
@@ -131,9 +156,9 @@ select::-ms-expand {
 
 .topselector {
     width: 350px;
-    height: 160px;
+    height: 140px;
     border: solid 2px rgb(120, 247, 247);
-    border-radius: 5px;
+    border-radius: 10px;
     /*[위][오른쪽][아래][왼쪽]*/
     margin: 5px auto;
     // padding: 5px 5px 5px 5px;
@@ -216,10 +241,11 @@ div.segmentText {
 }
 
 .tab-font {
-    font-size: 18px;
+    font-size: 17px;
     color: black;
     font-family: 'notomedium';
     font-weight: 900;
+    letter-spacing: -1px;
 }
 
 .segment-md .segment-button.activated,
@@ -227,6 +253,7 @@ div.segmentText {
     border-color: #71E8E8;
     border-bottom-width: 5px;
 }
+
 .back-drop {
     position: fixed;
     top: 0;
@@ -235,9 +262,9 @@ div.segmentText {
     left: 0;
     background: rgba(100, 100, 100, 0.5);
 }
-.noback-drop{
-    
-}
+
+.noback-drop {}
+
 .martname {
     font-size: 17px;
     font-weight: 900px;

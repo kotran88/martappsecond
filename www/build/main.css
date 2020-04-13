@@ -28077,6 +28077,30 @@ page-home ion-fab {
   z-index: 9999;
 }
 
+.myToast .toast-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  background-color: #58bdcf;
+  -webkit-transform: translateY(450px) !important;
+  transform: translateY(450px) !important;
+}
+
+.addClass .title {
+  font-weight: 900;
+}
+
+.addClass .alert-wrapper {
+  border-radius: 20px;
+  -webkit-transform: translateY(150px) !important;
+  transform: translateY(150px) !important;
+  min-width: 310px;
+  max-height: 50%;
+}
+
+.alert-md .alert-button-group {
+  padding: 0px 0px 0px 0px;
+}
+
 .searchbar-md .searchbar-input {
   padding: 6px 35px;
   font-size: 1.4rem;
@@ -28132,7 +28156,6 @@ ion-fab-list {
 }
 
 select {
-  width: 30%;
   height: 45px;
   border-radius: 5px;
   border: 10px soild;
@@ -28155,9 +28178,9 @@ select::-ms-expand {
 
 .topselector {
   width: 350px;
-  height: 160px;
+  height: 140px;
   border: solid 2px #78f7f7;
-  border-radius: 5px;
+  border-radius: 10px;
   /*[위][오른쪽][아래][왼쪽]*/
   margin: 5px auto;
 }
@@ -28244,10 +28267,11 @@ div.segmentText {
 }
 
 .tab-font {
-  font-size: 18px;
+  font-size: 17px;
   color: black;
   font-family: 'notomedium';
   font-weight: 900;
+  letter-spacing: -1px;
 }
 
 .segment-md .segment-button.activated,

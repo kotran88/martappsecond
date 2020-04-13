@@ -229,15 +229,17 @@ export class ViewshoppinglistPage {
     console.log(this.a.list);
     if (this.a.list.length < 50) {
       if (this.price < 1 && this.price > 99999999) {
-        this.price = 1;
+        this.price = 0;
         const toast = this.toastCtrl.create({
           message: '단가는 99,999,999원까지 입력 가능합니다.',
           duration: 2000,
         });
         toast.present();
       }
-      if (this.price == "") { this.price = 1; }
-      if (this.quantity == "") { this.quantity = 1; }
+      if (this.price == ""||this.price==undefined) { this.price = 0; }
+      if (this.quantity == ""||this.quantity==undefined) { this.quantity = 1; }
+      console.log(this.price);
+      console.log(this.quantity);
       this.a.list.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
       this.totalnumber = this.a.list.length;
       this.adding = "";

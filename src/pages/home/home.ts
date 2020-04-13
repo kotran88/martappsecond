@@ -89,6 +89,8 @@ export class HomePage {
     var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
     var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
     var dayofweek = this.date.getDay();
+    this.currentDate = new Date().getDate();
+    
 
     if (this.date.getMonth() === new Date().getMonth()) {
       this.currentDate = new Date().getDate();
@@ -104,8 +106,12 @@ export class HomePage {
       var dow = dayofweek++;
 
       if (dayofweek >= 7) { dayofweek = 0; }
+     
       if (this.currentDate + i <= thisNumOfDays) {
-        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
+        console.log(thisNumOfDays);
+        console.log(this.currentDate);
+        console.log(thisNumOfDays-(this.currentDate+i) / 7);
+        this.week.push({ "week": prefixes[0 | (thisNumOfDays-this.currentDate+i-1) / 7 ], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
         // console.log(dayofweek);
       }
       else if (this.currentDate + i > thisNumOfDays) {
@@ -355,8 +361,10 @@ export class HomePage {
     console.log(this.martkind[idx-1]);
     this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx-1]).child(a.key).remove();
     const toast = this.toastCtrl.create({
-      message: '삭제되었습니다.',
+      message: '"즐겨 찾는 곳"에서 삭제되었습니다.',
       duration: 2000,
+      position: 'top',
+      cssClass : 'myToast'
     });
     toast.present();
     this.navCtrl.push(HomePage);
@@ -529,10 +537,11 @@ export class HomePage {
     this.selectedvalue = value;
     let alert = this.alertCtrl.create({
       title: '쇼핑 목록 명을 적어주세요',
+      cssClass : 'addClass',
       inputs: [
         {
           name: 'title',
-          placeholder: 'title'
+          placeholder: '쇼핑 목록명'
         }
       ],
       buttons: [
