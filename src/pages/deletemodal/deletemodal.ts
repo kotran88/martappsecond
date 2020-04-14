@@ -31,7 +31,6 @@ export class DeletemodalPage {
     console.log(this.key.title);
     if (this.key.flag == "mart") {
       this.nextdirectory.child("mart").child(this.key.title).remove().then(() => {
-        window.alert("삭제되었습니다.mart")
         console.log("success mart")
       }).catch((e) => {
         console.log("error" + e);
@@ -39,7 +38,6 @@ export class DeletemodalPage {
     }
     if (this.key.flag == "dep") {
       this.nextdirectory.child("dep").child(this.key.title).remove().then(() => {
-        window.alert("삭제되었습니다.dep")
         console.log("success dep")
       }).catch((e) => {
         console.log("error" + e);
@@ -47,7 +45,6 @@ export class DeletemodalPage {
     }
     if (this.key.flag == "outlet") {
       this.nextdirectory.child("outlet").child(this.key.title).remove().then(() => {
-        window.alert("삭제되었습니다.")
         console.log("success")
       }).catch((e) => {
         console.log("error" + e);
@@ -55,7 +52,6 @@ export class DeletemodalPage {
     }
     if (this.key.flag == "etc") {
       this.nextdirectory.child("etc").child(this.key.title).remove().then(() => {
-        window.alert("삭제되었습니다.")
         console.log("success")
       }).catch((e) => {
         console.log("error" + e);

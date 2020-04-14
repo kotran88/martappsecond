@@ -1,5 +1,22 @@
 page-addshoping {}
 
+.savealert {
+    .title {
+        font-size: 13px;
+        font-weight: 900;
+    }
+    .alert-wrapper {
+        border-radius: 20px;
+        min-width: 310px;
+        max-height: 50%;
+    }
+}
+
+.popover-md .popover-content {
+    width: 80px;
+    left: 100px;
+}
+
 .saveButton {
     border-radius: 4px;
     border: solid 2px rgb(74, 190, 190);

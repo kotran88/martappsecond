@@ -1,25 +1,13 @@
-<ion-content class="main-view" style="background: transparent;
-  background-color: rgb(240, 240, 240);
-  outline-color:black;
-  border: solid 2px;
-  border-radius: 10px;
-  border-color:rgb(0, 167, 179);
-  height: 60%;
-  width:80%;
-  top: 10%;
-  left:10%;
-  " padding>
+<ion-content class="main-view" padding>
 
-    <div style="text-align: center;">
+    <div style="text-align: center">
         <img src="./assets/imgs/063.png" alt="">
-        <span>앱 평가하러 가기</span>
-        <!-- <button ion-button (click)="appstore()"> 앱 평가하기</button> -->
+        <span style="font-size:20px;">앱 평가하러 가기</span>
 
     </div>
-    <div style="text-align:center; margin-left: auto; margin-right:auto;">
-        <button ion-button (click)="dismiss()" ng-show="more_info" style="height:30px; margin-left:50px; margin-right:10px;">아니요</button>
-        <button ion-button (click)="appstore()" style="height:30px; margin-left:10px; margin-right: 50px;">예</button>
-
+    <div style="margin-top:20px; text-align:center; margin-left: auto; margin-right:auto;">
+        <button ion-button (click)="dismiss()" ng-show="more_info" style="background-color:rgb(240, 240, 240); border:0; font-size:20px; height:30px; margin-left:20px; margin-right:55px;">아니요</button>
+        <button ion-button (click)="appstore()" style="background-color:rgb(240, 240, 240); border:0; font-size:20px; height:30px; margin-left:55px; margin-right: 20px;">예</button>
     </div>
 
 

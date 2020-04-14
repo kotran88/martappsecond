@@ -45,6 +45,15 @@ page-home {
     //     }
 }
 
+.deletemodalToast {
+    .toast-wrapper {
+        width: 80%;
+        border-radius: 5px;
+        background-color: rgb(88, 189, 207);
+        transform: translateY(550px) !important;
+    }
+}
+
 .myToast {
     .toast-wrapper {
         width: 80%;
@@ -156,7 +165,7 @@ select::-ms-expand {
 
 .topselector {
     width: 350px;
-    height: 140px;
+    height: 150px;
     border: solid 2px rgb(120, 247, 247);
     border-radius: 10px;
     /*[위][오른쪽][아래][왼쪽]*/

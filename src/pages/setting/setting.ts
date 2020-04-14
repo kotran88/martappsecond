@@ -13,16 +13,19 @@ import { HomePage } from '../home/home';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
- */
-
+ */;
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html',
 })
 export class SettingPage {
+  DateTime : any;
+
   constructor(public modal:ModalController,
     private iab:InAppBrowser,private socialSharing:SocialSharing,private alertCtrl:AlertController,
     public navCtrl: NavController, public navParams: NavParams, public admobFree: AdMobFree) {
+      this.DateTime = '11:50';
+      console.log(this.DateTime);
       setTimeout(() => {
         const bannerConfig: AdMobFreeBannerConfig = {
           // add your config here
@@ -52,10 +55,10 @@ export class SettingPage {
 
   test:any=false;
   buttontoggle=[
-    {name:'7일 전',check:false},
+    {name:'7일 전',check:true},
     {name:'3일 전',check:false},
-    {name:'1일 전',check:false},
-    {name:'받지 않기',check:true},
+    {name:'1일 전',check:true},
+    {name:'받지 않기',check:false},
   ];
 
   goBack(){

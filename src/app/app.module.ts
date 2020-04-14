@@ -37,6 +37,7 @@ import { LongPressModule } from 'ionic-long-press';
 
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { DeletemodalPage } from '../pages/deletemodal/deletemodal';
 var firebaseConfig = {
   apiKey: "AIzaSyDTw06TUezPym9Iu9Xw5tqkoMCa5kU7B3w",
   authDomain: "inhand-85421.firebaseapp.com",
@@ -65,7 +66,8 @@ firebase.initializeApp(firebaseConfig);
     MartmapPage,
     MartinfoPage,
     MartinfoviewPage,
-    FavoritemodalPage
+    FavoritemodalPage,
+    DeletemodalPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ firebase.initializeApp(firebaseConfig);
     MartmapPage,
     MartinfoPage,
     MartinfoviewPage,
-    FavoritemodalPage
+    FavoritemodalPage,
+    DeletemodalPage
   ],
   providers: [
     ScreenOrientation,

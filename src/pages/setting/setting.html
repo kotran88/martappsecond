@@ -1,15 +1,3 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>설정</ion-title>
-  </ion-navbar>
-</ion-header> -->
-<!-- <ion-header>
-    <ion-navbar>
-        <span style="color:white; font-size:22px; font-weight: bold;">설정</span>
-    </ion-navbar>
-</ion-header>
-/Users/limchae/martapp/src/assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png -->
-
 <ion-content>
     <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">
         <button class="goback" (click)="goBack()"><img src="./assets/imgs/064.png" style="width:30px; margin:5px; " alt=""></button>
@@ -53,19 +41,17 @@
                 즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기
                 <div></div>
                 <a class="test" *ngFor="let button of buttontoggle; let i = index">
-
                     <button ion-button (click)="clickButton(i)" style="width:50px; margin-right:5px;" [ngClass]="button.check===true?'B_on':'B_off'">{{button.name}}</button>
-
                 </a>
                 <div *ngIf="checkbutton()===true">
                     <ion-item>
-                        <ion-label>Time</ion-label>
-                        <ion-datetime displayFormat="h:mm A"  [(ngModel)]="DateTime">
-                        </ion-datetime>
+                        <ion-label>알람 시간 설정</ion-label>
+                        <ion-datetime displayFormat="A h:mm" pickerFormat="A h mm" [(ngModel)]="DateTime"></ion-datetime>
                     </ion-item>
 
                 </div>
-                <button ion-button (click)="alarmcheck()" style="width:50px;">완료</button>
+                <button ion-button (click)="alarmcheck()" style="float:right; width:50px;">완료</button>
+
             </div>
         </ion-item>
 

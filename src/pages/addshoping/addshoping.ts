@@ -37,6 +37,7 @@ export class AddshopingPage {
   fullyear: any;
   month: any;
   date: any;
+  quantityArray : any;
 
   constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController,
     public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
@@ -64,6 +65,7 @@ export class AddshopingPage {
     console.log(minute);
     console.log(this.fullyear)
     this.nowtime = "" + (this.month) + "월" + this.date + "일" + (hour) + "시" + minute + "분";
+    this.quantityArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
   }
 
   formatNumber(num) {
@@ -73,14 +75,14 @@ export class AddshopingPage {
   add() {
     console.log(this.adding);
     if(this.price<1||this.price>99999999){
-      this.price = 0;
+      this.price = 1;
       const toast = this.toastCtrl.create({
-        message: '단가는 99,999,999원까지 입력 가능합니다.',
+        message: '단가는 1원부터 99,999,999원까지 입력 가능합니다.',
         duration: 2000,
       });
       toast.present();
     }
-    if(this.price == ""||this.price==undefined){ this.price = 0; }
+    if(this.price == ""||this.price==undefined){ this.price = 1; }
     if(this.quantity == ""||this.quantity==undefined) { this.quantity = 1; }
 
     this.addinglist.push({ "name": this.adding, "checked2":false,"checked": false, "price": this.price, "quantity": this.quantity });
@@ -129,6 +131,7 @@ export class AddshopingPage {
     this.flagInput = false;
     let alert = this.alertCtrl.create({
       title: '작성 중이던 목록을 저장할까요?',
+      cssClass : 'savealert',
       buttons: [
         {
           text: '아니요',
@@ -157,7 +160,7 @@ export class AddshopingPage {
             else {
               this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
               this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
-              window.alert("저장되었습니다.");
+              this.navCtrl.pop();
             }
           }
         }
@@ -165,6 +168,19 @@ export class AddshopingPage {
     });
     alert.present();
 
+  }
+  autosave(){
+    this.flag = true;
+    this.flagInput = false;
+    if (this.addinglist.length == 0) {
+      window.alert("목록을 입력해주세요.");
+      this.add();
+    }
+    else {
+      this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+      this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
+      this.navCtrl.pop();
+    }
   }
 
   goBack() {
@@ -175,6 +191,14 @@ export class AddshopingPage {
       this.navCtrl.push(HomePage);
     }
     else {
+      this.autosave();
+      const toast = this.toastCtrl.create({
+        message: '저장되었습니다.',
+        duration: 2000,
+        position: 'top',
+        cssClass : 'deletemodalToast'
+      });
+      toast.present();
       this.navCtrl.push(HomePage);
     }
   }
@@ -277,6 +301,7 @@ export class AddshopingPage {
      },
        () => console.log('Denied')
      )
+     this.add();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddshopingPage');

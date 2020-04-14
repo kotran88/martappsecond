@@ -350,7 +350,22 @@ export class HomePage {
 
   }
   favoriteIndex: any;
+
   bookmark(a, idx) {
+    var newnametoinput = "";
+    if (a.name.indexOf("롯데마트") > -1) { newnametoinput = "lotte"; }
+    if (a.name.indexOf("이마트") > -1 && a.name.indexOf("트레이더스") == -1) { newnametoinput = "emart"; }
+    if (a.name.indexOf("홈플러스") > -1) { newnametoinput = "homeplus"; }
+    if (a.name.indexOf("코스트코") > -1) { newnametoinput = "costco"; }
+    if (a.name.indexOf("이마트트레이더스") > -1) { newnametoinput = "traders"; }
+    if (a.name.indexOf("롯데백화점") > -1) { newnametoinput = "lottedep"; }
+    if (a.name.indexOf("신세계백화점") > -1) { newnametoinput = "sinsaegae"; }
+    if (a.name.indexOf("현대백화점") > -1) { newnametoinput = "hyundai"; }
+    if (a.name.indexOf("롯데 아울렛") > -1) { newnametoinput = "lotteoutlet"; }
+    if (a.name.indexOf("신세계 아울렛") > -1) { newnametoinput = ""; }
+    if (a.name.indexOf("현대 아울렛") > -1) { newnametoinput = ""; }
+
+    console.log(newnametoinput)
     this.favoriteIndex = idx;
     this.martinfo = a;
     console.log(this.martinfo);
@@ -358,8 +373,8 @@ export class HomePage {
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    console.log(this.martkind[idx-1]);
-    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx-1]).child(a.key).remove();
+    
+    this.firemain.child("users").child(this.id).child("favorite").child(newnametoinput).child(a.key).remove();
     const toast = this.toastCtrl.create({
       message: '"즐겨 찾는 곳"에서 삭제되었습니다.',
       duration: 2000,
@@ -606,6 +621,13 @@ export class HomePage {
     console.log(key.flag);
     let modal = this.modal.create(DeletemodalPage, { "key": key, "Id":this.id })
     modal.onDidDismiss(() => {
+      const toast = this.toastCtrl.create({
+        message: '삭제되었습니다.',
+        duration: 2000,
+        position: 'top',
+        cssClass : 'deletemodalToast'
+      });
+      toast.present();
       this.refreshname();
     })
     modal.present();

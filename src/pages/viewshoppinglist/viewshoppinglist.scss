@@ -27,10 +27,40 @@ page-viewshoppinglist {
     }
 }
 
+.modalToast {
+    .toast-wrapper {
+        width: 80%;
+        border-radius: 5px;
+        background-color: rgb(88, 189, 207);
+        transform: translateY(550px) !important;
+    }
+}
+
+.alert-md .alert-head {
+    text-align: left;
+    text-align: start;
+    padding: 36px 24px 20px;
+}
+
+.alert-md .alert-button {
+    padding-right: 30px;
+}
+
+.savealert {
+    .title {
+        font-weight: 900;
+    }
+    .alert-wrapper {
+        border-radius: 20px;
+        min-width: 330px;
+        min-height: 140px;
+        max-height: 50%;
+    }
+}
+
 button[ion-fab] {
     overflow: visible;
     position: relative;
-
     ion-label {
         position: absolute;
         top: 0px;
@@ -43,6 +73,7 @@ button[ion-fab] {
     }
     contain: layout;
 }
+
 .chk {
     display: none;
 }

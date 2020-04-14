@@ -137,8 +137,15 @@ export class MartinfoviewPage {
   }
 
   map() {
-    location.href = "http://naver.com";
+    var martaddr = "";
     // window.open("http://naver.com", '_blank');
+    for (var i in this.martinfo) {
+      if (i == "name") {
+        console.log(this.martinfo[i]);
+        martaddr = this.martinfo[i];
+        window.open("https://m.map.naver.com/search2/search.nhn?query="+martaddr+"&sm=hty&style=v5#/map")
+      }
+    }
     console.log("map");
     console.log("hhhh");
   }

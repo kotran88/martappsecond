@@ -51,8 +51,9 @@ export class ViewshoppinglistPage {
   allbuy: boolean = false;
   number = [];
   checkflag: boolean = false;
+  quantityArray = [];
 
-  constructor(public fab: FabContainer,public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
+  constructor(public fab: FabContainer, public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
     public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController) {
@@ -82,30 +83,27 @@ export class ViewshoppinglistPage {
     this.totalnumber = this.a.list.length;
     this.checkedbuy();
     this.addprice();
-
-    for (var i = 1; i <= 50; i++) {
-      this.number.push({ "count": i });
-    }
+    this.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
   }
-  fabclicked(event,fab){
+  fabclicked(event, fab) {
     console.log("fab clicked")
     console.log(event.target.name);
-    if(event.target.name=="rotate"){
-      this.fab=fab;
+    if (event.target.name == "rotate") {
+      this.fab = fab;
     }
 
-    this.fabButtonOpened=true;
+    this.fabButtonOpened = true;
   }
-  closingfab(event){
+  closingfab(event) {
     console.log("closingfab");
     console.log(this.fab);
     console.log(event.target.name);
-    if(event.target.name==undefined){
+    if (event.target.name == undefined) {
       this.fab.close();
     }
   }
   backbutton() {
-    if(this.flag == true){
+    if (this.flag == true) {
       let alert = this.alertCtrl.create({
 
         title: '작성 중이던 목록을 저장할까요?',
@@ -124,7 +122,7 @@ export class ViewshoppinglistPage {
               for (var v = 0; v < this.a.list.length; v++) {
                 console.log(this.a.list[v])
                 console.log(this.a.list[v].name);
-  
+
                 if (this.a.list[v].name == "") {
                   window.alert("목록을 입력해주세요");
                 }
@@ -146,7 +144,8 @@ export class ViewshoppinglistPage {
       });
       alert.present();
     }
-    else{
+    else {
+      this.autosave();
       this.goback();
     }
   }
@@ -236,8 +235,8 @@ export class ViewshoppinglistPage {
         });
         toast.present();
       }
-      if (this.price == ""||this.price==undefined) { this.price = 0; }
-      if (this.quantity == ""||this.quantity==undefined) { this.quantity = 1; }
+      if (this.price == "" || this.price == undefined) { this.price = 0; }
+      if (this.quantity == "" || this.quantity == undefined) { this.quantity = 1; }
       console.log(this.price);
       console.log(this.quantity);
       this.a.list.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
@@ -360,6 +359,7 @@ export class ViewshoppinglistPage {
     let alert = this.alertCtrl.create({
 
       title: '작성 중이던 목록을 저장할까요?',
+      cssClass:'savealert',
       buttons: [
         {
           text: '아니요',
@@ -394,6 +394,36 @@ export class ViewshoppinglistPage {
       ]
     });
     alert.present();
+  }
+  autosave() {
+    this.flag = false;
+    this.flagInput = false;
+
+    for (var v = 0; v < this.a.list.length; v++) {
+      console.log(this.a.list[v])
+      console.log(this.a.list[v].name);
+
+      if (this.a.list[v].name == "") {
+        window.alert("목록을 입력해주세요");
+      }
+      else {
+        this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+        this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+        this.refreshname();
+        // this.showToastWithCloseButton();
+        this.checkedbuy();
+
+        const toast = this.toastCtrl.create({
+          message: '저장되었습니다.',
+          duration: 2000,
+          position: 'top',
+          cssClass : 'deletemodalToast'
+        });
+        toast.present();
+      }
+    }
+    console.log(this.a.list);
+    console.log(this.shop);
   }
   /*수정*/
   insertData(fab: FabContainer) {
@@ -712,65 +742,6 @@ export class ViewshoppinglistPage {
         },
         () => console.log('Denied')
       )
-    // let options = {
-    //   "language": "ko-KR",
-    //   "matches": 1,
-    //   "prompt": "평소 말하는 것처럼 말해주세요qqqqqqqq",      // Android only
-    //   "showPopup": true,  // Android only
-    //   "showPartial": true
-    // }
-    // window.alert("speech started")
-    //  // Check permission
-    //  this.speechRecognition.hasPermission()
-    //  .then((hasPermission: boolean) => {console.log(hasPermission)
-    // window.alert("g!")
-    // }).catch((e)=>{
-    //   window.alert(e)
-    // })
-    // Request permissions
-    //  this.speechRecognition.requestPermission()
-    //    .then(
-    //      () => {console.log('ㅎㅎㅎㅎㅎGranteddd')
-    //    window.alert("1111")
-    //      console.log("listened")
-    //      console.log(options);
-    //    // Start the recognition process
-
-    //       // Check feature available
-    //       this.speechRecognition.isRecognitionAvailable()
-    //         .then((available: boolean) => console.log(available)).catch((e) => {
-    //           console.log(e);
-    //         })
-    //       // Start the recognition process
-    //       this.speechRecognition.startListening(options)
-    //         .subscribe(
-    //           (matches: string[]) => console.log(matches),
-    //           (onerror) => console.log('error:', onerror)
-    //         )
-    //       // Stop the recognition process (iOS only)
-    //       this.speechRecognition.stopListening()
-    //       // Get the list of supported languages
-    //       this.speechRecognition.getSupportedLanguages()
-    //         .then(
-    //           (languages: string[]) => {
-    //             console.log("listened")
-    //             console.log(languages)
-
-
-    //           this.adding=languages[0]
-    //           },
-    //           (error) => {
-    //             console.log("errorrrorr")
-    //             console.log(error)
-
-    //           }
-    //         )
-
-
-    //    },
-    //      () => console.log('Denied')
-    //    )
-
-
+      this.add();
   }
 }

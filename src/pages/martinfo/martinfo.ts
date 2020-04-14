@@ -83,19 +83,6 @@ export class MartinfoPage {
       }
       
     });
-    // for(var fav in this.favoriteList){
-    //   console.log(this.favoriteList);
-    //   for(var mart in this.martArray){
-    //     console.log("mart");
-    //     if(this.favoriteList[fav].name == this.martArray[mart].name){
-    //       console.log(this.favoriteList[fav].name);
-    //       console.log(this.martArray[mart].name);
-    //       if(this.favoriteList[fav].favorite == true){
-    //         this.martArray[mart].favorite = true;
-    //       }
-    //     }
-    //   }
-    // }
     this.favchange();
     console.log(this.favoriteList);
     console.log(this.martArray);
@@ -769,23 +756,23 @@ export class MartinfoPage {
     console.log(idx);
     console.log(this.martArray[idx])
     console.log(!flag);
-    console.log(this.martArray);
     var flag = this.martArray[idx].favorite;
+    var listarray = [];
     if (flag != true) {
       this.firemain.child("users").child(this.userId).child("favorite").once("value", (sn) => {
+
         console.log(sn.val());
-      })
-      // for(var fav in this.favoriteList){
-      //   for(var mart in this.martArray){
-      //     if(this.favoriteList[fav].name == this.martArray[mart].name){
-      //       if(this.favoriteList[fav].favorite == true){
-      //         this.martArray[mart].favorite = true;
-      //       }
-      //     }
-      //   }
-      // }
-      console.log(this.martArray);
-        if (this.favoriteList.length < 20) {
+        for(var i in sn.val()){
+          for(var j in sn.val()[i]){
+            console.log(sn.val()[i][j]);
+            listarray.push(sn.val()[i][j]);
+          }
+        }
+        console.log(this.martArray);
+        console.log(listarray);
+     
+      console.log(listarray);
+        if (listarray.length < 5) {
           this.martArray[idx].favorite = true;
           this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
           console.log(this.martArray[idx]);
@@ -797,13 +784,14 @@ export class MartinfoPage {
           });
           toast.present();
         }
-        else if (this.favoriteList.length >= 20) {
+        else if (listarray.length >= 5) {
+          console.log("sizeover");
           let modal = this.modal.create(FavoritemodalPage, null, {
             cssClass: "modalSize"
           });
           modal.present();
         }
-   
+      })
 
     }
     else {

@@ -1,187 +1,193 @@
-page-setting {
-    .image {
-        width: 35%;
-        height: 100%;
-        border: solid 1px;
-        float: left;
+    page-setting {
+        .image {
+            width: 35%;
+            height: 100%;
+            border: solid 1px;
+            float: left;
+        }
+        .toolbar-background-md {
+            background: #71E8E8;
+        }
+        .content_main {
+            width: 80%;
+            text-align: center;
+            // height: 20%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            background: transparent;
+            color: black;
+            border: solid 1px;
+        }
+        .img {
+            width: 70%;
+            text-align: center;
+            margin-left: 15%;
+        }
+        .content {
+            height: 85%;
+            width: 100%;
+        }
+        .content_text {
+            width: 100%;
+            height: 30%;
+        }
+        .info {
+            width: 50%;
+            height: 100%;
+            float: right;
+        }
+        .confirm {
+            width: 100%;
+            background: transparent;
+            color: black;
+            border: solid 1px;
+        }
+        .main-view {
+            background: transparent;
+        }
+        .title_title {
+            line-height: 3rem;
+            float: left;
+            padding: 0;
+            width: 25%;
+            margin-left: 20px;
+        }
+        .title {
+            line-height: 3rem;
+            float: left;
+            padding: 0;
+            width: 25%;
+        }
+        .btn {
+            border: none;
+            background: aliceblue;
+            border-radius: 10px;
+            margin-top: 1em;
+            margin-right: 1em;
+            min-height: 25px;
+        }
+        button.nav {
+            background-color: transparent;
+            color: #000;
+            float: left;
+        }
+        .text-input-md {
+            text-align: center;
+            margin-top: 5px;
+        }
+        .a {
+            background: transparent;
+            border: solid 1px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+        .modal_content {
+            text-align: center;
+            background: white;
+            position: absolute;
+            border: solid 1px;
+            left: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            padding: 10px;
+            z-index: 100;
+            margin: 0 auto;
+            padding: 10px;
+            color: #333;
+            height: auto;
+            background: #e8e8e8;
+            background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+            background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+            background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+            border-radius: 5px;
+            box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            overflow: hidden;
+        }
     }
-    .toolbar-background-md {
-        background: #71E8E8;
-    }
-    .content_main {
-        width: 80%;
-        text-align: center;
-        // height: 20%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .btn {
-        background: transparent;
-        color: black;
-        border: solid 1px;
-    }
-    .img {
-        width: 70%;
-        text-align: center;
-        margin-left: 15%;
-    }
-    .content {
-        height: 85%;
+    
+    .picker-md .picker-button,
+    .picker-md .picker-button.activated {
+        margin: 0;
+        height: 44px;
         width: 100%;
-    }
-    .content_text {
-        width: 100%;
-        height: 30%;
-    }
-    .info {
-        width: 50%;
-        height: 100%;
-        float: right;
-    }
-    .confirm {
-        width: 100%;
+        color: #488aff;
         background: transparent;
-        color: black;
-        border: solid 1px;
+        box-shadow: none;
     }
-    .main-view {
-        background: transparent;
+    
+    .rotate {
+        transition: all ease 1s;
     }
-    .title_title {
-        line-height: 3rem;
-        float: left;
-        padding: 0;
-        width: 25%;
-        margin-left: 20px;
+    
+    .rotate:hover {
+        transform: rotate(90deg);
     }
-    .title {
-        line-height: 3rem;
-        float: left;
-        padding: 0;
-        width: 25%;
+    
+    .B_on {
+        //background-color: mediumaquamarine;
+        background-color: #71E8E8;
     }
-    .btn {
+    
+    .B_off {
+        background-color: rgb(240, 240, 240);
+    }
+    
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
         border: none;
-        background: aliceblue;
-        border-radius: 10px;
-        margin-top: 1em;
-        margin-right: 1em;
-        min-height: 25px;
+        outline: none;
+        transition: 0.4s;
     }
-    button.nav {
-        background-color: transparent;
-        color: #000;
-        float: left;
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    
+    .active,
+    .accordion:hover {
+        background-color: #ccc;
     }
-    .text-input-md {
-        text-align: center;
-        margin-top: 5px;
-    }
-    .a {
-        background: transparent;
-        border: solid 1px;
-        margin: 5px;
-        border-radius: 10px;
-    }
-    .modal_content {
-        text-align: center;
-        background: white;
-        position: absolute;
-        border: solid 1px;
-        left: 0;
-        right: 0;
-        width: 80%;
-        height: 100%;
-        padding: 10px;
-        z-index: 100;
-        margin: 0 auto;
-        padding: 10px;
-        color: #333;
-        height: auto;
-        background: #e8e8e8;
-        background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
-        background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
-        background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
-        border-radius: 5px;
-        box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
+    /* Style the accordion panel. Note: hidden by default */
+    
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        display: none;
         overflow: hidden;
     }
-}
-
-.rotate {
-    transition: all ease 1s;
-}
-
-.rotate:hover {
-    transform: rotate(90deg);
-}
-
-.B_on {
-    //background-color: mediumaquamarine;
-    background-color: #71E8E8;
-}
-
-.B_off {
-    background-color: rgb(240, 240, 240);
-}
-
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-
-.active,
-.accordion:hover {
-    background-color: #ccc;
-}
-
-
-/* Style the accordion panel. Note: hidden by default */
-
-.panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-    overflow: hidden;
-}
-
-.bar-button::after {
-    color: white;
-}
-
-.goback {
-    background-color: #71E8E8;
-}
-
-.arrow1 {
-    background-color: #fff;
-    margin-left: 170px;
-}
-
-.arrow2 {
-    background-color: #fff;
-    margin-left: 128px;
-}
-
-.arrow3 {
-    background-color: #fff;
-    margin-left: 141px;
-}
-
-.arrow4 {
-    background-color: #fff;
-    margin-left: 150px;
-}
+    
+    .bar-button::after {
+        color: white;
+    }
+    
+    .goback {
+        background-color: #71E8E8;
+    }
+    
+    .arrow1 {
+        background-color: #fff;
+        margin-left: 170px;
+    }
+    
+    .arrow2 {
+        background-color: #fff;
+        margin-left: 128px;
+    }
+    
+    .arrow3 {
+        background-color: #fff;
+        margin-left: 141px;
+    }
+    
+    .arrow4 {
+        background-color: #fff;
+        margin-left: 150px;
+    }
