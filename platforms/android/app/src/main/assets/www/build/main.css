@@ -28006,6 +28006,22 @@ page-ad .B_off {
   background-color: #f0f0f0;
 }
 
+.savealert .title {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.savealert .alert-wrapper {
+  border-radius: 20px;
+  min-width: 310px;
+  max-height: 50%;
+}
+
+.popover-md .popover-content {
+  width: 80px;
+  left: 100px;
+}
+
 .saveButton {
   border-radius: 4px;
   border: solid 2px #4abebe;
@@ -28077,6 +28093,38 @@ page-home ion-fab {
   z-index: 9999;
 }
 
+.deletemodalToast .toast-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  background-color: #58bdcf;
+  -webkit-transform: translateY(550px) !important;
+  transform: translateY(550px) !important;
+}
+
+.myToast .toast-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  background-color: #58bdcf;
+  -webkit-transform: translateY(450px) !important;
+  transform: translateY(450px) !important;
+}
+
+.addClass .title {
+  font-weight: 900;
+}
+
+.addClass .alert-wrapper {
+  border-radius: 20px;
+  -webkit-transform: translateY(150px) !important;
+  transform: translateY(150px) !important;
+  min-width: 310px;
+  max-height: 50%;
+}
+
+.alert-md .alert-button-group {
+  padding: 0px 0px 0px 0px;
+}
+
 .searchbar-md .searchbar-input {
   padding: 6px 35px;
   font-size: 1.4rem;
@@ -28132,7 +28180,6 @@ ion-fab-list {
 }
 
 select {
-  width: 30%;
   height: 45px;
   border-radius: 5px;
   border: 10px soild;
@@ -28154,12 +28201,18 @@ select::-ms-expand {
 }
 
 .topselector {
+  background-color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0%;
   width: 350px;
-  height: 160px;
+  height: 150px;
   border: solid 2px #78f7f7;
-  border-radius: 5px;
+  border-radius: 10px;
+  top: 0px;
   /*[위][오른쪽][아래][왼쪽]*/
   margin: 5px auto;
+  z-index: 999999;
 }
 
 .nnn {
@@ -28244,16 +28297,26 @@ div.segmentText {
 }
 
 .tab-font {
-  font-size: 18px;
+  font-size: 17px;
   color: black;
   font-family: 'notomedium';
   font-weight: 900;
+  letter-spacing: -1px;
 }
 
 .segment-md .segment-button.activated,
 .segment-md .segment-button.segment-activated {
   border-color: #71E8E8;
   border-bottom-width: 5px;
+}
+
+.back-drop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(100, 100, 100, 0.5);
 }
 
 .martname {
@@ -28503,6 +28566,23 @@ page-martmap .scroll-content {
   overflow-y: hidden !important;
 }
 
+page-rate .button-md {
+  -webkit-box-shadow: 0px 0px 0 rgba(0, 0, 0, 0);
+  box-shadow: 0px;
+}
+
+page-rate .main-view {
+  background: transparent;
+  background-color: #f0f0f0;
+  border: solid 1px;
+  border-color: #00a7b3;
+  height: 65%;
+  width: 95%;
+  top: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 page-setting .image {
   width: 35%;
   height: 100%;
@@ -28629,6 +28709,17 @@ page-setting .modal_content {
   overflow: hidden;
 }
 
+.picker-md .picker-button,
+.picker-md .picker-button.activated {
+  margin: 0;
+  height: 44px;
+  width: 100%;
+  color: #488aff;
+  background: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .rotate {
   -webkit-transition: all ease 1s;
   transition: all ease 1s;
@@ -28684,22 +28775,22 @@ page-setting .modal_content {
 
 .arrow1 {
   background-color: #fff;
-  margin-left: 170px;
+  float: right;
 }
 
 .arrow2 {
   background-color: #fff;
-  margin-left: 128px;
+  float: right;
 }
 
 .arrow3 {
   background-color: #fff;
-  margin-left: 141px;
+  float: right;
 }
 
 .arrow4 {
   background-color: #fff;
-  margin-left: 150px;
+  float: right;
 }
 
 page-viewshoppinglist ion-list {
@@ -28731,7 +28822,62 @@ page-viewshoppinglist .fab-in-list {
 }
 
 page-viewshoppinglist .text-input-md {
-  margin: 10px 8px;
+  margin: 13px 8px;
+}
+
+page-viewshoppinglist .select-md {
+  padding: 11px 8px 13px 16px;
+}
+
+.modalToast .toast-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  background-color: #58bdcf;
+  -webkit-transform: translateY(550px) !important;
+  transform: translateY(550px) !important;
+}
+
+.alert-md .alert-wrapper {
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+.alert-md .alert-head {
+  text-align: left;
+  text-align: start;
+  padding: 36px 24px 20px;
+}
+
+.alert-md .alert-button {
+  padding-right: 30px;
+}
+
+.savealert .title {
+  font-weight: 900;
+}
+
+.savealert .alert-wrapper {
+  border-radius: 20px;
+  min-width: 330px;
+  min-height: 140px;
+  max-height: 50%;
+}
+
+button[ion-fab] {
+  overflow: visible;
+  position: relative;
+  contain: layout;
+}
+
+button[ion-fab] ion-label {
+  position: absolute;
+  top: 0px;
+  right: 60px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .chk {

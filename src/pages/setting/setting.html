@@ -38,27 +38,26 @@
 
 
             <div *ngIf="shownGroup" style="margin:5px;padding:3px;">
-                즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기
-                <div></div>
-                <a class="test" *ngFor="let button of buttontoggle; let i = index">
-                    <button ion-button (click)="clickButton(i)" style="width:50px; margin-right:5px;" [ngClass]="button.check===true?'B_on':'B_off'">{{button.name}}</button>
+                <a style="font-size:15px; color:rgb(68, 68, 68)">즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기</a>
+                <a class="test" *ngFor="let button of buttontoggle; let i = index" style="margin-left:auto; margin-right:auto;">
+                    <button ion-button (click)="clickButton(i)" style="font-size:13px;margin-left:5px; width:70px; margin-right:5px;margin-bottom:10px;" [ngClass]="button.check===true?'B_on':'B_off'">{{button.name}}</button>
                 </a>
-                <div *ngIf="checkbutton()===true">
-                    <ion-item>
-                        <ion-label>알람 시간 설정</ion-label>
+                <div *ngIf="checkbutton()===true" style="margin-top:10px;margin-bottom:10px;">
+                    <ion-item style="background-color: #f0f0f0; border-radius: 10px;">
+                        <ion-label style="color:black">알람 시간 설정 : </ion-label>
                         <ion-datetime displayFormat="A h:mm" pickerFormat="A h mm" [(ngModel)]="DateTime"></ion-datetime>
                     </ion-item>
 
                 </div>
-                <button ion-button (click)="alarmcheck()" style="float:right; width:50px;">완료</button>
+                <button ion-button (click)="alarmcheck()" style="background-color: #f0f0f0; margin-left:125px; width:70px;">완료</button>
 
             </div>
         </ion-item>
 
-        <ion-item style="margin-top:10px; margin-bottom:10px;">
+        <!-- <ion-item style="margin-top:10px; margin-bottom:10px;">
             <span><img src="./assets/imgs/070.png" style="width:25px; margin-right:10px;" alt="">개인정보 취급방침</span>
             <button (click)="privacy()" class="arrow2"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>
-        </ion-item>
+        </ion-item> -->
 
     </ion-list>
 </ion-content>

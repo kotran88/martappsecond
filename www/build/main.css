@@ -28201,12 +28201,18 @@ select::-ms-expand {
 }
 
 .topselector {
+  background-color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0%;
   width: 350px;
   height: 150px;
   border: solid 2px #78f7f7;
   border-radius: 10px;
+  top: 0px;
   /*[위][오른쪽][아래][왼쪽]*/
   margin: 5px auto;
+  z-index: 999999;
 }
 
 .nnn {
@@ -28769,22 +28775,22 @@ page-setting .modal_content {
 
 .arrow1 {
   background-color: #fff;
-  margin-left: 170px;
+  float: right;
 }
 
 .arrow2 {
   background-color: #fff;
-  margin-left: 128px;
+  float: right;
 }
 
 .arrow3 {
   background-color: #fff;
-  margin-left: 141px;
+  float: right;
 }
 
 .arrow4 {
   background-color: #fff;
-  margin-left: 150px;
+  float: right;
 }
 
 page-viewshoppinglist ion-list {
@@ -28816,7 +28822,11 @@ page-viewshoppinglist .fab-in-list {
 }
 
 page-viewshoppinglist .text-input-md {
-  margin: 10px 8px;
+  margin: 13px 8px;
+}
+
+page-viewshoppinglist .select-md {
+  padding: 11px 8px 13px 16px;
 }
 
 .modalToast .toast-wrapper {
@@ -28825,6 +28835,11 @@ page-viewshoppinglist .text-input-md {
   background-color: #58bdcf;
   -webkit-transform: translateY(550px) !important;
   transform: translateY(550px) !important;
+}
+
+.alert-md .alert-wrapper {
+  border-radius: 10px;
+  max-width: 400px;
 }
 
 .alert-md .alert-head {

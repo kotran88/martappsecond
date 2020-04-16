@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard'
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import firebase from 'firebase';
 import { HomePage } from '../home/home';
@@ -40,13 +41,15 @@ export class AddshopingPage {
   quantityArray : any;
 
   constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController,
-    public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+    public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController,
+    private keyboard: Keyboard) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.title = this.navParams.get("title");
     this.value = this.navParams.get("flag");
     console.log("this.flag:" + this.value)
     this.key = this.navParams.get("key");
+    this.keyboard.show();
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
     this.month = thisday.getMonth() + 1;
@@ -92,6 +95,7 @@ export class AddshopingPage {
     this.adding = "";
     this.price = "";
     this.quantity = "";
+    this.keyboard.show();
   }
   addprice() {
     /*가격받아오기*/

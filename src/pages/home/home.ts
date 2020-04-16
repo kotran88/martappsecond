@@ -82,50 +82,63 @@ export class HomePage {
     var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
     this.currentMonth = this.date.getMonth() + 1;
-    // this.currentMonth = this.date.getMonth() - 1;
-
+    
     this.currentYear = this.date.getFullYear();
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
     var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
     var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+    var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
     var dayofweek = this.date.getDay();
     this.currentDate = new Date().getDate();
     
+    console.log(firstDayThisMonth);
+    // for(var index=0; index<7; index++){
+    //   var v_date_str = this.currentYear+"-"+this.currentMonth+"-"+this.currentDate;
+    
+    //     var todayDate = this.currentDate+1;
+    //     todayDate = this.currentDate++;
+    //     // this.currentDate = todayDate++;
+    //     console.log(todayDate+"일");
+    //     dateeeee = new Date(v_date_str);
+    //     var resnum = dateeeee.getDate();
+    //     var aaaa = resnum+firstDayThisMonth;
+    //     console.log(resnum-firstDayThisMonth);
+    //     var resultWeek = Math.ceil(aaaa/7);
+    //   // var resultWeek = Math.ceil(dateeeee.getDate()/7);
+    //   console.log(resultWeek+"주");
+    // }
+    
 
+    console.log(this.currentDate);
     if (this.date.getMonth() === new Date().getMonth()) {
       this.currentDate = new Date().getDate();
     } else {
       this.currentDate = 999;
     }
-    // var aaaa = this.currentDate+12;
     var count = 0;
-    console.log("1: " + this.currentDate);
     for (var i = 0; i < 7; i++) {
       console.log(thisNumOfDays);
-      // if(dayofweek+i>=7){dayofweek=0;}
       var dow = dayofweek++;
+      var todayDate = this.currentDate++;
+      console.log(todayDate+"일");
+      var resnum = this.currentDate+firstDayThisMonth;
+      var resultWeek = Math.ceil(resnum/7);
+      console.log(resultWeek+"주");
 
       if (dayofweek >= 7) { dayofweek = 0; }
-     
-      if (this.currentDate + i <= thisNumOfDays) {
-        console.log(thisNumOfDays);
-        console.log(this.currentDate);
-        console.log(thisNumOfDays-(this.currentDate+i) / 7);
-        this.week.push({ "week": prefixes[0 | (thisNumOfDays-this.currentDate+i-1) / 7 ], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-        // console.log(dayofweek);
+      
+      if (todayDate <= thisNumOfDays) {
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
       }
-      else if (this.currentDate + i > thisNumOfDays) {
+      else if (todayDate > thisNumOfDays) {
         count++;
-        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-        // console.log(dayofweek);
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
       }
     }
-    // console.log(this.week);
-    // console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
-    // console.log(thisNumOfDays);//한 달의 날수
-    // console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
   }
-
+  onEnter(){
+    this.select_sort();
+  }
   presentLoadingDefault() {
     let loading = this.loadingCtrl.create({
       content: 'loading'
@@ -536,7 +549,7 @@ export class HomePage {
     console.log(e);
   }
   callnumbering() {
-    window.alert("call number start")
+    // window.alert("call number start")
     this.callnumber.callNumber("0630000000", true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
@@ -915,7 +928,13 @@ closingfab(event){
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
-                window.alert("변경되었습니다.");
+                const toast = this.toastCtrl.create({
+                  message: '변경되었습니다.',
+                  duration: 2000,
+                  position: 'top',
+                  cssClass : 'myToast'
+                });
+                toast.present();
               })
             }
             if (key.flag == "dep") {
@@ -927,7 +946,13 @@ closingfab(event){
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
-                window.alert("변경되었습니다.");
+                const toast = this.toastCtrl.create({
+                  message: '변경되었습니다.',
+                  duration: 2000,
+                  position: 'top',
+                  cssClass : 'myToast'
+                });
+                toast.present();
               })
             }
             if (key.flag == "outlet") {
@@ -939,7 +964,13 @@ closingfab(event){
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
-                window.alert("성공");
+                const toast = this.toastCtrl.create({
+                  message: '변경되었습니다.',
+                  duration: 2000,
+                  position: 'top',
+                  cssClass : 'myToast'
+                });
+                toast.present();
               })
             }
             if (key.flag == "etc") {
@@ -951,7 +982,13 @@ closingfab(event){
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
-                window.alert("성공");
+                const toast = this.toastCtrl.create({
+                  message: '변경되었습니다.',
+                  duration: 2000,
+                  position: 'top',
+                  cssClass : 'myToast'
+                });
+                toast.present();
               })
             }
           }
@@ -1155,8 +1192,13 @@ closingfab(event){
       console.log(key);
       console.log(key.list);
       if (data.flag == "cancel") {
-        window.alert("취소되었습니다.");
-      }
+        const toast = this.toastCtrl.create({
+          message: '취소되었습니다.',
+          duration: 2000,
+          position: 'top',
+          cssClass : 'myToast'
+        });
+        toast.present();      }
       if (data.flag == "new") {
         if (data.value == "1") {
           console.log(data.value);

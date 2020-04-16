@@ -30,9 +30,6 @@
     "cordova-plugin-purchase": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
-    "cordova-plugin-speechrecognition": {
-      "PACKAGE_NAME": "io.ionic.baekma"
-    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
@@ -59,6 +56,9 @@
       "PACKAGE_NAME": "io.ionic.baekma"
     },
     "phonegap-plugin-mobile-accessibility": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-speechrecognition": {
       "PACKAGE_NAME": "io.ionic.baekma"
     }
   },

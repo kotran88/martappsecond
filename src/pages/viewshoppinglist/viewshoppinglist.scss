@@ -23,7 +23,10 @@ page-viewshoppinglist {
         margin: 2px;
     }
     .text-input-md {
-        margin: 10px 8px;
+        margin: 13px 8px;
+    }
+    .select-md {
+        padding: 11px 8px 13px 16px;
     }
 }
 
@@ -34,6 +37,11 @@ page-viewshoppinglist {
         background-color: rgb(88, 189, 207);
         transform: translateY(550px) !important;
     }
+}
+
+.alert-md .alert-wrapper {
+    border-radius: 10px;
+    max-width: 400px;
 }
 
 .alert-md .alert-head {

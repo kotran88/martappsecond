@@ -164,13 +164,18 @@ select::-ms-expand {
 }
 
 .topselector {
+    background-color: #fff;
+    position: sticky;
+    bottom: 0%;
     width: 350px;
     height: 150px;
     border: solid 2px rgb(120, 247, 247);
     border-radius: 10px;
+    top: 0px;
     /*[위][오른쪽][아래][왼쪽]*/
     margin: 5px auto;
     // padding: 5px 5px 5px 5px;
+    z-index: 999999;
 }
 
 .nnn {
@@ -271,8 +276,6 @@ div.segmentText {
     left: 0;
     background: rgba(100, 100, 100, 0.5);
 }
-
-.noback-drop {}
 
 .martname {
     font-size: 17px;

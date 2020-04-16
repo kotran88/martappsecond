@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 156:
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1264,7 +1264,7 @@ var MartinfoviewPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 157:
+/***/ 158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1312,7 +1312,7 @@ var FavoritemodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 182:
+/***/ 183:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1325,11 +1325,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 182;
+webpackEmptyAsyncContext.id = 183;
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1342,21 +1342,22 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 227;
+webpackEmptyAsyncContext.id = 228;
 
 /***/ }),
 
-/***/ 274:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddshopingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_speech_recognition__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1371,6 +1372,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the AddshopingPage page.
  *
@@ -1378,15 +1380,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AddshopingPage = /** @class */ (function () {
-    function AddshopingPage(speechRecognition, navCtrl, navParams, alertCtrl, toastCtrl) {
+    function AddshopingPage(speechRecognition, navCtrl, navParams, alertCtrl, toastCtrl, keyboard) {
         this.speechRecognition = speechRecognition;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
+        this.keyboard = keyboard;
         this.totalnumber = 0;
         this.flag = false;
-        this.firemain = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref();
+        this.firemain = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref();
         this.addinglist = [];
         this.sum = 0;
         this.printsum = 0;
@@ -1399,6 +1402,7 @@ var AddshopingPage = /** @class */ (function () {
         this.value = this.navParams.get("flag");
         console.log("this.flag:" + this.value);
         this.key = this.navParams.get("key");
+        this.keyboard.show();
         var thisday = new Date();
         thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
         this.month = thisday.getMonth() + 1;
@@ -1444,6 +1448,7 @@ var AddshopingPage = /** @class */ (function () {
         this.adding = "";
         this.price = "";
         this.quantity = "";
+        this.keyboard.show();
     };
     AddshopingPage.prototype.addprice = function () {
         /*가격받아오기*/
@@ -1534,7 +1539,7 @@ var AddshopingPage = /** @class */ (function () {
             this.firemain.child("users").child(this.id).child(this.value).child(this.title).remove().then(function () {
                 console.log("Cancel");
             });
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
         }
         else {
             this.autosave();
@@ -1545,7 +1550,7 @@ var AddshopingPage = /** @class */ (function () {
                 cssClass: 'deletemodalToast'
             });
             toast.present();
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
         }
     };
     AddshopingPage.prototype.speeching = function () {
@@ -1622,12 +1627,12 @@ var AddshopingPage = /** @class */ (function () {
     AddshopingPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddshopingPage');
     };
+    var _a, _b, _c, _d, _e, _f;
     AddshopingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-addshoping',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/addshoping/addshoping.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; display:flex;">\n        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064.png" style="width:30px; margin:5px;" alt=""></button>\n        <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:10px;">{{title}}</span>\n    </div>\n    <ion-item-divider color="light" style="height: 40px;"><img src="{{img}}" style="width:60px; margin-right:10px;">\n        <img *ngIf="value==\'mart\'" src="./assets/imgs/079.png" style="width:30px;" alt="">\n        <img *ngIf="value==\'dep\'" src="./assets/imgs/080.png" style="width:30px;" alt="">\n        <img *ngIf="value==\'outlet\'" src="./assets/imgs/081outlet.png" style="width:30px;" alt="">\n        <img *ngIf="value==\'etc\'" src="./assets/imgs/081etc.png" style="width:30px;" alt="">\n\n        <span style="color:rgb(88, 189, 207); font-size:15px; font-weight: bold;">\n            <!--{{nowtime}}-->\n            {{fullyear}}년 {{month}}월 {{date}}일\n        </span>\n        <button class="saveButton" (click)="save()">저장</button>\n    </ion-item-divider>\n\n    <ion-row style="margin-top:6px; margin-left:auto; margin-right:auto; background-color:rgb(194, 243, 250); width:80%;border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="flag==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div class="main" *ngIf="addinglist.length!=0">\n        <ion-item *ngFor="let att of addinglist; let idx = index">\n            <ion-icon *ngIf="flag==false" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>\n            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>\n            <ion-select [(ngModel)]="number" interface="popover" style="width: 20%;float: right;z-index: 999999" [(ngModel)]="addinglist[idx].quantity" placeholder="수량">\n                <ion-option *ngFor="let a of quantityArray;" value={{a}}>{{a}}</ion-option>\n            </ion-select>\n            <ion-input type="number" style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div *ngIf="flag!=true" style="margin-left:10px; position: absolute;bottom: 110px;width: 80%; border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190)" class="bottom">\n        <ion-input *ngIf="flag!=true" style="color:#808080; width: 83%;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-top: 5px;" (click)="speeching()">\n                <img src="./assets/imgs/086.png" style="width:30px;" alt="">\n            </button>\n    </div>\n    <div style="margin-left:300px; position: absolute;bottom: 110px;width: 20%;" class="bottom">\n        <button *ngIf="flag!=true" style="font-size:11px; margin-bottom:-60px; height: 80px;background-color:#71E8E8;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n    </div>\n    <div style="margin-left:10px; position: absolute;bottom: 70px;width: 80%;" *ngIf="flag!=true&&flagInput==false" class="inputprice">\n        <img *ngIf="flag!=true&&flagInput==false" src="./assets/imgs/084.png " style="width:30px; " alt=" ">\n        <span *ngIf="flag!=true&&flagInput==false" style="color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</span>\n    </div>\n    <div style="margin-left:10px; position: absolute;bottom: 70px;width: 80%;" *ngIf="flagInput!=false">\n        <button *ngIf="flagInput!=false" style="color:rgb(74,190,190); font-weight:bold; float:left; height: 3.5rem; border:solid 1px; border-color:#71E8E8; font-size:14px; background-color:#fff;border-radius: 7px; margin-top: 10px;margin-right: 10px;" (click)="cancel()">상세취소</button>\n        <!-- <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->\n        <ion-select [(ngModel)]="number" interface="popover" *ngIf="flagInput!=false" style="top:325px; color:#808080; width: 34%; height: 4.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량">\n            <ion-option *ngFor="let a of quantityArray;" value={{a}}>{{a}}</ion-option>\n        </ion-select>\n\n        <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/addshoping/addshoping.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_speech_recognition__["a" /* SpeechRecognition */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_speech_recognition__["a" /* SpeechRecognition */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__["a" /* Keyboard */]) === "function" ? _f : Object])
     ], AddshopingPage);
     return AddshopingPage;
 }());
@@ -1636,23 +1641,24 @@ var AddshopingPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewshoppinglistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_hammerjs__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_hammerjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__viewlimitmodal_viewlimitmodal__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_hammerjs__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_hammerjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewlimitmodal_viewlimitmodal__ = __webpack_require__(445);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1672,6 +1678,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ViewshoppinglistPage page.
  *
@@ -1679,7 +1686,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ViewshoppinglistPage = /** @class */ (function () {
-    function ViewshoppinglistPage(fab, speechRecognition, navParam, navCtrl, navParams, iab, alertCtrl, admobFree, toastCtrl, modal, viewCtrl) {
+    function ViewshoppinglistPage(fab, speechRecognition, navParam, navCtrl, navParams, iab, alertCtrl, admobFree, toastCtrl, modal, viewCtrl, Keyboard) {
         this.fab = fab;
         this.speechRecognition = speechRecognition;
         this.navParam = navParam;
@@ -1691,6 +1698,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.toastCtrl = toastCtrl;
         this.modal = modal;
         this.viewCtrl = viewCtrl;
+        this.Keyboard = Keyboard;
         this.onPressRelease = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
         this.firstflag = false;
         this.totalnumber = 0;
@@ -1721,8 +1729,6 @@ var ViewshoppinglistPage = /** @class */ (function () {
         console.log(this.shop);
         console.log(this.a);
         console.log(this.a.list);
-        for (var i = 0; i < this.a.list.length; i++) {
-        }
         console.log(this.id);
         console.log(this.title);
         console.log(this.key);
@@ -1780,12 +1786,18 @@ var ViewshoppinglistPage = /** @class */ (function () {
                                     window.alert("목록을 입력해주세요");
                                 }
                                 else {
-                                    window.alert("저장되었습니다.");
                                     _this.firemain.child("users").child(_this.id).child(_this.shop).child(_this.title).child(_this.key).update({ "time": _this.nowtime, "flag": "entered", "key": _this.key });
                                     _this.firemain.child("users").child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").update(_this.a.list);
                                     _this.refreshname();
                                     _this.showToastWithCloseButton();
                                     _this.checkedbuy();
+                                    var toast = _this.toastCtrl.create({
+                                        message: '저장되었습니다.',
+                                        duration: 2000,
+                                        position: 'top',
+                                        cssClass: 'deletemodalToast'
+                                    });
+                                    toast.present();
                                 }
                             }
                             console.log(_this.a.list);
@@ -1819,6 +1831,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         // window.alert("released");
         console.log("releaseddddd" + this.pressflag);
         if (this.pressflag == true) {
+            this.flag = true;
             // window.alert("released2")
             // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
         }
@@ -1895,7 +1908,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
             this.quantity = "";
         }
         else if (this.a.list.length >= 50) {
-            var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_8__viewlimitmodal_viewlimitmodal__["a" /* ViewlimitmodalPage */], null, {
+            var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_9__viewlimitmodal_viewlimitmodal__["a" /* ViewlimitmodalPage */], null, {
                 cssClass: "modalSize"
             });
             modal.present();
@@ -1914,6 +1927,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 }
             }
         }
+        this.Keyboard.show();
     };
     /*가격 및 수량도 입력하기*/
     ViewshoppinglistPage.prototype.priceandquantity = function () {
@@ -2321,7 +2335,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 });
             });
         }, function () { return console.log('Denied'); });
-        this.add();
+        // this.add();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Navbar */]),
@@ -2333,12 +2347,12 @@ var ViewshoppinglistPage = /** @class */ (function () {
     ], ViewshoppinglistPage.prototype, "onPressRelease", void 0);
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header style="background-color:rgb(102, 233, 233); height:7%; padding-top:7px;">\n    <!-- <ion-navbar color="navbar"> -->\n    <button (click)="backbutton()" style="background-color: rgb(102, 233, 233); margin-top:-2px;"><img src="./assets/imgs/064.png" style="width:30px; background-color:rgb(102, 233, 233); margin-top:-2px;" alt=""></button>\n    <span style="color:white; font-size:23px; font-weight: 900;margin-left:10px;">{{a.title}}</span>\n    <button ion-button *ngIf="delflag1==true" style="float:right; border-radius: 4px; width:60px; height:30px; background-color:rgb(3, 202, 196); border:2px solid; border-color:rgb(3, 202, 196); margin-right:10px; margin-top:-1px" (click)="del2()">삭제하기</button>\n    <button ion-button *ngIf="delflag1==true" style="float:right; border-radius: 4px; width:60px; height:30px; background-color:rgb(3, 202, 196); border:2px solid; border-color:rgb(3, 202, 196); margin-right:10px; margin-top:-1px" (click)="delcancle()">취소하기</button>\n\n    <!-- </ion-navbar> -->\n</ion-header>\n<ion-content name="a" (click)="closingfab($event)" padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:17px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:17px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:17px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n\n            <!-- <p>{{att.checked2}}</p> -->\n            <div class="wrap_chkbox">\n                <div class="chkbox">\n                    <input *ngIf="flag==false" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val">\n                    <button *ngIf="delflag1==false" (click)="addValue(att,idx)" style="background-color:white;width:30px; height: 30px;">\n                        <img *ngIf="att.checked==true" style="width:30px; height:20px"src="./assets/imgs/090.png" alt=" ">\n                        <img *ngIf="att.checked==false" style="width:30px; height:20px" src="./assets/imgs/089.png" alt=" ">\n                    </button>\n                    <!-- <input *ngIf="flag==true" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val"> -->\n                    <button class="btntest" *ngIf="delflag1==true" (click)="del(a.list[idx])" style=" background-color: white; width:30px; height:30px; ">\n                        <img *ngIf="att.checked2==true" style="width:25px; height:25px " src="./assets/imgs/094.png " alt=" ">\n                        <img *ngIf="att.checked2==false" style="width:25px; height:25px " src="./assets/imgs/087.png " alt=" ">\n                    </button>\n                    <input type="text" style="width: 30%; font-size:17px; border: none" placeholder="상품명 " [(ngModel)]="a.list[idx].name ">\n                    <input type="text" style="text-align:center; width: 10%; font-size:17px; border: none " placeholder="수량 " [(ngModel)]="a.list[idx].quantity ">\n                    <!-- <select [(ngModel)]="number" interface="popover" style="width: 20%;float: right;z-index: 999999" [(ngModel)]="a.list[idx].quantity" placeholder="수량">\n                        <ion-option *ngFor="let a of quantityArray;" value={{a}}>{{a}}</ion-option>\n                    <select> -->\n                    <input type="number" style="text-align:center; width: 30%; font-size:17px; border: none" placeholder="가격 " [(ngModel)]="a.list[idx].price ">\n                    <button style="width:15%; background-color:#fff " (click)="select_sort(idx)">\n                        <img src="./assets/imgs/088.png ">\n                    </button>\n\n                </div>\n\n            </div>\n\n        </ion-item>\n\n    </div>\n    <!--\n    <div *ngIf="flag!=true" style="margin-left:10px; position: absolute;bottom: 110px;width: 80%; border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190)" class="bottom">\n        <ion-input *ngIf="flag!=true" style="color:#808080; width: 83%;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-top: 5px;" (click)="speeching()">\n                <img src="./assets/imgs/086.png" style="width:30px;" alt="">\n            </button>\n    </div>\n-->\n    <div *ngIf="flag!=false" style="width: 80%; margin-left:0px; margin-right:0px; border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190); float: left;" class="bottom ">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 83%; float: left;" [(ngModel)]="adding " placeholder="품목을 입력하세요. "></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px; margin-top:5px;" (click)="speeching() ">\n            <img src="./assets/imgs/086.png " style="width:30px; float: right;" alt=" ">\n        </button>\n    </div>\n    <div style="width: 20%; margin-left:270px; margin-right:0px;" class="bottom ">\n        <button *ngIf="flag!=false" style="font-size:11px; height: 80px;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;" (click)="add() ">추가하기</button>\n    </div>\n    <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:-35px; width:70%;">\n        <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084.png " style="width:30px; " alt=" ">\n        <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold; " (click)="priceandquantity() ">가격 및 수량도 입력하기</button>\n    </div>\n    <div *ngIf="flagInput!=false" style="width:100%; margin-top:-35px;">\n        <button *ngIf="flagInput!=false " style="float:left; margin:0px; height: 3.5rem;border: solid 2px; border-color:#71E8E8; background-color:#fff; border-radius: 7px; margin-top: 3px;" (click)="cancel() ">상세취소</button>\n        <ion-select interface="popover" *ngIf="flagInput!=false " style="z-index:-999999; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left;margin-left: 5px; margin-right:5px; margin-top:-5px;" [(ngModel)]="quantity" placeholder="수량">\n            <ion-option *ngFor="let number of quantityArray">{{number}}</ion-option>\n        </ion-select>\n        <ion-input *ngIf="flagInput!=false " style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px; margin-top:-5px;" [(ngModel)]="price " placeholder="가격 "></ion-input>\n    </div>\n\n    <div>\n        <ion-fab (click)="fabclicked($event,fab)" #fab right bottom>\n\n            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="background-color:white " alt=" " ion-fab>\n            <ion-fab-list side="top ">\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093.png" alt=" "> <ion-label>삭제하기</ion-label></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092.png" alt=" ">  <ion-label>수정하기</ion-label></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091.png" style="width:100% " alt=" ">  <ion-label>"가나다" 순 정렬하기</ion-label></button>\n            </ion-fab-list>\n\n\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
+            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header style="background-color:rgb(102, 233, 233); padding-top:7px;">\n    <!-- <ion-navbar color="navbar"> -->\n    <button (click)="backbutton()" style="background-color: rgb(102, 233, 233); margin-top:-2px;"><img src="./assets/imgs/064.png" style="width:30px; background-color:rgb(102, 233, 233); margin-top:-2px;" alt=""></button>\n    <span style="color:white; font-size:23px; font-weight: 900;margin-left:10px;">{{a.title}}</span>\n    <button ion-button *ngIf="delflag1==true" style="float:right; border-radius: 4px; width:60px; height:30px; background-color:rgb(3, 202, 196); border:2px solid; border-color:rgb(3, 202, 196); margin-right:10px; margin-top:-1px" (click)="del2()">삭제하기</button>\n    <button ion-button *ngIf="delflag1==true" style="float:right; border-radius: 4px; width:60px; height:30px; background-color:rgb(3, 202, 196); border:2px solid; border-color:rgb(3, 202, 196); margin-right:10px; margin-top:-1px" (click)="delcancle()">취소하기</button>\n\n    <!-- </ion-navbar> -->\n</ion-header>\n<ion-content name="a" (click)="closingfab($event)" padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:17px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:17px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:17px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n            <div class="wrap_chkbox">\n                <div class="chkbox">\n                    <input *ngIf="flag==false" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val">\n                    <button *ngIf="delflag1==false" (click)="addValue(att,idx)" style="background-color:white;width:30px; height: 30px;">\n                        <img *ngIf="att.checked==true" style="width:30px; height:20px"src="./assets/imgs/090.png" alt=" ">\n                        <img *ngIf="att.checked==false" style="width:30px; height:20px" src="./assets/imgs/089.png" alt=" ">\n                    </button>\n                    <button class="btntest" *ngIf="delflag1==true" (click)="del(a.list[idx])" style=" background-color: white; width:30px; height:30px; ">\n                        <img *ngIf="att.checked2==true" style="width:25px; height:25px " src="./assets/imgs/094.png " alt=" ">\n                        <img *ngIf="att.checked2==false" style="width:25px; height:25px " src="./assets/imgs/087.png " alt=" ">\n                    </button>\n                    <input readonly type="text" style="width: 30%; font-size:17px; border: none" placeholder="상품명 " [(ngModel)]="a.list[idx].name ">\n                    <input type="number" style="text-align:center; width: 10%; font-size:17px; border: none; margin-top:-2px;" placeholder="수량 " [(ngModel)]="a.list[idx].quantity ">\n                    <!-- <select [(ngModel)]="number" interface="popover" style="width: 20%;float: right;z-index: 999999" [(ngModel)]="a.list[idx].quantity" placeholder="수량">\n                        <ion-option *ngFor="let a of quantityArray;" value={{a}}>{{a}}</ion-option>\n                    <select> -->\n                    <input type="number" style="text-align:center; width: 30%; font-size:17px; border: none; margin-top:16px;" placeholder="가격 " [(ngModel)]="a.list[idx].price ">\n                    <button style="width:15%; background-color:#fff " (click)="select_sort(idx)">\n                        <img src="./assets/imgs/088.png ">\n                    </button>\n                </div>\n            </div>\n        </ion-item>\n    </div>\n    <div *ngIf="flag!=false" style="width: 80%; margin-left:0px; margin-right:0px; border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190); float: left;" class="bottom ">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 83%; float: left;" [(ngModel)]="adding " placeholder="품목을 입력하세요. "></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px; margin-top:5px;" (click)="speeching() ">\n            <img src="./assets/imgs/086.png " style="width:30px; float: right;" alt=" ">\n        </button>\n    </div>\n    <div style="width: 20%; margin-left:270px; margin-right:0px;" class="bottom ">\n        <button *ngIf="flag!=false" style="font-size:11px; height: 80px;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;" (click)="add() ">추가하기</button>\n    </div>\n    <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:-35px; width:70%;">\n        <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084.png " style="width:30px; " alt=" ">\n        <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold; " (click)="priceandquantity() ">가격 및 수량도 입력하기</button>\n    </div>\n    <div *ngIf="flagInput!=false" style="width:100%; margin-top:-35px;">\n        <button *ngIf="flagInput!=false " style="float:left; margin:0px; height: 3.5rem;border: solid 2px; border-color:#71E8E8; background-color:#fff; border-radius: 7px; margin-top: 3px;" (click)="cancel() ">상세취소</button>\n        <ion-select interface="popover" *ngIf="flagInput!=false " style="z-index:-999999; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left;margin-left: 5px; margin-right:5px; margin-top:-5px;" [(ngModel)]="quantity" placeholder="수량">\n            <ion-option *ngFor="let number of quantityArray">{{number}}</ion-option>\n        </ion-select>\n        <ion-input *ngIf="flagInput!=false " style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px; margin-top:-5px;" [(ngModel)]="price " placeholder="가격 "></ion-input>\n    </div>\n    <div>\n        <ion-fab (click)="fabclicked($event,fab)" #fab right bottom>\n            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="background-color:white " alt=" " ion-fab>\n            <ion-fab-list side="top ">\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093.png" alt=" "> <ion-label>삭제하기</ion-label></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092.png" alt=" ">  <ion-label>수정하기</ion-label></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091.png" style="width:100% " alt=" ">  <ion-label>"가나다" 순 정렬하기</ion-label></button>\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* FabContainer */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__["a" /* AdMobFree */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__["a" /* Keyboard */]])
     ], ViewshoppinglistPage);
     return ViewshoppinglistPage;
 }());
@@ -2347,7 +2361,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2358,7 +2372,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(65);
@@ -2496,7 +2510,7 @@ var SettingPage = /** @class */ (function () {
     };
     SettingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-setting',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/setting/setting.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064.png" style="width:30px; margin:5px; " alt=""></button>\n        <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:20px;">설정</span>\n    </div>\n    <ion-list style="margin-top:10px; margin-bottom:10px;">\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/065.png" style="width:25px; margin-right:10px" alt="">버전정보 Ver : {{version}}</span>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/066.png" style="width:25px; margin-right:10px;" alt="">앱 평가하기</span>\n            <button (click)="evaluation()" class="arrow1"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/067.png" style="width:25px; margin-right:10px;" alt="">오픈소스 라이센스</span>\n            <button (click)="license()" class="arrow2"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/068.png" style="width:25px; margin-right:10px;" alt="">개발자 문의하기</span>\n            <button (click)="email()" class="arrow3"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/069.png" style="width:25px; margin-right:10px;" alt="">푸쉬 알람 설정</span>\n\n            <button *ngIf="flag==false" (click)="toggleGroup()" class="arrow4">\n              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072.png" alt="" style="width:30px;">\n              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075.png" alt="" style="width:30px;">\n            </button>\n            <button *ngIf="flag==true" (click)="alarmcheck()" class="arrow4">\n              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072.png" alt="" style="width:30px;">\n              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075.png" alt="" style="width:30px;">\n            </button>\n\n\n            <div *ngIf="shownGroup" style="margin:5px;padding:3px;">\n                즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기\n                <div></div>\n                <a class="test" *ngFor="let button of buttontoggle; let i = index">\n                    <button ion-button (click)="clickButton(i)" style="width:50px; margin-right:5px;" [ngClass]="button.check===true?\'B_on\':\'B_off\'">{{button.name}}</button>\n                </a>\n                <div *ngIf="checkbutton()===true">\n                    <ion-item>\n                        <ion-label>알람 시간 설정</ion-label>\n                        <ion-datetime displayFormat="A h:mm" pickerFormat="A h mm" [(ngModel)]="DateTime"></ion-datetime>\n                    </ion-item>\n\n                </div>\n                <button ion-button (click)="alarmcheck()" style="float:right; width:50px;">완료</button>\n\n            </div>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/070.png" style="width:25px; margin-right:10px;" alt="">개인정보 취급방침</span>\n            <button (click)="privacy()" class="arrow2"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item>\n\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/setting/setting.html"*/,
+            selector: 'page-setting',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/setting/setting.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064.png" style="width:30px; margin:5px; " alt=""></button>\n        <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:20px;">설정</span>\n    </div>\n    <ion-list style="margin-top:10px; margin-bottom:10px;">\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/065.png" style="width:25px; margin-right:10px" alt="">버전정보 Ver : {{version}}</span>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/066.png" style="width:25px; margin-right:10px;" alt="">앱 평가하기</span>\n            <button (click)="evaluation()" class="arrow1"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/067.png" style="width:25px; margin-right:10px;" alt="">오픈소스 라이센스</span>\n            <button (click)="license()" class="arrow2"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/068.png" style="width:25px; margin-right:10px;" alt="">개발자 문의하기</span>\n            <button (click)="email()" class="arrow3"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n\n        </ion-item>\n\n        <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/069.png" style="width:25px; margin-right:10px;" alt="">푸쉬 알람 설정</span>\n\n            <button *ngIf="flag==false" (click)="toggleGroup()" class="arrow4">\n              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072.png" alt="" style="width:30px;">\n              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075.png" alt="" style="width:30px;">\n            </button>\n            <button *ngIf="flag==true" (click)="alarmcheck()" class="arrow4">\n              <img class="rotate" *ngIf="flag==false" src="./assets/imgs/072.png" alt="" style="width:30px;">\n              <img class="rotate" *ngIf="flag==true" src="./assets/imgs/075.png" alt="" style="width:30px;">\n            </button>\n\n\n            <div *ngIf="shownGroup" style="margin:5px;padding:3px;">\n                <a style="font-size:15px; color:rgb(68, 68, 68)">즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기</a>\n                <a class="test" *ngFor="let button of buttontoggle; let i = index" style="margin-left:auto; margin-right:auto;">\n                    <button ion-button (click)="clickButton(i)" style="font-size:13px;margin-left:5px; width:70px; margin-right:5px;margin-bottom:10px;" [ngClass]="button.check===true?\'B_on\':\'B_off\'">{{button.name}}</button>\n                </a>\n                <div *ngIf="checkbutton()===true" style="margin-top:10px;margin-bottom:10px;">\n                    <ion-item style="background-color: #f0f0f0; border-radius: 10px;">\n                        <ion-label style="color:black">알람 시간 설정 : </ion-label>\n                        <ion-datetime displayFormat="A h:mm" pickerFormat="A h mm" [(ngModel)]="DateTime"></ion-datetime>\n                    </ion-item>\n\n                </div>\n                <button ion-button (click)="alarmcheck()" style="background-color: #f0f0f0; margin-left:125px; width:70px;">완료</button>\n\n            </div>\n        </ion-item>\n\n        <!-- <ion-item style="margin-top:10px; margin-bottom:10px;">\n            <span><img src="./assets/imgs/070.png" style="width:25px; margin-right:10px;" alt="">개인정보 취급방침</span>\n            <button (click)="privacy()" class="arrow2"><img src="./assets/imgs/071.png" alt="" style="width:30px;"></button>\n        </ion-item> -->\n\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/setting/setting.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
@@ -2545,7 +2559,7 @@ var privacyModalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2627,7 +2641,7 @@ var CopymodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 282:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2704,14 +2718,14 @@ var ListlimitmodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 284:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MartlistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martmap_martmap__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martmap_martmap__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rate_rate__ = __webpack_require__(67);
@@ -2783,14 +2797,14 @@ var MartlistPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 285:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MartmapPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rate_rate__ = __webpack_require__(67);
@@ -3024,7 +3038,7 @@ var MartmapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3036,8 +3050,8 @@ var MartmapPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rate_rate__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__martinfoview_martinfoview__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__martinfoview_martinfoview__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_home__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3644,6 +3658,7 @@ var MartinfoPage = /** @class */ (function () {
         var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
         var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
         var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+        var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
         var dayofweek = this.date.getDay();
         if (this.date.getMonth() === new Date().getMonth()) {
             this.currentDate = new Date().getDate();
@@ -3656,20 +3671,45 @@ var MartinfoPage = /** @class */ (function () {
         for (var i = 0; i < 7; i++) {
             console.log(thisNumOfDays);
             var dow = dayofweek++;
+            var todayDate = this.currentDate++;
+            console.log(todayDate + "일");
+            var resnum = this.currentDate + firstDayThisMonth;
+            var resultWeek = Math.ceil(resnum / 7);
+            console.log(resultWeek + "주");
             if (dayofweek >= 7) {
                 dayofweek = 0;
             }
-            if (this.currentDate + i <= thisNumOfDays) {
-                this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
+            if (todayDate <= thisNumOfDays) {
+                this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
             }
-            else if (this.currentDate + i > thisNumOfDays) {
+            else if (todayDate > thisNumOfDays) {
                 count++;
-                this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
+                this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
             }
             console.log(count);
         }
+        /**
+         *
+         * for (var i = 0; i < 7; i++) {
+          console.log(thisNumOfDays);
+          var dow = dayofweek++;
+          var todayDate = this.currentDate++;
+          console.log(todayDate+"일");
+          var resnum = this.currentDate+firstDayThisMonth;
+          var resultWeek = Math.ceil(resnum/7);
+          console.log(resultWeek+"주");
+    
+          if (dayofweek >= 7) { dayofweek = 0; }
+          
+          if (todayDate <= thisNumOfDays) {
+            this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
+          }
+          else if (todayDate > thisNumOfDays) {
+            count++;
+            this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
+          }
+        }
+         */
         console.log(this.week);
         console.log(prevNumOfDays); //첫날과 마지막 날을 제외한 이 달의 일수
         console.log(thisNumOfDays); //한 달의 날수
@@ -3823,12 +3863,12 @@ var MartinfoPage = /** @class */ (function () {
     };
     MartinfoPage.prototype.heart = function () {
     };
-    var _a, _b, _c, _d, _e, _f, _g, _h;
     MartinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008.png" (click)="goback()" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider style="  display: flex;\n        align-items:center;   background-color: white;\n        height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;"> <span>{{name}}</span> </ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray; let idx = index " class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname" style="margin-top: 10px;" (click)="martview(i)">\n                        {{i.storename}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img (click)="martview(i)"*ngIf="today==\'영업\'" src="./assets/imgs/043.png" style="width:60%;">\n                        <img (click)="martview(i)" *ngIf="today==\'휴무\'" src="./assets/imgs/044.png" style="width:60%;">\n                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">\n                          <img class="heart" *ngIf="i.favorite==\'false\'" src="./assets/imgs/045.png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046.png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045.png" style="width:100%;" alt="">\n                        </button>\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            <td class="tabletd" *ngFor="let i of todayy" style="margin-top:10px;">\n                                <span *ngIf="i!=\'오늘\'" style="color:red; font-weight: 500;">{{i}}</span>\n                                <span *ngIf="i==\'오늘\'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.dayofweek}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.month}}/{{j.day}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of i.dayoffarray" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfo/martinfo.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]) === "function" ? _h : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
     ], MartinfoPage);
     return MartinfoPage;
 }());
@@ -3837,7 +3877,7 @@ var MartinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3924,13 +3964,13 @@ var DeletemodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 386:
+/***/ 387:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(392);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -3938,7 +3978,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 391:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3946,46 +3986,48 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(444);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(446);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(730);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_mobile_accessibility__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_mobile_accessibility__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_setting_setting__ = __webpack_require__(278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_in_app_purchase__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_setting_setting__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_in_app_purchase__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_rate_rate__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_copymodal_copymodal__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_listlimitmodal_listlimitmodal__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_martlist_martlist__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_martmap_martmap__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_martinfo_martinfo__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_martinfoview_martinfoview__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_favoritemodal_favoritemodal__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_long_press__ = __webpack_require__(738);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_screen_orientation__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_deletemodal_deletemodal__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_copymodal_copymodal__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_listlimitmodal_listlimitmodal__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_martlist_martlist__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_martmap_martmap__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_martinfo_martinfo__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_martinfoview_martinfoview__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_favoritemodal_favoritemodal__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_long_press__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_keyboard__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ionic_native_screen_orientation__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_deletemodal_deletemodal__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -4053,7 +4095,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_28__pages_martinfo_martinfo__["a" /* MartinfoPage */],
                 __WEBPACK_IMPORTED_MODULE_29__pages_martinfoview_martinfoview__["a" /* MartinfoviewPage */],
                 __WEBPACK_IMPORTED_MODULE_30__pages_favoritemodal_favoritemodal__["a" /* FavoritemodalPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_deletemodal_deletemodal__["a" /* DeletemodalPage */]
+                __WEBPACK_IMPORTED_MODULE_34__pages_deletemodal_deletemodal__["a" /* DeletemodalPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -4082,10 +4124,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_28__pages_martinfo_martinfo__["a" /* MartinfoPage */],
                 __WEBPACK_IMPORTED_MODULE_29__pages_martinfoview_martinfoview__["a" /* MartinfoviewPage */],
                 __WEBPACK_IMPORTED_MODULE_30__pages_favoritemodal_favoritemodal__["a" /* FavoritemodalPage */],
-                __WEBPACK_IMPORTED_MODULE_33__pages_deletemodal_deletemodal__["a" /* DeletemodalPage */]
+                __WEBPACK_IMPORTED_MODULE_34__pages_deletemodal_deletemodal__["a" /* DeletemodalPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_32__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+                __WEBPACK_IMPORTED_MODULE_33__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__["a" /* SpeechRecognition */],
                 __WEBPACK_IMPORTED_MODULE_22__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
@@ -4099,6 +4141,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* FabContainer */],
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__["a" /* CallNumber */],
+                __WEBPACK_IMPORTED_MODULE_32__ionic_native_keyboard__["a" /* Keyboard */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicErrorHandler */] }
             ]
         })
@@ -4110,17 +4153,17 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 443:
+/***/ 444:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_screen_orientation__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_mobile_accessibility__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_screen_orientation__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_mobile_accessibility__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4270,7 +4313,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 444:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4327,22 +4370,22 @@ var ViewlimitmodalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__setting_setting__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__setting_setting__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rate_rate__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__copymodal_copymodal__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__martlist_martlist__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__martinfoview_martinfoview__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__favoritemodal_favoritemodal__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__deletemodal_deletemodal__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__copymodal_copymodal__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__martlist_martlist__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__martinfoview_martinfoview__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__favoritemodal_favoritemodal__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__deletemodal_deletemodal__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4492,46 +4535,58 @@ var HomePage = /** @class */ (function () {
         var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
         var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
         this.currentMonth = this.date.getMonth() + 1;
-        // this.currentMonth = this.date.getMonth() - 1;
         this.currentYear = this.date.getFullYear();
         var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
         var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
         var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+        var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
         var dayofweek = this.date.getDay();
         this.currentDate = new Date().getDate();
+        console.log(firstDayThisMonth);
+        // for(var index=0; index<7; index++){
+        //   var v_date_str = this.currentYear+"-"+this.currentMonth+"-"+this.currentDate;
+        //     var todayDate = this.currentDate+1;
+        //     todayDate = this.currentDate++;
+        //     // this.currentDate = todayDate++;
+        //     console.log(todayDate+"일");
+        //     dateeeee = new Date(v_date_str);
+        //     var resnum = dateeeee.getDate();
+        //     var aaaa = resnum+firstDayThisMonth;
+        //     console.log(resnum-firstDayThisMonth);
+        //     var resultWeek = Math.ceil(aaaa/7);
+        //   // var resultWeek = Math.ceil(dateeeee.getDate()/7);
+        //   console.log(resultWeek+"주");
+        // }
+        console.log(this.currentDate);
         if (this.date.getMonth() === new Date().getMonth()) {
             this.currentDate = new Date().getDate();
         }
         else {
             this.currentDate = 999;
         }
-        // var aaaa = this.currentDate+12;
         var count = 0;
-        console.log("1: " + this.currentDate);
         for (var i = 0; i < 7; i++) {
             console.log(thisNumOfDays);
-            // if(dayofweek+i>=7){dayofweek=0;}
             var dow = dayofweek++;
+            var todayDate = this.currentDate++;
+            console.log(todayDate + "일");
+            var resnum = this.currentDate + firstDayThisMonth;
+            var resultWeek = Math.ceil(resnum / 7);
+            console.log(resultWeek + "주");
             if (dayofweek >= 7) {
                 dayofweek = 0;
             }
-            if (this.currentDate + i <= thisNumOfDays) {
-                console.log(thisNumOfDays);
-                console.log(this.currentDate);
-                console.log(thisNumOfDays - (this.currentDate + i) / 7);
-                this.week.push({ "week": prefixes[0 | (thisNumOfDays - this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-                // console.log(dayofweek);
+            if (todayDate <= thisNumOfDays) {
+                this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
             }
-            else if (this.currentDate + i > thisNumOfDays) {
+            else if (todayDate > thisNumOfDays) {
                 count++;
-                this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-                // console.log(dayofweek);
+                this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
             }
         }
-        // console.log(this.week);
-        // console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
-        // console.log(thisNumOfDays);//한 달의 날수
-        // console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
+    };
+    HomePage.prototype.onEnter = function () {
+        this.select_sort();
     };
     HomePage.prototype.presentLoadingDefault = function () {
         var loading = this.loadingCtrl.create({
@@ -4949,7 +5004,7 @@ var HomePage = /** @class */ (function () {
         console.log(e);
     };
     HomePage.prototype.callnumbering = function () {
-        window.alert("call number start");
+        // window.alert("call number start")
         this.callnumber.callNumber("0630000000", true)
             .then(function (res) { return console.log('Launched dialer!', res); })
             .catch(function (err) { return console.log('Error launching dialer', err); });
@@ -5306,7 +5361,13 @@ var HomePage = /** @class */ (function () {
                                 console.log(key);
                                 console.log(key.key);
                                 key.title = data.title;
-                                window.alert("변경되었습니다.");
+                                var toast = _this.toastCtrl.create({
+                                    message: '변경되었습니다.',
+                                    duration: 2000,
+                                    position: 'top',
+                                    cssClass: 'myToast'
+                                });
+                                toast.present();
                             });
                         }
                         if (key.flag == "dep") {
@@ -5318,7 +5379,13 @@ var HomePage = /** @class */ (function () {
                                 console.log(key);
                                 console.log(key.key);
                                 key.title = data.title;
-                                window.alert("변경되었습니다.");
+                                var toast = _this.toastCtrl.create({
+                                    message: '변경되었습니다.',
+                                    duration: 2000,
+                                    position: 'top',
+                                    cssClass: 'myToast'
+                                });
+                                toast.present();
                             });
                         }
                         if (key.flag == "outlet") {
@@ -5330,7 +5397,13 @@ var HomePage = /** @class */ (function () {
                                 console.log(key);
                                 console.log(key.key);
                                 key.title = data.title;
-                                window.alert("성공");
+                                var toast = _this.toastCtrl.create({
+                                    message: '변경되었습니다.',
+                                    duration: 2000,
+                                    position: 'top',
+                                    cssClass: 'myToast'
+                                });
+                                toast.present();
                             });
                         }
                         if (key.flag == "etc") {
@@ -5342,7 +5415,13 @@ var HomePage = /** @class */ (function () {
                                 console.log(key);
                                 console.log(key.key);
                                 key.title = data.title;
-                                window.alert("성공");
+                                var toast = _this.toastCtrl.create({
+                                    message: '변경되었습니다.',
+                                    duration: 2000,
+                                    position: 'top',
+                                    cssClass: 'myToast'
+                                });
+                                toast.present();
                             });
                         }
                     }
@@ -5527,7 +5606,13 @@ var HomePage = /** @class */ (function () {
             console.log(key);
             console.log(key.list);
             if (data.flag == "cancel") {
-                window.alert("취소되었습니다.");
+                var toast = _this.toastCtrl.create({
+                    message: '취소되었습니다.',
+                    duration: 2000,
+                    position: 'top',
+                    cssClass: 'myToast'
+                });
+                toast.present();
             }
             if (data.flag == "new") {
                 if (data.value == "1") {
@@ -5611,7 +5696,7 @@ var HomePage = /** @class */ (function () {
     var HomePage_1, _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/home/home.html"*/'<div class="up">\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar *ngIf="tab==\'tab1\'" style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <img *ngIf="tab==\'tab2\'||tab==\'tab3\'" src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">\n        <span *ngIf="tab==\'tab2\'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">목록을 추가해주세요</span>\n        <span *ngIf="tab==\'tab3\'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">물품을 검색해주세요</span>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n</div>\n\n<ion-content name="aa" (click)="closingfab($event);" style="\nmargin-top: 100px;" padding>\n\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003.png"></button></div>\n            <div *ngIf="favoriteList != 0">\n                <div style="padding-left:5px; padding-right:5px;">\n                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">\n                        <table>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데마트\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/009.png" class="logoimage " style="width:100px; height: 25%; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트\')>-1&&i.name.indexOf(\'트레이더스\')==-1" (click)="martview(i)">\n                                <img src="./assets/imgs/010.png" class="logoimage " style="width:70px; height: 40px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left; " *ngIf="i.name.indexOf( \'홈플러스\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/011.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/012.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/013.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/020.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/021.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/022.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데아울렛\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/023.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                        </table>\n                        <table class="tablestyle">\n                            <thead>\n                                <th class="martname " style="font-weight:900; ">\n                                    <span>{{i.storename}}</span>\n                                </th>\n                                <th class="dayoffimg ">\n                                    <img *ngIf="todayoff==\'영업\' " src="./assets/imgs/043.png " style="width:60%; ">\n                                    <img *ngIf="todayoff==\'휴무\' " src="./assets/imgs/044.png " style="width:60%; ">\n\n                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white; ">\n                                <img class="heart " *ngIf="i.favorite==false " src="./assets/imgs/045.png " style="width:100%; " alt=" ">\n                                <img class="heart " *ngIf="i.favorite==true " src="./assets/imgs/046.png " style="width:100%; " alt=" ">\n                            </button>\n                                </th>\n                            </thead>\n                        </table>\n                        <table style="margin-left:auto; margin-right:auto ">\n                            <tbody>\n                                <tr class="datespan ">\n                                    <td class="tabletd " *ngFor="let i of today " (click)="martview(i) " style="margin-top:10px; ">\n                                        <span *ngIf="i!=\'오늘\' " style="color:red; font-weight: 500; ">{{i}}</span>\n                                        <span *ngIf="i==\'오늘\' " style="color:rgb(0, 119, 255); font-weight: 500; ">{{i}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.dayofweek}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.month}}/{{i.day}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let m of i.dayoffarray " class="tabletd ">\n                                        <span *ngIf="m==\'휴무\' " class="mSpan1 ">{{m}}</span>\n                                        <span *ngIf="m==\'영업\' " class="mSpan2 ">{{m}}</span>\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n                <div *ngIf="favoriteList.length<20" class="borderr">\n                    <button style="background-color:white; width:70%; height:30%; margin:auto; display:block; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047.png " alt=" "></button>\n                </div>\n            </div>\n        </ion-list>\n        <ion-list style="z-index: 99999;" *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector">\n                <p style="text-align: left; margin-bottom:3px; margin-left:10px; font-weight: bold;">쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center; ">\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'mart\') "><img src="./assets/imgs/079.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081outlet.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081etc.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n            </div>\n            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078.png " alt=" "></div>\n            <div *ngIf="newarraylist!=0 ">\n\n                <div *ngFor="let a of newarraylist " class="border ">\n                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">\n                        <table>\n                            <tr style="text-align: left; ">\n                                <td>\n                                        <button *ngIf="a.flag==\'mart\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079.png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'dep\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080.png " style="width:100% "alt=" "></button>\n                    <button *ngIf="a.flag==\'outlet\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'etc\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>\n\n                    </td>\n                    <td>\n                        <div>\n                            <span *ngIf="a.flag==\'mart\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>\n                            <span *ngIf="a.flag==\'dep\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>\n                            <span *ngIf="a.flag==\'outlet\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>\n                            <span *ngIf="a.flag==\'etc\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>\n                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>\n                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>\n\n                        </div>\n                    </td>\n                    </table>\n\n                    </button>\n                    <div>\n                        <ion-fab (click)="fabclicked($event,fab)" #fab style="margin-top:-50px; z-index: 99; ">\n                            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>\n                            <ion-fab-list side="bottom " style="width:100px; height:150px; margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a,fab) ">목록명 변경</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a,fab) ">공유</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a,fab) ">삭제</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a,fab) ">복사</button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n\n            </div>\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <ion-row style="padding-top:20px; padding-right:10px; padding-left:10px;">\n                <ion-col col-4>\n                    <select class=\'slt\' id="slt" name="sor">\n                    <option value="rel" selected>랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n                </ion-col>\n                <ion-col col-8 style="height:50px; padding:15px; margin-top:2px; margin-right: 0px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; ">\n                    <input type="text" style="width:80%" name=\'text\' [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n                    <button style="z-index: 999999; width:15%; height:10%; background-color: #fff;" outline icon-only (click)=\'select_sort()\'><ion-icon name=\'search\' style="color:rgb(0, 167, 179); font-size:20px " is-active="false "></ion-icon></button>\n                </ion-col>\n\n\n\n            </ion-row>\n            <div>\n                <img style=" width: 70%; margin: auto; display: block; margin-top: 50px; " src="./assets/imgs/077.png" class="cropping" alt=" ">\n            </div>\n        </ion-list>\n\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/home/home.html"*/'<div class="up">\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar *ngIf="tab==\'tab1\'" style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <img *ngIf="tab==\'tab2\'||tab==\'tab3\'" src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">\n        <span *ngIf="tab==\'tab2\'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">목록을 추가해주세요</span>\n        <span *ngIf="tab==\'tab3\'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">물품을 검색해주세요</span>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n</div>\n\n<ion-content name="aa" (click)="closingfab($event);" style="\nmargin-top: 100px;" padding>\n\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003.png"></button></div>\n            <div *ngIf="favoriteList != 0">\n                <div style="padding-left:5px; padding-right:5px;">\n                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">\n                        <table>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데마트\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/009.png" class="logoimage " style="width:100px; height: 25%; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트\')>-1&&i.name.indexOf(\'트레이더스\')==-1" (click)="martview(i)">\n                                <img src="./assets/imgs/010.png" class="logoimage " style="width:70px; height: 40px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left; " *ngIf="i.name.indexOf( \'홈플러스\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/011.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/012.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/013.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/020.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/021.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/022.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                            <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데아울렛\')>-1" (click)="martview(i)">\n                                <img src="./assets/imgs/023.png" class="logoimage " style="width:80px; height: 60px; margin-left:5px;" alt=" ">\n                            </th>\n                        </table>\n                        <table class="tablestyle">\n                            <thead>\n                                <th class="martname " style="font-weight:900; ">\n                                    <span>{{i.storename}}</span>\n                                </th>\n                                <th class="dayoffimg ">\n                                    <img *ngIf="todayoff==\'영업\' " src="./assets/imgs/043.png " style="width:60%; ">\n                                    <img *ngIf="todayoff==\'휴무\' " src="./assets/imgs/044.png " style="width:60%; ">\n\n                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white; ">\n                                <img class="heart " *ngIf="i.favorite==false " src="./assets/imgs/045.png " style="width:100%; " alt=" ">\n                                <img class="heart " *ngIf="i.favorite==true " src="./assets/imgs/046.png " style="width:100%; " alt=" ">\n                            </button>\n                                </th>\n                            </thead>\n                        </table>\n                        <table style="margin-left:auto; margin-right:auto ">\n                            <tbody>\n                                <tr class="datespan ">\n                                    <td class="tabletd " *ngFor="let i of today " (click)="martview(i) " style="margin-top:10px; ">\n                                        <span *ngIf="i!=\'오늘\' " style="color:red; font-weight: 500; ">{{i}}</span>\n                                        <span *ngIf="i==\'오늘\' " style="color:rgb(0, 119, 255); font-weight: 500; ">{{i}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.dayofweek}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.month}}/{{i.day}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let m of i.dayoffarray " class="tabletd ">\n                                        <span *ngIf="m==\'휴무\' " class="mSpan1 ">{{m}}</span>\n                                        <span *ngIf="m==\'영업\' " class="mSpan2 ">{{m}}</span>\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n                <div *ngIf="favoriteList.length<20" class="borderr">\n                    <button style="background-color:white; width:70%; height:30%; margin:auto; display:block; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047.png " alt=" "></button>\n                </div>\n            </div>\n        </ion-list>\n        <ion-list style="z-index: 99999;" *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector">\n                <p style="text-align: left; margin-bottom:3px; margin-left:10px; font-weight: bold;">쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center; ">\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'mart\') "><img src="./assets/imgs/079.png " style="width:500px;"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081outlet.png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081etc.png " style="width:500px;"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n            </div>\n            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078.png " alt=" "></div>\n            <div *ngIf="newarraylist!=0">\n\n                <div *ngFor="let a of newarraylist " class="border ">\n                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">\n                        <table>\n                            <tr style="text-align: left; ">\n                                <td>\n                                        <button *ngIf="a.flag==\'mart\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079.png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'dep\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080.png " style="width:100% "alt=" "></button>\n                    <button *ngIf="a.flag==\'outlet\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'etc\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081.png " style="width:100% " alt=" "></button>\n\n                    </td>\n                    <td>\n                        <div>\n                            <span *ngIf="a.flag==\'mart\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>\n                            <span *ngIf="a.flag==\'dep\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>\n                            <span *ngIf="a.flag==\'outlet\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>\n                            <span *ngIf="a.flag==\'etc\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>\n                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>\n                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>\n\n                        </div>\n                    </td>\n                    </table>\n\n                    </button>\n                    <div>\n                        <ion-fab (click)="fabclicked($event,fab)" #fab style="margin-top:-50px; z-index: 99; ">\n                            <img name="rotate" class="rotate " src="./assets/imgs/084.png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>\n                            <ion-fab-list side="bottom " style="width:100px; height:150px; margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a,fab) ">목록명 변경</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a,fab) ">공유</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a,fab) ">삭제</button>\n                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a,fab) ">복사</button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n\n            </div>\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <ion-row style="padding-top:20px; padding-right:10px; padding-left:10px;">\n                <ion-col col-4>\n                    <select class=\'slt\' id="slt" name="sor">\n                    <option value="rel" selected>랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n                </ion-col>\n                <ion-col col-8 style="height:50px; padding:15px; margin-top:2px; margin-right: 0px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; ">\n                    <input (keyup.enter)="onEnter()" type="text" style="width:80%; border:0px;" name=\'text\' [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n                    <button style="z-index: 999999; width:15%; height:10%; background-color: #fff;" outline icon-only (click)=\'select_sort()\'><ion-icon name=\'search\' style="color:rgb(0, 167, 179); font-size:20px " is-active="false "></ion-icon></button>\n                </ion-col>\n\n\n\n            </ion-row>\n            <div>\n                <img style=" width: 70%; margin: auto; display: block; margin-top: 50px; " src="./assets/imgs/077.png" class="cropping" alt=" ">\n            </div>\n        </ion-list>\n\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* FabContainer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* FabContainer */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" ? _j : Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */]) === "function" ? _k : Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" ? _l : Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */]) === "function" ? _m : Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]) === "function" ? _o : Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]) === "function" ? _p : Object])
     ], HomePage);
@@ -5629,7 +5714,7 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_purchase__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_purchase__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5894,5 +5979,5 @@ var RatePage = /** @class */ (function () {
 
 /***/ })
 
-},[386]);
+},[387]);
 //# sourceMappingURL=main.js.map

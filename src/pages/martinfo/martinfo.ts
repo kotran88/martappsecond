@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,App,Platform,ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import * as $ from 'jquery';
-import { first } from 'rxjs/operators';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
@@ -639,6 +638,7 @@ export class MartinfoPage {
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
     var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
     var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+    var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
     var dayofweek = this.date.getDay();
 
     if (this.date.getMonth() === new Date().getMonth()) {
@@ -651,20 +651,46 @@ export class MartinfoPage {
     for (var i = 0; i < 7; i++) {
       console.log(thisNumOfDays);
       var dow = dayofweek++;
+      var todayDate = this.currentDate++;
+      console.log(todayDate+"일");
+      var resnum = this.currentDate+firstDayThisMonth;
+      var resultWeek = Math.ceil(resnum/7);
+      console.log(resultWeek+"주");
 
       if (dayofweek >= 7) { dayofweek = 0; }
-      if (this.currentDate + i <= thisNumOfDays) {
-
-        this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-        console.log(dayofweek);
+      
+      if (todayDate <= thisNumOfDays) {
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
       }
-      else if (this.currentDate + i > thisNumOfDays) {
+      else if (todayDate > thisNumOfDays) {
         count++;
-        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-        console.log(dayofweek);
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
       }
       console.log(count);
     }
+
+    /**
+     * 
+     * for (var i = 0; i < 7; i++) {
+      console.log(thisNumOfDays);
+      var dow = dayofweek++;
+      var todayDate = this.currentDate++;
+      console.log(todayDate+"일");
+      var resnum = this.currentDate+firstDayThisMonth;
+      var resultWeek = Math.ceil(resnum/7);
+      console.log(resultWeek+"주");
+
+      if (dayofweek >= 7) { dayofweek = 0; }
+      
+      if (todayDate <= thisNumOfDays) {
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
+      }
+      else if (todayDate > thisNumOfDays) {
+        count++;
+        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
+      }
+    }
+     */
     console.log(this.week);
     console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
     console.log(thisNumOfDays);//한 달의 날수

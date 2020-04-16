@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import * as $ from 'jquery'
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeBanner } from '@ionic-native/admob-free';
 import { HomePage } from '../home/home';
+import { Keyboard } from '@ionic-native/keyboard'
 import 'hammerjs'
 
 import { Directive, ElementRef, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
@@ -56,7 +57,7 @@ export class ViewshoppinglistPage {
   constructor(public fab: FabContainer, public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
-    public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController) {
+    public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController, private Keyboard: Keyboard) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -66,8 +67,6 @@ export class ViewshoppinglistPage {
     console.log(this.shop);
     console.log(this.a);
     console.log(this.a.list);
-    for (var i = 0; i < this.a.list.length; i++) {
-    }
     console.log(this.id);
     console.log(this.title);
     console.log(this.key);
@@ -127,12 +126,18 @@ export class ViewshoppinglistPage {
                   window.alert("목록을 입력해주세요");
                 }
                 else {
-                  window.alert("저장되었습니다.");
                   this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
                   this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
                   this.refreshname();
                   this.showToastWithCloseButton();
                   this.checkedbuy();
+                  const toast = this.toastCtrl.create({
+                    message: '저장되었습니다.',
+                    duration: 2000,
+                    position: 'top',
+                    cssClass : 'deletemodalToast'
+                  });
+                  toast.present();
                 }
               }
               console.log(this.a.list);
@@ -168,6 +173,7 @@ export class ViewshoppinglistPage {
     // window.alert("released");
     console.log("releaseddddd" + this.pressflag);
     if (this.pressflag == true) {
+      this.flag = true;
       // window.alert("released2")
       // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
     }
@@ -266,7 +272,7 @@ export class ViewshoppinglistPage {
         }
       }
     }
-
+    this.Keyboard.show();
   }
 
   /*가격 및 수량도 입력하기*/
@@ -641,8 +647,7 @@ export class ViewshoppinglistPage {
     window.alert("2")
   }
   speeching() {
-
-
+  
     let options = {
       "language": "ko-KR",
       "matches": 3,
@@ -697,16 +702,12 @@ export class ViewshoppinglistPage {
               (languages: string[]) => {
                 console.log("listened")
                 console.log(languages)
-
-
                 this.adding = languages[0]
               },
               (error) => {
                 console.log("errorrrorr")
                 console.log(error)
                 this.firstflag = true;
-
-
                 this.speechRecognition.startListening(options)
                   .subscribe(
                     (matches: string[]) => console.log(matches),
@@ -720,8 +721,6 @@ export class ViewshoppinglistPage {
                     (languages: string[]) => {
                       console.log("listened")
                       console.log(languages)
-
-
                       this.adding = languages[0]
                     },
                     (error) => {
@@ -730,18 +729,12 @@ export class ViewshoppinglistPage {
 
                     }
                   )
-
-
-
-
-
               }
             )
-
-
         },
         () => console.log('Denied')
       )
-      this.add();
+    // this.add();
+
   }
 }

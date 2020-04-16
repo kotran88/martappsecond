@@ -33,7 +33,7 @@ import { MartinfoPage } from '../pages/martinfo/martinfo';
 import { MartinfoviewPage } from '../pages/martinfoview/martinfoview';
 import { FavoritemodalPage } from '../pages/favoritemodal/favoritemodal';
 import { LongPressModule } from 'ionic-long-press';
-
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -112,6 +112,7 @@ firebase.initializeApp(firebaseConfig);
     OneSignal,
     FabContainer,
     CallNumber,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
