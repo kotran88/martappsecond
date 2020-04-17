@@ -80,8 +80,19 @@ export class MartinfoPage {
           }
         }
       }
-      
     });
+
+    // this.firemain.child("mart").child("emart24").once("value", (sn)=>{
+    //   console.log(sn.val());
+    //   for(var i in sn.val()){
+    //     console.log(i);
+    //     this.firemain.child("mart").child("emart24").child(i).update({"favorite":false}).then(()=>{
+    //       console.log("Success");
+    //     })
+    //   }
+    // });
+      
+
     this.favchange();
     console.log(this.favoriteList);
     console.log(this.martArray);
@@ -763,6 +774,48 @@ export class MartinfoPage {
       newnametoinput = "lotteoutlet";
       this.newfunction(newnametoinput)
     }
+    if (this.mart == "nobrand") {
+      this.name = "이마트 노브랜드";
+      this.img = "./assets/imgs/014.png";
+      var newnametoinput = "";
+      newnametoinput = "emart24";
+      this.newfunction(newnametoinput)
+    }
+    if (this.mart == "everyday") {
+      this.name = "이마트 에브리데이";
+      this.img = "./assets/imgs/015.png";
+      var newnametoinput = "";
+      newnametoinput = "emarteveryday";
+      this.newfunction(newnametoinput)
+    }
+    if (this.mart == "topmart") {
+      this.name = "탑마트";
+      this.img = "./assets/imgs/016.png";
+      var newnametoinput = "";
+      newnametoinput = "topmart";
+      this.newfunction(newnametoinput)
+    }
+    if (this.mart == "gs") {
+      this.name = "GS수퍼마켓";
+      this.img = "./assets/imgs/017.png";
+      var newnametoinput = "";
+      newnametoinput = "gs";
+      this.newfunction(newnametoinput)
+    }
+    if (this.mart == "express") {
+      this.name = "홈플러스 익스프레스";
+      this.img = "./assets/imgs/018.png";
+      var newnametoinput = "";
+      newnametoinput = "homeplusexpress";
+      this.newfunction(newnametoinput)
+    }
+    if (this.mart == "vicmarket") {
+      this.name = "롯데 빅마켓";
+      this.img = "./assets/imgs/019.png";
+      var newnametoinput = "";
+      newnametoinput = "bigmarket";
+      this.newfunction(newnametoinput)
+    }
   }
 
   favoriteList = [];
@@ -776,7 +829,13 @@ export class MartinfoPage {
     if (this.mart == "lottedep") { newnametoinput = "lottedep"; }
     if (this.mart == "ssgdep") { newnametoinput = "sinsaegae"; }
     if (this.mart == "hyundep") { newnametoinput = "hyundai"; }
-    if (this.mart == "lotteout") { newnametoinput = "lotteoutlet"; }
+    if (this.mart == "nobrand") { newnametoinput = "emart24"; }
+    if (this.mart == "everyday") { newnametoinput = "emarteveryday"; }
+    if (this.mart == "topmart") { newnametoinput = "topmart"; }
+    if (this.mart == "gs") { newnametoinput = "gs"; }
+    if (this.mart == "express") { newnametoinput = "homeplusexpress"; }
+    if (this.mart == "vicmarket") { newnametoinput = "bigmarket"; }
+
     console.log(newnametoinput);
     console.log(a);//db
     console.log(idx);
@@ -832,9 +891,6 @@ export class MartinfoPage {
       toast.present();
     }
 
-  }
-
-  heart() {
   }
 
 }

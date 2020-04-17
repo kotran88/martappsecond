@@ -23,11 +23,8 @@
         </ion-segment-button>
     </ion-segment>
 </div>
-
-<ion-content name="aa" (click)="closingfab($event);" style="
-margin-top: 100px;" padding>
-
-    <div [ngSwitch]="tab">
+<ion-content name="aa" (click)="closingfab($event);" style="margin-top:100px;" padding>
+    <div [ngSwitch]="tab" style="margin-bottom:130px;">
         <ion-list *ngSwitchCase="'tab1'">
             <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003.png"></button></div>
             <div *ngIf="favoriteList != 0">
@@ -116,20 +113,20 @@ margin-top: 100px;" padding>
                 <p style="text-align: left; margin-bottom:3px; margin-left:10px; font-weight: bold;">쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
                 <table style="margin: auto; text-align: center; ">
                     <tbody>
-                        <td>
-                            <button style="background-color:#fff; " (click)="addlist('mart') "><img src="./assets/imgs/079.png " style="width:500px;"></button>
+                        <td style="width:25%">
+                            <button style="background-color:#fff; margin:0; padding:0; width:80px;" (click)="addlist('mart') "><img src="./assets/imgs/079.png " style="width:500px;"></button>
                             <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'mart') ">마트</button>
                         </td>
-                        <td>
-                            <button style="background-color:#fff; " (click)="addlist( 'dep') "><img src="./assets/imgs/080.png " style="width:500px "></button>
+                        <td style="width:25%">
+                            <button style="background-color:#fff; margin:0; padding:0; width:80px;" (click)="addlist('dep') "><img src="./assets/imgs/080.png " style="width:500px "></button>
                             <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'dep') ">백화점</button>
                         </td>
-                        <td>
-                            <button style="background-color:#fff; " (click)="addlist( 'outlet') "><img src="./assets/imgs/081outlet.png " style="width:500px "></button>
+                        <td style="width:25%">
+                            <button style="background-color:#fff; margin:0; padding:0; width:80px;" (click)="addlist('outlet') "><img src="./assets/imgs/081outlet.png " style="width:500px "></button>
                             <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'outlet') ">아울렛</button>
                         </td>
-                        <td>
-                            <button style="background-color:#fff; " (click)="addlist( 'etc') "><img src="./assets/imgs/081etc.png " style="width:500px;"></button>
+                        <td style="width:25%">
+                            <button style="background-color:#fff; margin:0; padding:0; width:80px;" (click)="addlist('etc') "><img src="./assets/imgs/081etc.png " style="width:500px;"></button>
                             <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'etc') ">기타</button>
                         </td>
                     </tbody>

@@ -73,7 +73,9 @@
       "id": "cordova-admob-sdk@~0.24.1"
     },
     "is_top_level": false,
-    "variables": {}
+    "variables": {
+      "PLAY_SERVICES_VERSION": "11.0.4"
+    }
   },
   "mx.ferreyra.callnumber": {
     "source": {
@@ -105,7 +107,9 @@
       "id": "cordova-plugin-x-socialsharing@^5.6.3"
     },
     "is_top_level": true,
-    "variables": {}
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+    }
   },
   "es6-promise-plugin": {
     "source": {

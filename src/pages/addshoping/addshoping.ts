@@ -263,6 +263,7 @@ export class AddshopingPage {
             
             
             this.adding=languages[0]
+            this.add();
             },
             (error) => {
               console.log("errorrrorr")
@@ -286,6 +287,8 @@ export class AddshopingPage {
                 
                 
                 this.adding=languages[0]
+                this.add();
+
                 },
                 (error) => {
                   console.log("errorrrorr")
@@ -293,19 +296,11 @@ export class AddshopingPage {
                 
                 }
               )
-         
-
-
-
-            
             }
           )
-     
-     
      },
        () => console.log('Denied')
      )
-     this.add();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddshopingPage');

@@ -702,7 +702,8 @@ export class ViewshoppinglistPage {
               (languages: string[]) => {
                 console.log("listened")
                 console.log(languages)
-                this.adding = languages[0]
+                this.adding = languages[0];
+                this.add();
               },
               (error) => {
                 console.log("errorrrorr")
@@ -721,7 +722,9 @@ export class ViewshoppinglistPage {
                     (languages: string[]) => {
                       console.log("listened")
                       console.log(languages)
-                      this.adding = languages[0]
+                      this.adding = languages[0];
+                      this.add();
+
                     },
                     (error) => {
                       console.log("errorrrorr")
@@ -734,7 +737,6 @@ export class ViewshoppinglistPage {
         },
         () => console.log('Denied')
       )
-    // this.add();
 
   }
 }

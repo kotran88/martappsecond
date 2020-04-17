@@ -1279,47 +1279,7 @@ closingfab(event){
       $('#fabb').click(function(event){
         event.stopPropagation();
       });
-
-
-    //   this.platform.registerBackButtonAction(() => {
-    //     const overlay = this.app._appRoot._overlayPortal.getActive();
-    //     const modallay = this.app._appRoot._modalPortal.getActive();
-    //     if(overlay && overlay.dismiss) {
-    //         overlay.dismiss({}, "", {animate:false});
-    //     } else if(modallay && modallay.dismiss) {
-    //         modallay.dismiss({}, "", {animate:false});
-    //     } else if(this.navCtrl.canGoBack()){
-    //         this.navCtrl.pop({animate:false});
-    //     } else {
-    //       if( this.navCtrl.getActive().component !== HomePage) {
-           
-    //           this.app.getActiveNav().pop();
-    //       }
-    //       else {
-    //         let alert1 = this.alertCtrl.create({      
-    //           subTitle: '앱을 종료하시겠습니까?',
-    //           buttons: [
-    //               {
-    //                   text: '취소',
-    //                   cssClass: 'cancel',
-    //                   handler: data => {
-    //                       // console.log("Cancel...", id);
-    //                   }
-    //               },
-    //               {
-    //                   text: '확인',
-    //                   cssClass: 'confirm',
-    //                   handler: data => {
-    //                       this.platform.exitApp();
-    //                   }
-    //               }
-    //           ]
-    //         });
-    //         alert1.present({animate:false});
-    //       }
-    //     }
-    // }, 1);
-
+      
       setTimeout(() => {
         this.uniqueDeviceID.get()
           .then((uuid: any) => { this.id = uuid; console.log(uuid) ; this.init();})

@@ -1,18 +1,18 @@
 <ion-header>
     <ion-navbar>
-        <div style="text-align: center; " *ngIf="martinfo.name.indexOf('롯데마트')>-1">
+        <div style="text-align: center; " *ngIf="martinfo.name.indexOf('롯데마트')>-1&&martinfo.name.indexOf('빅마켓')==-1">
             <img src="./assets/imgs/009.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">롯데마트</a>
             <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
             <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%;" alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트')>-1&&martinfo.name.indexOf('트레이더스')==-1">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트')>-1&&martinfo.name.indexOf('트레이더스')==-1&&martinfo.name.indexOf('노브랜드')==-1&&martinfo.name.indexOf('에브리데이')==-1">
             <img src="./assets/imgs/010.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">이마트</a>
             <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
             <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>
-        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스')>-1">
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스')>-1&&martinfo.name.indexOf('익스프레스')==-1">
             <img src="./assets/imgs/011.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">홈플러스</a>
             <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
@@ -51,6 +51,42 @@
         <div style="text-align: center;" *ngIf="martinfo.name.indexOf('롯데 아울렛')>-1">
             <img src="./assets/imgs/023.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
             <a style="margin:3px; font-size:17px; color: #808080;">롯데아울렛</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('노브랜드')>-1">
+            <img src="./assets/imgs/014.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">이마트 노브랜드</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('이마트에브리데이')>-1">
+            <img src="./assets/imgs/015.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">이마트 에브리데이</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('탑마트')>-1">
+            <img src="./assets/imgs/016.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">탑마트</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('GS수퍼마켓')>-1">
+            <img src="./assets/imgs/017.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">GS수퍼마켓</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('홈플러스익스프레스')>-1">
+            <img src="./assets/imgs/018.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">홈플러스 익스프레스</a>
+            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
+        </div>
+        <div style="text-align: center;" *ngIf="martinfo.name.indexOf('빅마켓')>-1">
+            <img src="./assets/imgs/019.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">
+            <a style="margin:3px; font-size:17px; color: #808080;">빅마켓</a>
             <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite=='false'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
             <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">
         </div>

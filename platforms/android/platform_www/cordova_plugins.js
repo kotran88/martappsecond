@@ -71,6 +71,28 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-screen-orientation.screenorientation",
+      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+      "pluginId": "cordova-plugin-screen-orientation",
+      "clobbers": [
+        "cordova.plugins.screenorientation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-speechrecognition.SpeechRecognition",
+      "file": "plugins/cordova-plugin-speechrecognition/www/speechRecognition.js",
+      "pluginId": "cordova-plugin-speechrecognition",
+      "merges": [
+        "window.plugins.speechRecognition"
+      ]
+    },
+    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -95,12 +117,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "es6-promise-plugin.Promise",
-      "file": "plugins/es6-promise-plugin/www/promise.js",
-      "pluginId": "es6-promise-plugin",
-      "runs": true
-    },
-    {
       "id": "cordova-plugin-x-socialsharing.SocialSharing",
       "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
       "pluginId": "cordova-plugin-x-socialsharing",
@@ -122,14 +138,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "onesignal-cordova-plugin",
       "clobbers": [
         "OneSignal"
-      ]
-    },
-    {
-      "id": "cordova-plugin-screen-orientation.screenorientation",
-      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-      "pluginId": "cordova-plugin-screen-orientation",
-      "clobbers": [
-        "cordova.plugins.screenorientation"
       ]
     },
     {
@@ -164,14 +172,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "MobileAccessibilityNotifications"
       ]
-    },
-    {
-      "id": "cordova-plugin-speechrecognition.SpeechRecognition",
-      "file": "plugins/cordova-plugin-speechrecognition/www/speechRecognition.js",
-      "pluginId": "cordova-plugin-speechrecognition",
-      "merges": [
-        "window.plugins.speechRecognition"
-      ]
     }
   ];
   module.exports.metadata = {
@@ -184,17 +184,17 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "4.1.3",
     "cordova-plugin-purchase": "10.0.1",
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-screen-orientation": "3.0.2",
+    "cordova-plugin-speechrecognition": "1.1.2",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-uniquedeviceid": "1.3.2",
     "cordova-plugin-whitelist": "1.3.3",
-    "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "5.6.3",
     "mx.ferreyra.callnumber": "0.0.2",
     "onesignal-cordova-plugin": "2.4.0",
-    "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-network-information": "2.0.3-dev",
-    "phonegap-plugin-mobile-accessibility": "1.0.5-dev",
-    "cordova-plugin-speechrecognition": "1.1.2"
+    "phonegap-plugin-mobile-accessibility": "1.0.5-dev"
   };
 });

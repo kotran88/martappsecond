@@ -30,6 +30,12 @@
     "cordova-plugin-purchase": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
+    "cordova-plugin-speechrecognition": {
+      "PACKAGE_NAME": "io.ionic.baekma"
+    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
@@ -52,13 +58,7 @@
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
-    "cordova-plugin-screen-orientation": {
-      "PACKAGE_NAME": "io.ionic.baekma"
-    },
     "phonegap-plugin-mobile-accessibility": {
-      "PACKAGE_NAME": "io.ionic.baekma"
-    },
-    "cordova-plugin-speechrecognition": {
       "PACKAGE_NAME": "io.ionic.baekma"
     }
   },

@@ -4,6 +4,7 @@ import { MartinfoPage } from '../martinfo/martinfo';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
+import { AdMobFreeBannerConfig, AdMobFree } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the MartmapPage page.
@@ -26,26 +27,39 @@ export class MartmapPage {
   userid:any;
   martflag:any=0;
   constructor(public app:App,public platform:Platform,public view:ViewController,public navCtrl: NavController, public navParams: NavParams,
-    private socialSharing: SocialSharing, public modal: ModalController) {
+    private socialSharing: SocialSharing, public modal: ModalController, public admobFree: AdMobFree) {
     this.id = this.navParams.get("id");
     this.userid = this.navParams.get("userid");
-    // this.platform.registerBackButtonAction(() => {
-    //   let nav = app.getActiveNav();
-    //   let activeView = nav.getActive();
     
-    
-    //   if(activeView != null){
-    //     if(nav.canGoBack()) {
-    //       window.alert(nav.getActive().name)
-    //       nav.pop();
-    //     }else if (typeof activeView.instance.backButtonAction === 'function')
-    //       activeView.instance.backButtonAction();
-    //     else nav.parent.select(0); // goes to the first tab
-    //   }
-    // });
+    setTimeout(() => {
+     
+      const bannerConfig: AdMobFreeBannerConfig = {
+        // add your config here
+        // for the sake of this example we will just use the test config
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          console.log("ok")
+          this.admobFree.banner.show().then(() => {
+            console.log("success");
+          }).catch((e) => {
+            console.log(e);
+          })
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
+    }, 500)
 
     this.listPrint();
     
+  }
+  goback(){
+    this.navCtrl.pop();
   }
   regularShare() {
     var msg = "백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방'";
@@ -128,6 +142,43 @@ export class MartmapPage {
       this.name="현대아울렛";
       this.map="./assets/imgs/042.png";
     }
+    else if(this.id=="nobrand"){
+      this.martflag="12";
+      this.img="./assets/imgs/014.png";
+      this.name="이마트 노브랜드";
+      this.map="./assets/imgs/031.png";
+    }
+    else if(this.id=="everyday"){
+      this.martflag="13";
+      this.img="./assets/imgs/015.png";
+      this.name="이마트 에브리데이";
+      this.map="./assets/imgs/032.png";
+    }
+    else if(this.id=="topmart"){
+      this.martflag="14";
+      this.img="./assets/imgs/016.png";
+      this.name="탑마트";
+      this.map="./assets/imgs/033.png";
+    }
+    else if(this.id=="gs"){
+      this.martflag="15";
+      this.img="./assets/imgs/017.png";
+      this.name="GS수퍼마켓";
+      this.map="./assets/imgs/034.png";
+    }
+    else if(this.id=="express"){
+      this.martflag="16";
+      this.img="./assets/imgs/018.png";
+      this.name="홈플러스 익스프레스";
+      this.map="./assets/imgs/035.png";
+    }
+    else if(this.id=="vicmarket"){
+      this.martflag="17";
+      this.img="./assets/imgs/019.png";
+      this.name="롯데 빅마켓";
+      this.map="./assets/imgs/036.png";
+    }
+   
   }
 
   lottemartlist(area){
@@ -235,6 +286,54 @@ export class MartmapPage {
       this.navCtrl.getActive().onDidDismiss(data => {
        
 
+      });
+    });
+  }
+
+  nobrandlist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"nobrand", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  everydaylist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"everyday", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  topmartlist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"topmart", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  gslist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"gs", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  expresslist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"express", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  vicmartketlist(area){
+    console.log(area);
+    this.navCtrl.push(MartinfoPage,{"mart":"vicmarket", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
       });
     });
   }

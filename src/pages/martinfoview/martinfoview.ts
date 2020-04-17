@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
-import { count } from 'rxjs/operator/count';
+import { AdMobFreeBannerConfig, AdMobFree } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the MartinfoviewPage page.
@@ -31,7 +31,7 @@ export class MartinfoviewPage {
   marttel: any;
   weekNo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber, public admobFree: AdMobFree) {
     this.martinfo = this.navParams.get("martinfo");
     this.id=this.navParams.get("id");
     console.log(this.martinfo);
@@ -58,6 +58,12 @@ export class MartinfoviewPage {
             if (b == "sinsaegae") { this.logo.push({ "image": "./assets/imgs/021.png", "name": "신세계백화점", "flag": "sinsaegae" }); }
             if (b == "hyundai") { this.logo.push({ "image": "./assets/imgs/022.png", "name": "현대백화점", "flag": "hyundai" }); }
             if (b == "lotteoutlet") { this.logo.push({ "image": "./assets/imgs/023.png", "name": "롯데아울렛", "flag": "lotteoutlet" }); }
+            if (b == "emart24") { this.logo.push({ "image": "./assets/imgs/014.png", "name": "이마트 노브랜드", "flag": "nobrand" }); }
+            if (b == "emarteveryday") { this.logo.push({ "image": "./assets/imgs/015.png", "name": "이마트 에브리데이", "flag": "everyday" }); }
+            if (b == "topmart") { this.logo.push({ "image": "./assets/imgs/016.png", "name": "탑마트", "flag": "topmart" }); }
+            if (b == "gs") { this.logo.push({ "image": "./assets/imgs/017.png", "name": "GS수퍼마켓", "flag": "gs" }); }
+            if (b == "express") { this.logo.push({ "image": "./assets/imgs/018.png", "name": "홈플러스 익스프레스", "flag": "express" }); }
+            if (b == "bigmartket") { this.logo.push({ "image": "./assets/imgs/019.png", "name": "롯데 빅마켓", "flag": "vicmarket" }); }
           }
         }
       }
@@ -73,6 +79,30 @@ export class MartinfoviewPage {
       }
     }
     console.log(this.daysInThisMonth);
+
+
+    setTimeout(() => {
+      const bannerConfig: AdMobFreeBannerConfig = {
+        // add your config here
+        // for the sake of this example we will just use the test config
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          console.log("ok")
+          this.admobFree.banner.show().then(() => {
+            console.log("success");
+          }).catch((e) => {
+            console.log(e);
+          })
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
+    }, 500)
   }
   getDaysOfMonth() {
     this.daysInThisMonth = new Array();
