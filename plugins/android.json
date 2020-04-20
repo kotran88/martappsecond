@@ -70,10 +70,10 @@
     "cordova-promise-polyfill": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
-    "es6-promise-plugin": {
+    "cordova-plugin-network-information": {
       "PACKAGE_NAME": "io.ionic.baekma"
     },
-    "cordova-plugin-network-information": {
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "io.ionic.baekma"
     }
   }

@@ -57,7 +57,7 @@ export class ViewshoppinglistPage {
   constructor(public fab: FabContainer, public speechRecognition: SpeechRecognition, public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
-    public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController, private Keyboard: Keyboard) {
+    public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController, private Keyboard: Keyboard, ) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -83,6 +83,8 @@ export class ViewshoppinglistPage {
     this.checkedbuy();
     this.addprice();
     this.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+    this.admobFree.banner.show();
+
   }
   fabclicked(event, fab) {
     console.log("fab clicked")
@@ -372,6 +374,7 @@ export class ViewshoppinglistPage {
           role: 'cancel',
           handler: data => {
             console.log('Cancel clicked');
+            this.admobFree.banner.show();
           }
         },
         {
@@ -394,6 +397,7 @@ export class ViewshoppinglistPage {
             }
             console.log(this.a.list);
             console.log(this.shop);
+            this.admobFree.banner.show();
 
           }
         }
@@ -426,6 +430,8 @@ export class ViewshoppinglistPage {
           cssClass : 'deletemodalToast'
         });
         toast.present();
+      this.admobFree.banner.show();
+
       }
     }
     console.log(this.a.list);
@@ -434,6 +440,7 @@ export class ViewshoppinglistPage {
   /*수정*/
   insertData(fab: FabContainer) {
     this.flag = true;
+    this.admobFree.banner.hide();
   }
   delflag1: boolean = false;
   /*삭제*/

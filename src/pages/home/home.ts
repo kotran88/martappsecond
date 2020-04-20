@@ -1,4 +1,4 @@
-import { Component, ViewChild,ContentChild } from '@angular/core';
+import { Component, ViewChild, ContentChild } from '@angular/core';
 import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer, UrlSerializer, ToastController, LoadingController, Img } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
@@ -28,8 +28,8 @@ import { DeletemodalPage } from '../deletemodal/deletemodal';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
-  fabButtonOpened:any=false;
+
+  fabButtonOpened: any = false;
   [x: string]: any;
   selectedvalue: any;
   value: any;
@@ -37,12 +37,12 @@ export class HomePage {
   shoppingPlace: any;
   newarraylist = [];
   // id: any = "a2f05b91-956a-b480-3525-991002905558"
-  id:any;
+  id: any;
   tab = "tab1";
   title: any;
-  backdrop:any=true;
+  backdrop: any = true;
   key: any;
-  nextdirectory :any;
+  nextdirectory: any;
   count: any = 0;
   selected: any;
   copyflag: any = false;
@@ -75,14 +75,14 @@ export class HomePage {
   thismonth = [];
   week = [];
   offdayyear = [];
-  offdayname : any;
+  offdayname: any;
   firstDate = new Date(this.year, this.month, 1).getDay();//첫날의 요일
   lastDate = new Date(this.year, this.month + 1, 0);//마지막 날의 요일
   newDate() {
     var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
     this.currentMonth = this.date.getMonth() + 1;
-    
+
     this.currentYear = this.date.getFullYear();
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
     var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
@@ -90,11 +90,11 @@ export class HomePage {
     var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
     var dayofweek = this.date.getDay();
     this.currentDate = new Date().getDate();
-    
+
     console.log(firstDayThisMonth);
     // for(var index=0; index<7; index++){
     //   var v_date_str = this.currentYear+"-"+this.currentMonth+"-"+this.currentDate;
-    
+
     //     var todayDate = this.currentDate+1;
     //     todayDate = this.currentDate++;
     //     // this.currentDate = todayDate++;
@@ -107,7 +107,7 @@ export class HomePage {
     //   // var resultWeek = Math.ceil(dateeeee.getDate()/7);
     //   console.log(resultWeek+"주");
     // }
-    
+
 
     console.log(this.currentDate);
     if (this.date.getMonth() === new Date().getMonth()) {
@@ -120,23 +120,23 @@ export class HomePage {
       console.log(thisNumOfDays);
       var dow = dayofweek++;
       var todayDate = this.currentDate++;
-      console.log(todayDate+"일");
-      var resnum = this.currentDate+firstDayThisMonth;
-      var resultWeek = Math.ceil(resnum/7);
-      console.log(resultWeek+"주");
+      console.log(todayDate + "일");
+      var resnum = this.currentDate + firstDayThisMonth;
+      var resultWeek = Math.ceil(resnum / 7);
+      console.log(resultWeek + "주");
 
       if (dayofweek >= 7) { dayofweek = 0; }
-      
+
       if (todayDate <= thisNumOfDays) {
-        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
+        this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth, "day": todayDate, "dayofweek": days[dow] }); //30일
       }
       else if (todayDate > thisNumOfDays) {
         count++;
-        this.week.push({ "week": prefixes[resultWeek-1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
+        this.week.push({ "week": prefixes[resultWeek - 1], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
       }
     }
   }
-  onEnter(){
+  onEnter() {
     this.select_sort();
   }
   presentLoadingDefault() {
@@ -153,7 +153,7 @@ export class HomePage {
 
   martview(martinfo) {
     // console.log(martinfo);
-    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo ,"id":this.id});
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo, "id": this.id });
   }
 
   area: any;
@@ -181,7 +181,7 @@ export class HomePage {
       }
 
     })
-  
+
     if (this.favoriteList.length >= 20) {
       let modal = this.modal.create(FavoritemodalPage);
       modal.present();
@@ -386,13 +386,13 @@ export class HomePage {
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    
+
     this.firemain.child("users").child(this.id).child("favorite").child(newnametoinput).child(a.key).remove();
     const toast = this.toastCtrl.create({
       message: '"즐겨 찾는 곳"에서 삭제되었습니다.',
       duration: 2000,
       position: 'top',
-      cssClass : 'myToast'
+      cssClass: 'myToast'
     });
     toast.present();
     this.navCtrl.push(HomePage);
@@ -400,7 +400,7 @@ export class HomePage {
   }
 
   main() {
-    this.navCtrl.push(MartlistPage,{"id":this.id}).then(() => {
+    this.navCtrl.push(MartlistPage, { "id": this.id }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         this.init();
 
@@ -424,7 +424,7 @@ export class HomePage {
     this.newarraylist = [];
     this.firemain.child("users").child(this.id).once("value", (sn) => {
       for (var a in sn.val()) {
-        console.log("a is : "+a);
+        console.log("a is : " + a);
         if (a != "setting" && a != "favorite" && a != "deviceID") {
           // console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
@@ -454,81 +454,81 @@ export class HomePage {
               console.log(this.currentDate);
               console.log(this.currentYear);
               this.offdayyear = [
-              {"year":"2020","seol":"1월25","chuseok":"10월1"},
-              {"year":"2021","seol":"2월12","chuseok":"9월21"},
-              {"year":"2022","seol":"2월1","chuseok":"9월10"},
-              {"year":"2023","seol":"1월22","chuseok":"9월29"},
-              {"year":"2024","seol":"2월10","chuseok":"9월17"},
-              {"year":"2025","seol":"1월29","chuseok":"10월6"},
-              {"year":"2026","seol":"2월17","chuseok":"9월25"},
-              {"year":"2027","seol":"2월7","chuseok":"9월15"},
-              {"year":"2028","seol":"1월27","chuseok":"10월3"},
-              {"year":"2029","seol":"2월13","chuseok":"9월22"},
-              {"year":"2030","seol":"2월3","chuseok":"9월12"},
-            ];
-            for(var off in this.offdayyear){
-              if(this.offdayyear[off].year == this.currentYear){
-                if(this.offdayyear[off].seol == this.currentMonth+"월"+this.currentDate){
-                  console.log(this.currentMonth+"월"+this.currentDate);
-                  this.offdayname = "설날";
+                { "year": "2020", "seol": "1월25", "chuseok": "10월1" },
+                { "year": "2021", "seol": "2월12", "chuseok": "9월21" },
+                { "year": "2022", "seol": "2월1", "chuseok": "9월10" },
+                { "year": "2023", "seol": "1월22", "chuseok": "9월29" },
+                { "year": "2024", "seol": "2월10", "chuseok": "9월17" },
+                { "year": "2025", "seol": "1월29", "chuseok": "10월6" },
+                { "year": "2026", "seol": "2월17", "chuseok": "9월25" },
+                { "year": "2027", "seol": "2월7", "chuseok": "9월15" },
+                { "year": "2028", "seol": "1월27", "chuseok": "10월3" },
+                { "year": "2029", "seol": "2월13", "chuseok": "9월22" },
+                { "year": "2030", "seol": "2월3", "chuseok": "9월12" },
+              ];
+              for (var off in this.offdayyear) {
+                if (this.offdayyear[off].year == this.currentYear) {
+                  if (this.offdayyear[off].seol == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "설날";
+                  }
+                  if (this.offdayyear[off].chuseok == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "추석";
+                  }
+                  else if (this.offdayyear[off].seol != this.currentMonth + "월" + this.currentDate && this.offdayyear[off].chuseok != this.currentMonth + "월" + this.currentDate) { this.offdayname = "" }
+                  console.log(this.offdayname);
                 }
-                if(this.offdayyear[off].chuseok == this.currentMonth+"월"+this.currentDate){
-                  console.log(this.currentMonth+"월"+this.currentDate);
-                  this.offdayname = "추석";
-                }
-                else if(this.offdayyear[off].seol != this.currentMonth+"월"+this.currentDate && this.offdayyear[off].chuseok != this.currentMonth+"월"+this.currentDate){ this.offdayname = "" }
-                console.log(this.offdayname);
               }
-            }
-            console.log(this.week);
-            for(var off2 in this.week){
-              for(var off3 in this.offdayyear){
-                if(this.offdayyear[off3].year == this.currentYear){
+              console.log(this.week);
+              for (var off2 in this.week) {
+                for (var off3 in this.offdayyear) {
+                  if (this.offdayyear[off3].year == this.currentYear) {
 
-                if(this.week[off2].month+"월"+this.week[off2].day==this.offdayyear[off3].seol){
-                  console.log("설날");
-                  this.today[off2] = "설날";
-                  console.log(this.today);
-                  this.dayoffarray[off2] = "휴무";
-                  console.log(this.dayoffarray);
-                  console.log(this.cnt);
-                  for(var count=0; count<this.cnt;count++){
-                    console.log(count);
-                    this.favoriteList[count].dayoffarray = this.dayoffarray;
-                  }
-                }
-                if(this.week[off2].month+"월"+this.week[off2].day==this.offdayyear[off3].chuseok){
-                  console.log("추석");
-                  this.today[off2] = "추석";
-                  console.log(this.today);
-                  this.dayoffarray[off2] = "휴무";
-                  console.log(this.dayoffarray);
-                  console.log(this.cnt);
-                  for(var count=0; count<this.cnt;count++){
-                    console.log(count);
-                    this.favoriteList[count].dayoffarray = this.dayoffarray;
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].seol) {
+                      console.log("설날");
+                      this.today[off2] = "설날";
+                      console.log(this.today);
+                      this.dayoffarray[off2] = "휴무";
+                      console.log(this.dayoffarray);
+                      console.log(this.cnt);
+                      for (var count = 0; count < this.cnt; count++) {
+                        console.log(count);
+                        this.favoriteList[count].dayoffarray = this.dayoffarray;
+                      }
+                    }
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].chuseok) {
+                      console.log("추석");
+                      this.today[off2] = "추석";
+                      console.log(this.today);
+                      this.dayoffarray[off2] = "휴무";
+                      console.log(this.dayoffarray);
+                      console.log(this.cnt);
+                      for (var count = 0; count < this.cnt; count++) {
+                        console.log(count);
+                        this.favoriteList[count].dayoffarray = this.dayoffarray;
+                      }
+                    }
                   }
                 }
               }
-            }
-            }
               console.log(this.offdayyear);
               if (this.currentMonth == bb[0]) {
                 if (this.currentDate == bb[1]) {
                   console.log("오늘");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 if (this.currentDate - 1 == bb[1]) {
                   console.log("어제");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 else if (this.currentDate != bb[1] && this.currentDate - 1 != bb[1]) {
                   console.log("다른 날");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
               }
               else if (this.currentMonth != bb[0]) {
-                this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
               }
 
             }
@@ -562,10 +562,11 @@ export class HomePage {
   }
 
   addlist(value) {
+    this.admobFree.banner.hide();
     this.selectedvalue = value;
     let alert = this.alertCtrl.create({
       title: '쇼핑 목록 명을 적어주세요',
-      cssClass : 'addClass',
+      cssClass: 'addClass',
       inputs: [
         {
           name: 'title',
@@ -625,25 +626,82 @@ export class HomePage {
   }
 
 
-  deleteDB(key,fab) {
+  deleteDB(key, fab) {
     fab.close();
     console.log("delete come");
     console.log(key);
     console.log(this.nextdirectory);
     console.log(key.title);
     console.log(key.flag);
-    let modal = this.modal.create(DeletemodalPage, { "key": key, "Id":this.id })
-    modal.onDidDismiss(() => {
-      const toast = this.toastCtrl.create({
-        message: '삭제되었습니다.',
-        duration: 2000,
-        position: 'top',
-        cssClass : 'deletemodalToast'
-      });
-      toast.present();
-      this.refreshname();
-    })
-    modal.present();
+
+    let alert = this.alertCtrl.create({
+      title: '삭제하시겠습니까?',
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+            const toast = this.toastCtrl.create({
+              message: '취소되었습니다.',
+              duration: 2000,
+              position: 'top',
+              cssClass: 'deletemodalToast'
+            });
+            toast.present();
+          }
+        },
+        {
+          text: '확인',
+          handler: data => {
+            if (key.flag == "mart") {
+              this.nextdirectory.child("mart").child(key.title).remove().then(() => {
+                console.log("success mart")
+                this.refreshname();
+                toast.present();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if (key.flag == "dep") {
+              this.nextdirectory.child("dep").child(key.title).remove().then(() => {
+                console.log("success dep")
+                this.refreshname();
+                toast.present();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if (key.flag == "outlet") {
+              this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
+                console.log("success")
+                this.refreshname();
+                toast.present();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if (key.flag == "etc") {
+              this.nextdirectory.child("etc").child(key.title).remove().then(() => {
+                console.log("success")
+                this.refreshname();
+                toast.present();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+
+    const toast = this.toastCtrl.create({
+      message: '삭제되었습니다.',
+      duration: 2000,
+      position: 'top',
+      cssClass: 'deletemodalToast'
+    });
   }
 
   viewshoppinglist(a) {
@@ -875,29 +933,28 @@ export class HomePage {
     let modal = this.modal.create(RatePage);
     modal.present();
   }
-  fabclicked(event,fab){
+  fabclicked(event, fab) {
 
     console.log(this.fabButtonOpened)
-    this.fabButtonOpened=true;
-    if(event.target.name=="rotate"){
-      if(this.fab._listsActive){
+    this.fabButtonOpened = true;
+    if (event.target.name == "rotate") {
+      if (this.fab._listsActive) {
         this.fab.close();
       }
-      this.fab=fab;
+      this.fab = fab;
     }
 
   }
-closingfab(event){
+  closingfab(event) {
 
-  this.fabButtonOpened=false;
-  if(event.target.name!="rotate"){
-    this.fab.close();
+    this.fabButtonOpened = false;
+    if (event.target.name != "rotate") {
+      this.fab.close();
+    }
   }
-}
   /*목록명 변경*/
-  changeName(key,fab) {
+  changeName(key, fab) {
     fab.close;
-
     console.log(key);
     console.log(key.title);
     let alert = this.alertCtrl.create({
@@ -932,7 +989,7 @@ closingfab(event){
                   message: '변경되었습니다.',
                   duration: 2000,
                   position: 'top',
-                  cssClass : 'myToast'
+                  cssClass: 'myToast'
                 });
                 toast.present();
               })
@@ -950,7 +1007,7 @@ closingfab(event){
                   message: '변경되었습니다.',
                   duration: 2000,
                   position: 'top',
-                  cssClass : 'myToast'
+                  cssClass: 'myToast'
                 });
                 toast.present();
               })
@@ -968,7 +1025,7 @@ closingfab(event){
                   message: '변경되었습니다.',
                   duration: 2000,
                   position: 'top',
-                  cssClass : 'myToast'
+                  cssClass: 'myToast'
                 });
                 toast.present();
               })
@@ -986,7 +1043,7 @@ closingfab(event){
                   message: '변경되었습니다.',
                   duration: 2000,
                   position: 'top',
-                  cssClass : 'myToast'
+                  cssClass: 'myToast'
                 });
                 toast.present();
               })
@@ -999,7 +1056,7 @@ closingfab(event){
   }
 
   /*공유*/
-  share(key,fab) {
+  share(key, fab) {
     fab.close();
     var name = "";
     console.log(key.flag);
@@ -1013,13 +1070,13 @@ closingfab(event){
 
     var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n" + name;
 
-    this.socialSharing.share(msg, null, null, null).then(()=>{
-      
-    const toast = this.toastCtrl.create({
-      message: '공유 완료되었습니다.',
-      duration: 2000,
-    });
-    toast.present();
+    this.socialSharing.share(msg, null, null, null).then(() => {
+
+      const toast = this.toastCtrl.create({
+        message: '공유 완료되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
     })
   }
 
@@ -1179,7 +1236,7 @@ closingfab(event){
     this.copyflag = true;
   }
 
-  openModal(key,fab) {
+  openModal(key, fab) {
     fab.close();
     console.log(key);
     this.tocopylist = key.list;
@@ -1196,9 +1253,10 @@ closingfab(event){
           message: '취소되었습니다.',
           duration: 2000,
           position: 'top',
-          cssClass : 'myToast'
+          cssClass: 'myToast'
         });
-        toast.present();      }
+        toast.present();
+      }
       if (data.flag == "new") {
         if (data.value == "1") {
           console.log(data.value);
@@ -1269,63 +1327,64 @@ closingfab(event){
   }
 
 
-  constructor( public fab: FabContainer,public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
+  constructor(public fab: FabContainer, public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController,
     public platform: Platform, public navParams: NavParams,
     public oneSignal: OneSignal, public toastCtrl: ToastController,
     public loadingCtrl: LoadingController) {
 
-      $('#fabb').click(function(event){
-        event.stopPropagation();
-      });
-      
-      setTimeout(() => {
-        this.uniqueDeviceID.get()
-          .then((uuid: any) => { this.id = uuid; console.log(uuid) ; this.init();})
-          .catch((error: any) => {console.log(error)
-          
-          
-          this.id="00000000-0000-0000-39d1-f26acbf711b3";
-          this.init();
-          });
-        const bannerConfig: AdMobFreeBannerConfig = {
-          // add your config here
-          // for the sake of this example we will just use the test config
-          isTesting: true,
-          autoShow: true
-        };
-        this.admobFree.banner.config(bannerConfig);
-  
-        this.admobFree.banner.prepare()
-          .then(() => {
-            // banner Ad is ready
-            console.log("ok")
-            this.admobFree.banner.show().then(() => {
-              console.log("success");
-            }).catch((e) => {
-              console.log(e);
-            })
-            // if we set autoShow to false, then we will need to call the show method here
-          })
-          .catch(e => console.log(e));
-      }, 500)
+    $('#fabb').click(function (event) {
+      event.stopPropagation();
+    });
 
-    
-  
+    setTimeout(() => {
+      this.uniqueDeviceID.get()
+        .then((uuid: any) => { this.id = uuid; console.log(uuid); this.init(); })
+        .catch((error: any) => {
+          console.log(error)
+
+
+          this.id = "00000000-0000-0000-39d1-f26acbf711b3";
+          this.init();
+        });
+      const bannerConfig: AdMobFreeBannerConfig = {
+        // add your config here
+        // for the sake of this example we will just use the test config
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          console.log("ok")
+          this.admobFree.banner.show().then(() => {
+            console.log("success");
+          }).catch((e) => {
+            console.log(e);
+          })
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
+    }, 500)
+
+
+
   }
 
-  init(){
-    this.today=[];
-    this.week=[];
-    this.dayoffarray=[];
-    console.log("first id is : "+this.id);
-    this.nextdirectory=this.firemain.child("users").child(this.id);
+  init() {
+    this.today = [];
+    this.week = [];
+    this.dayoffarray = [];
+    console.log("first id is : " + this.id);
+    this.nextdirectory = this.firemain.child("users").child(this.id);
     this.presentLoadingDefault();
     this.fabButtonOpened = false;
     this.refreshname();
     this.favorite();
-    this.today.push("오늘","","","","","","");
+    this.today.push("오늘", "", "", "", "", "", "");
     console.log(this.today);
     this.newDate();
 

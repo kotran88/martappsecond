@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
 import { AdMobFreeBannerConfig, AdMobFree } from '@ionic-native/admob-free';
@@ -31,7 +31,7 @@ export class MartinfoviewPage {
   marttel: any;
   weekNo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber, public admobFree: AdMobFree) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber, public admobFree: AdMobFree, public alertCtrl: AlertController) {
     this.martinfo = this.navParams.get("martinfo");
     this.id=this.navParams.get("id");
     console.log(this.martinfo);
@@ -150,20 +150,36 @@ export class MartinfoviewPage {
         this.marttel = this.martinfo[i];
       }
     }
-    setTimeout(() => {
-      this.callNumber.callNumber(this.marttel, true)
-        .then(res => console.log('Launched dialer!', res))
-        .catch(err => {
-          console.log('Error launching dialer', err)
-          this.callNumber.callNumber(this.marttel, true)
-            .then(res => console.log('Launched dialer!', res)).catch((e) => {
-              console.log(e);
-            })
-        })
-    }, 1000)
-
-
-
+    let alert = this.alertCtrl.create({
+      title: this.marttel,
+      cssClass: 'deletemodalToast',
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '통화',
+          handler: data => {
+            setTimeout(() => {
+              this.callNumber.callNumber(this.marttel, false)
+                .then(res => console.log('Launched dialer!', res))
+                .catch(err => {
+                  console.log('Error launching dialer', err)
+                  this.callNumber.callNumber(this.marttel, false)
+                    .then(res => console.log('Launched dialer!', res)).catch((e) => {
+                      console.log(e);
+                    })
+                })
+            }, 1000)
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   map() {

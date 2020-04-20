@@ -4,6 +4,8 @@ import { Keyboard } from '@ionic-native/keyboard'
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import firebase from 'firebase';
 import { HomePage } from '../home/home';
+import { AdMobFree } from '@ionic-native/admob-free';
+import { Observable } from 'rxjs';
 /**
  * Generated class for the AddshopingPage page.
  *
@@ -32,17 +34,17 @@ export class AddshopingPage {
   value: any;
   flagg: any;
   printsum: any = 0;
-  firstflag:any=false;
+  firstflag: any = false;
   flagInput: boolean = false;
   nextdirectory = this.firemain.child("id");
   fullyear: any;
   month: any;
   date: any;
-  quantityArray : any;
+  quantityArray: any;
 
   constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController,
     public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController,
-    private keyboard: Keyboard) {
+    private keyboard: Keyboard, public admobFree: AdMobFree) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.title = this.navParams.get("title");
@@ -68,7 +70,9 @@ export class AddshopingPage {
     console.log(minute);
     console.log(this.fullyear)
     this.nowtime = "" + (this.month) + "월" + this.date + "일" + (hour) + "시" + minute + "분";
-    this.quantityArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+    this.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+
+    this.admobFree.banner.hide();
   }
 
   formatNumber(num) {
@@ -76,8 +80,10 @@ export class AddshopingPage {
   }
 
   add() {
+    this.admobFree.banner.show();
+
     console.log(this.adding);
-    if(this.price<1||this.price>99999999){
+    if (this.price < 1 || this.price > 99999999) {
       this.price = 1;
       const toast = this.toastCtrl.create({
         message: '단가는 1원부터 99,999,999원까지 입력 가능합니다.',
@@ -85,17 +91,17 @@ export class AddshopingPage {
       });
       toast.present();
     }
-    if(this.price == ""||this.price==undefined){ this.price = 1; }
-    if(this.quantity == ""||this.quantity==undefined) { this.quantity = 1; }
+    if (this.price == "" || this.price == undefined) { this.price = 1; }
+    if (this.quantity == "" || this.quantity == undefined) { this.quantity = 1; }
 
-    this.addinglist.push({ "name": this.adding, "checked2":false,"checked": false, "price": this.price, "quantity": this.quantity });
+    this.addinglist.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.addinglist.length;
     this.addprice();
 
     this.adding = "";
     this.price = "";
     this.quantity = "";
-    this.keyboard.show();
+
   }
   addprice() {
     /*가격받아오기*/
@@ -113,11 +119,15 @@ export class AddshopingPage {
     this.flagInput = true;
     this.price = "";
     this.quantity = "";
+    this.admobFree.banner.hide();
   }
   cancel() {
     this.flagInput = false;
+    this.admobFree.banner.show();
+
   }
   addValue(v) {
+    this.admobFree.banner.hide();
     console.log(v);
     var count = 0;
     console.log(v.checked);
@@ -135,7 +145,7 @@ export class AddshopingPage {
     this.flagInput = false;
     let alert = this.alertCtrl.create({
       title: '작성 중이던 목록을 저장할까요?',
-      cssClass : 'savealert',
+      cssClass: 'savealert',
       buttons: [
         {
           text: '아니요',
@@ -150,6 +160,8 @@ export class AddshopingPage {
         {
           text: '예',
           handler: data => {
+            this.admobFree.banner.show();
+
             console.log(this.addinglist);
             console.log(this.adding);
             console.log(this.id);
@@ -167,13 +179,14 @@ export class AddshopingPage {
               this.navCtrl.pop();
             }
           }
+
         }
+
       ]
     });
     alert.present();
-
   }
-  autosave(){
+  autosave() {
     this.flag = true;
     this.flagInput = false;
     if (this.addinglist.length == 0) {
@@ -200,7 +213,7 @@ export class AddshopingPage {
         message: '저장되었습니다.',
         duration: 2000,
         position: 'top',
-        cssClass : 'deletemodalToast'
+        cssClass: 'deletemodalToast'
       });
       toast.present();
       this.navCtrl.push(HomePage);
@@ -208,99 +221,102 @@ export class AddshopingPage {
   }
 
   speeching() {
-   
-     let options = {
+
+    let options = {
       "language": "ko-KR",
       "matches": 3,
       "prompt": "평소 말하는 것처럼 말해주세요",      // Android only
       "showPopup": true,  // Android only
       "showPartial": true
     }
-     // Check permission
-     this.speechRecognition.hasPermission()
-     .then((hasPermission: boolean) => {console.log(hasPermission)
-    }).catch((e)=>{
-      window.alert(e)
-    })
-   this.speechRecognition.requestPermission()
-     .then(
-       () => {console.log('ㅎㅎㅎㅎㅎGranteddd')
-       console.log("listened")
-       console.log(options);
-     // Start the recognition process
-      
-        // Check feature available
-        this.speechRecognition.isRecognitionAvailable()
-          .then((available: boolean) =>{console.log(available)
-          console.log("available")
-          }).catch((e) => {
-            console.log("failed")
-            console.log(e);
-          })
-        // Start the recognition process
-        console.log(this.speechRecognition)
-        if(this.firstflag){
- this.speechRecognition.startListening(options)
-          .subscribe(
-            (matches: string[]) =>{
+    // Check permission
+    this.speechRecognition.hasPermission()
+      .then((hasPermission: boolean) => {
+        console.log(hasPermission)
+      }).catch((e) => {
+        window.alert(e)
+      })
+    this.speechRecognition.requestPermission()
+      .then(
+        () => {
+          console.log('ㅎㅎㅎㅎㅎGranteddd')
+          console.log("listened")
+          console.log(options);
+          // Start the recognition process
 
-              console.log("matched!")
-              console.log(matches)
-            } ,
-            (onerror) => console.log('error:', onerror)
-          )
-        }
-       
-        // Stop the recognition process (iOS only)
-        this.speechRecognition.stopListening()
-        // Get the list of supported languages
-        console.log("goto getsupported language")
-        this.speechRecognition.getSupportedLanguages()
-          .then(
-            (languages: string[]) => {
-              console.log("listened")
-              console.log(languages)
-            
-            
-            this.adding=languages[0]
-            this.add();
-            },
-            (error) => {
-              console.log("errorrrorr")
-              console.log(error)
-              this.firstflag=true;
-
-
-              this.speechRecognition.startListening(options)
+          // Check feature available
+          this.speechRecognition.isRecognitionAvailable()
+            .then((available: boolean) => {
+              console.log(available)
+              console.log("available")
+            }).catch((e) => {
+              console.log("failed")
+              console.log(e);
+            })
+          // Start the recognition process
+          console.log(this.speechRecognition)
+          if (this.firstflag) {
+            this.speechRecognition.startListening(options)
               .subscribe(
-                (matches: string[]) => console.log(matches),
+                (matches: string[]) => {
+
+                  console.log("matched!")
+                  console.log(matches)
+                },
                 (onerror) => console.log('error:', onerror)
               )
-            // Stop the recognition process (iOS only)
-            this.speechRecognition.stopListening()
-            // Get the list of supported languages
-            this.speechRecognition.getSupportedLanguages()
-              .then(
-                (languages: string[]) => {
-                  console.log("listened")
-                  console.log(languages)
-                
-                
-                this.adding=languages[0]
-                this.add();
+          }
 
-                },
-                (error) => {
-                  console.log("errorrrorr")
-                  console.log(error)
-                
-                }
-              )
-            }
-          )
-     },
-       () => console.log('Denied')
-     )
+          // Stop the recognition process (iOS only)
+          this.speechRecognition.stopListening()
+          // Get the list of supported languages
+          console.log("goto getsupported language")
+          this.speechRecognition.getSupportedLanguages()
+            .then(
+              (languages: string[]) => {
+                console.log("listened")
+                console.log(languages)
+
+
+                this.adding = languages[0]
+                this.add();
+              },
+              (error) => {
+                console.log("errorrrorr")
+                console.log(error)
+                this.firstflag = true;
+
+
+                this.speechRecognition.startListening(options)
+                  .subscribe(
+                    (matches: string[]) => console.log(matches),
+                    (onerror) => console.log('error:', onerror)
+                  )
+                // Stop the recognition process (iOS only)
+                this.speechRecognition.stopListening()
+                // Get the list of supported languages
+                this.speechRecognition.getSupportedLanguages()
+                  .then(
+                    (languages: string[]) => {
+                      console.log("listened")
+                      console.log(languages)
+
+
+                      this.adding = languages[0]
+                      this.add();
+
+                    },
+                    (error) => {
+                      console.log("errorrrorr")
+                      console.log(error)
+
+                    }
+                  )
+              }
+            )
+        },
+        () => console.log('Denied')
+      )
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddshopingPage');

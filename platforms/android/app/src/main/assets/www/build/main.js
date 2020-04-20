@@ -10,7 +10,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -32,12 +32,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MartinfoviewPage = /** @class */ (function () {
-    function MartinfoviewPage(navCtrl, navParams, callNumber, admobFree) {
+    function MartinfoviewPage(navCtrl, navParams, callNumber, admobFree, alertCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.callNumber = callNumber;
         this.admobFree = admobFree;
+        this.alertCtrl = alertCtrl;
         this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
         this.martinfo = [];
         this.today = new Date();
@@ -198,17 +199,36 @@ var MartinfoviewPage = /** @class */ (function () {
                 this.marttel = this.martinfo[i];
             }
         }
-        setTimeout(function () {
-            _this.callNumber.callNumber(_this.marttel, true)
-                .then(function (res) { return console.log('Launched dialer!', res); })
-                .catch(function (err) {
-                console.log('Error launching dialer', err);
-                _this.callNumber.callNumber(_this.marttel, true)
-                    .then(function (res) { return console.log('Launched dialer!', res); }).catch(function (e) {
-                    console.log(e);
-                });
-            });
-        }, 1000);
+        var alert = this.alertCtrl.create({
+            title: this.marttel,
+            cssClass: 'deletemodalToast',
+            buttons: [
+                {
+                    text: '취소',
+                    role: 'cancel',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: '통화',
+                    handler: function (data) {
+                        setTimeout(function () {
+                            _this.callNumber.callNumber(_this.marttel, false)
+                                .then(function (res) { return console.log('Launched dialer!', res); })
+                                .catch(function (err) {
+                                console.log('Error launching dialer', err);
+                                _this.callNumber.callNumber(_this.marttel, false)
+                                    .then(function (res) { return console.log('Launched dialer!', res); }).catch(function (e) {
+                                    console.log(e);
+                                });
+                            });
+                        }, 1000);
+                    }
+                }
+            ]
+        });
+        alert.present();
     };
     MartinfoviewPage.prototype.map = function () {
         var martaddr = "";
@@ -1297,7 +1317,7 @@ var MartinfoviewPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-martinfoview',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfoview/martinfoview.html"*/'<ion-header>\n    <ion-navbar>\n        <div style="text-align: center; " *ngIf="martinfo.name.indexOf(\'롯데마트\')>-1&&martinfo.name.indexOf(\'빅마켓\')==-1">\n            <img src="./assets/imgs/009.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">롯데마트</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%;" alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'이마트\')>-1&&martinfo.name.indexOf(\'트레이더스\')==-1&&martinfo.name.indexOf(\'노브랜드\')==-1&&martinfo.name.indexOf(\'에브리데이\')==-1">\n            <img src="./assets/imgs/010.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">이마트</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'홈플러스\')>-1&&martinfo.name.indexOf(\'익스프레스\')==-1">\n            <img src="./assets/imgs/011.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">홈플러스</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'코스트코\')>-1">\n            <img src="./assets/imgs/012.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">코스트코</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'이마트트레이더스\')>-1">\n            <img src="./assets/imgs/013.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">이마트트레이더스</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'롯데백화점\')>-1">\n            <img src="./assets/imgs/020.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">롯데백화점</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'신세계\')>-1">\n            <img src="./assets/imgs/021.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">신세계백화점</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'현대백화점\')>-1">\n            <img src="./assets/imgs/022.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">현대백화점</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'롯데 아울렛\')>-1">\n            <img src="./assets/imgs/023.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">롯데아울렛</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'노브랜드\')>-1">\n            <img src="./assets/imgs/014.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">이마트 노브랜드</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'이마트에브리데이\')>-1">\n            <img src="./assets/imgs/015.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">이마트 에브리데이</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'탑마트\')>-1">\n            <img src="./assets/imgs/016.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">탑마트</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'GS수퍼마켓\')>-1">\n            <img src="./assets/imgs/017.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">GS수퍼마켓</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'홈플러스익스프레스\')>-1">\n            <img src="./assets/imgs/018.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">홈플러스 익스프레스</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'빅마켓\')>-1">\n            <img src="./assets/imgs/019.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">빅마켓</a>\n            <img class="heart" *ngIf="martinfo.favorite==false||martinfo.favorite==\'false\'" src="./assets/imgs/045.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n            <img class="heart" *ngIf="martinfo.favorite==true" src="./assets/imgs/046.png" style="float:right; margin-right:5px; width:12%; " alt=" ">\n        </div>\n\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div style="padding-top:15px; padding-left:20px; margin-bottom:10px;">\n        <span style="font-weight: bold; font-size:18px; color:#808080 ">{{martinfo.storename}}</span>\n        <img *ngIf="martinfo.dayoffarray[0]==\'영업\'" style="float:right; margin-right:10px; margin-top:-23px; height: 55px;" src="./assets/imgs/043.png " alt="">\n        <img *ngIf="martinfo.dayoffarray[0]==\'휴무\'" src="./assets/imgs/044.png " alt="">\n    </div>\n\n\n    <table class="tableStyle ">\n        <tbody>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; \n                margin-top: 7px;\n                margin-bottom: 7px; ">1. 정기 휴무일 : {{martinfo.vacation}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; \n                margin-top: 7px;\n                margin-bottom: 7px; ">2. 대표번호 : {{martinfo.tel}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;  \n                margin-top: 7px;\n                margin-bottom: 7px;">3. 위치 : {{martinfo.addr}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; \n                margin-top: 7px;\n                margin-bottom: 7px; ">4. 영업시간 : {{martinfo.optime}}</p>\n            </tr>\n\n        </tbody>\n    </table>\n    <div style="margin-left:auto; margin-right:auto; text-align: center; ">\n        <button style="text-align:center; width:45%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; height: 35px; " (click)="calling() "><img src="./assets/imgs/048.png" style="width:20%; margin-right:3px; ">전화걸기</button>\n        <button style="text-align:center; width:45%; letter-spacing: 3px; font-size:15px; margin-left:10px; background-color: #71E8E8; border-radius: 5px; height: 35px;" (click)="map() "><img src="./assets/imgs/049.png" style="width:20%; margin-right:3px; ">지도확인</button>\n    </div>\n    <div class="calendar-body ">\n        <ion-grid>\n            <ion-row class="calendar-month ">\n                {{month}}월\n            </ion-row>\n            <ion-row class="calendar-weekday ">\n                <ion-col style="color:red ">일</ion-col>\n                <ion-col>월</ion-col>\n                <ion-col>화</ion-col>\n                <ion-col>수</ion-col>\n                <ion-col>목</ion-col>\n                <ion-col>금</ion-col>\n                <ion-col style="color:blue ">토</ion-col>\n            </ion-row>\n            <ion-row class="calendar-date">\n                <ion-col col-1 style="height: 45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>\n                <ion-col col-1 style="height:45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let day of daysInThisMonth">\n                    <ion-col col-1 style="text-align: center" *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">\n                        {{day}}\n                        <br><span style="font-size:12px; color:green">오늘</span>\n                    </ion-col>\n                    <ion-col col-1 style="padding-left:8px; padding-right:8px; padding-top:10px; padding-bottom:20px;background-color: #ffbfbf;" *ngIf="truecheck(day)==-1">\n                        {{day.substring(1)}}\n                    </ion-col>\n                    <ion-col col-1 *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear )">\n                        {{day}}\n                    </ion-col>\n                </ion-col>\n                <!-- <ion-col col-1 style="height:45px !important; border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let day of daysInThisMonth">\n                    <span class="currentDate" *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>\n                    <span class="otherDate" style="background-color:#ffbfbf" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>\n                    <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>\n                </ion-col> -->\n                <ion-col col-1 style="border-bottom: solid 2px #dfdfdf;margin-top:3px;" *ngFor="let nextDay of daysInNextMonth " class="next-month">{{nextDay}}</ion-col>\n            </ion-row>\n\n        </ion-grid>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfoview/martinfoview.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], MartinfoviewPage);
     return MartinfoviewPage;
 }());
@@ -1343,7 +1363,7 @@ var FavoritemodalPage = /** @class */ (function () {
     };
     FavoritemodalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-favoritemodal',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/favoritemodal/favoritemodal.html"*/'<ion-content style="background-color: #00bbb2;">\n    <ion-row>\n        <ion-col col-10 style="margin-left:auto; margin-right:auto; text-align: center;">\n            <span style="font-size:25px; font-weight: 900; text-align: center;">\n        <br><br><br>앱의 원활한 구동을 위하여<br>(속도, 데이터, 배터리 절약)<br><br>"즐겨 찾기 매장"은<br>최대 20곳 까지 가능합니다.<br><br>불필요한 곳을 삭제 후<br><br>"즐겨찾기"를 추가해주세요.<br><br>노란 하트를 다시 터치하시면<br><br>"즐겨찾기에서 삭제"됩니다.<br><br>\n    </span>\n        </ion-col>\n\n    </ion-row>\n    <button (click)="goBack()" style="background-color: #00bbb2; opacity: 0.8; margin-left:70%; font-size:21px; font-weight: 900;">닫기</button>\n\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/favoritemodal/favoritemodal.html"*/,
+            selector: 'page-favoritemodal',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/favoritemodal/favoritemodal.html"*/'<ion-content style="background-color: #00bbb2;">\n    <ion-row>\n        <ion-col col-10 style="margin-left:auto; margin-right:auto; text-align: center;">\n            <span style="font-size:24px; font-weight: 900; text-align: center;">\n        <br><br><br>앱의 원활한 구동을 위하여<br>(속도, 데이터, 배터리 절약)<br><br>"즐겨 찾기 매장"은<br>최대 20곳 까지 가능합니다.<br><br>불필요한 곳을 삭제 후<br><br>"즐겨찾기"를 추가해주세요.<br><br>노란 하트를 다시 터치하시면<br><br>"즐겨찾기에서 삭제"됩니다.<br><br>\n    </span>\n        </ion-col>\n\n    </ion-row>\n    <button (click)="goBack()" style="background-color: #00bbb2; opacity: 0.8; margin-left:70%; font-size:21px; font-weight: 900;">닫기</button>\n\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/favoritemodal/favoritemodal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
     ], FavoritemodalPage);
@@ -1400,6 +1420,7 @@ webpackEmptyAsyncContext.id = 228;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1415,6 +1436,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the AddshopingPage page.
  *
@@ -1422,13 +1444,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AddshopingPage = /** @class */ (function () {
-    function AddshopingPage(speechRecognition, navCtrl, navParams, alertCtrl, toastCtrl, keyboard) {
+    function AddshopingPage(speechRecognition, navCtrl, navParams, alertCtrl, toastCtrl, keyboard, admobFree) {
         this.speechRecognition = speechRecognition;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
         this.keyboard = keyboard;
+        this.admobFree = admobFree;
         this.totalnumber = 0;
         this.flag = false;
         this.firemain = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref();
@@ -1464,11 +1487,13 @@ var AddshopingPage = /** @class */ (function () {
         console.log(this.fullyear);
         this.nowtime = "" + (this.month) + "월" + this.date + "일" + (hour) + "시" + minute + "분";
         this.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+        this.admobFree.banner.hide();
     }
     AddshopingPage.prototype.formatNumber = function (num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     };
     AddshopingPage.prototype.add = function () {
+        this.admobFree.banner.show();
         console.log(this.adding);
         if (this.price < 1 || this.price > 99999999) {
             this.price = 1;
@@ -1490,7 +1515,6 @@ var AddshopingPage = /** @class */ (function () {
         this.adding = "";
         this.price = "";
         this.quantity = "";
-        this.keyboard.show();
     };
     AddshopingPage.prototype.addprice = function () {
         /*가격받아오기*/
@@ -1505,11 +1529,14 @@ var AddshopingPage = /** @class */ (function () {
         this.flagInput = true;
         this.price = "";
         this.quantity = "";
+        this.admobFree.banner.hide();
     };
     AddshopingPage.prototype.cancel = function () {
         this.flagInput = false;
+        this.admobFree.banner.show();
     };
     AddshopingPage.prototype.addValue = function (v) {
+        this.admobFree.banner.hide();
         console.log(v);
         var count = 0;
         console.log(v.checked);
@@ -1542,6 +1569,7 @@ var AddshopingPage = /** @class */ (function () {
                 {
                     text: '예',
                     handler: function (data) {
+                        _this.admobFree.banner.show();
                         console.log(_this.addinglist);
                         console.log(_this.adding);
                         console.log(_this.id);
@@ -1676,7 +1704,7 @@ var AddshopingPage = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_speech_recognition__["a" /* SpeechRecognition */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__["a" /* Keyboard */]])
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__["a" /* AdMobFree */]])
     ], AddshopingPage);
     return AddshopingPage;
 }());
@@ -1698,11 +1726,11 @@ var AddshopingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_keyboard__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_hammerjs__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_hammerjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewlimitmodal_viewlimitmodal__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewlimitmodal_viewlimitmodal__ = __webpack_require__(444);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1789,6 +1817,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.checkedbuy();
         this.addprice();
         this.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+        this.admobFree.banner.show();
     }
     ViewshoppinglistPage.prototype.fabclicked = function (event, fab) {
         console.log("fab clicked");
@@ -2063,6 +2092,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                     role: 'cancel',
                     handler: function (data) {
                         console.log('Cancel clicked');
+                        _this.admobFree.banner.show();
                     }
                 },
                 {
@@ -2084,6 +2114,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                         }
                         console.log(_this.a.list);
                         console.log(_this.shop);
+                        _this.admobFree.banner.show();
                     }
                 }
             ]
@@ -2112,6 +2143,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                     cssClass: 'deletemodalToast'
                 });
                 toast.present();
+                this.admobFree.banner.show();
             }
         }
         console.log(this.a.list);
@@ -2120,6 +2152,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
     /*수정*/
     ViewshoppinglistPage.prototype.insertData = function (fab) {
         this.flag = true;
+        this.admobFree.banner.hide();
     };
     /*삭제*/
     ViewshoppinglistPage.prototype.delete = function (fab) {
@@ -2419,7 +2452,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2774,7 +2807,7 @@ var ListlimitmodalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rate_rate__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2854,7 +2887,7 @@ var MartlistPage = /** @class */ (function () {
     };
     MartlistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-martlist',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martlist/martlist.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008.png" style="width:50px; margin:5px;" (click)="goback()" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">매장 유형을 선택해주세요</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">마트</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottemart\')">\n                <img src="./assets/imgs/009.png" style="width:120px; height: 100%; margin-right:20px;">롯데마트</button>\n            <button ion-item (click)="martmap(\'emart\')">\n                <img src="./assets/imgs/010.png" style="width:120px; height: 60px; margin-right:20px;">이마트</button>\n            <button ion-item (click)="martmap(\'homeplus\')">\n                <img src="./assets/imgs/011.png" style="width:120px; height: 60px; margin-right:20px;">홈플러스</button>\n            <button ion-item (click)="martmap(\'costco\')">\n                <img src="./assets/imgs/012.png" style="width:120px; height: 60px; margin-right:20px;">코스트코</button>\n            <button ion-item (click)="martmap(\'traders\')">\n                <img src="./assets/imgs/013.png" style="width:120px; height: 60px; margin-right:20px;">이마트 트레이더스</button>\n            <button ion-item (click)="martmap(\'nobrand\')">\n                <img src="./assets/imgs/014.png" style="width:120px; height:60px; margin-right:20px;">이마트 노브랜드</button>\n            <button ion-item (click)="martmap(\'everyday\')">\n                <img src="./assets/imgs/015.png" style="width:120px; height:60px; margin-right:20px;">이마트 에브리데이</button>\n            <button ion-item (click)="martmap(\'topmart\')">\n                <img src="./assets/imgs/016.png" style="width:120px; height:60px; margin-right:20px;">탑마트</button>\n            <button ion-item (click)="martmap(\'gs\')">\n                <img src="./assets/imgs/017.png" style="width:120px; height:60px; margin-right:20px;">GS수퍼마켓</button>\n            <button ion-item (click)="martmap(\'express\')">\n                <img src="./assets/imgs/018.png" style="width:120px; height:60px; margin-right:20px;">홈플러스 익스프레스</button>\n            <button ion-item (click)="martmap(\'vicmarket\')">\n                <img src="./assets/imgs/019.png" style="width:120px; height:60px; margin-right:20px;">롯데 빅마켓</button>\n\n\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">백화점</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottedep\')"><img src="./assets/imgs/020.png" style="width:120px; \n                height: 60px; margin-right:20px;">롯데 백화점</button>\n            <button ion-item (click)="martmap(\'ssgdep\')"><img src="./assets/imgs/021.png" style="width:120px; \n                height: 60px; margin-right:20px;">신세계 백화점</button>\n            <button ion-item (click)="martmap(\'hyundep\')"><img src="./assets/imgs/022.png" style="width:120px; \n                height: 60px; margin-right:20px;">현대 백화점</button>\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">아울렛</ion-item-divider>\n            <button ion-item (click)="martmap(\'lotteout\')"><img src="./assets/imgs/023.png" style="width:120px; \n                height: 60px; margin-right:20px;">롯데 아울렛</button>\n            <button ion-item (click)="martmap(\'ssgout\')"><img src="./assets/imgs/025.png" style="width:120px; \n                height: 60px; margin-right:20px;">신세계 아울렛</button>\n            <button ion-item (click)="martmap(\'hyunout\')"><img src="./assets/imgs/024.png" style="width:120px; \n                height: 60px;  margin-right:20px;">현대 아울렛</button>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martlist/martlist.html"*/,
+            selector: 'page-martlist',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martlist/martlist.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008.png" style="width:50px; margin:5px;" (click)="goback()" alt="">\n        <span style="color:white; font-size:16px; font-weight: 900; margin:auto;">매장 유형을 선택해주세요</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">마트</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottemart\')">\n                <img src="./assets/imgs/009.png" style="width:120px; height: 100%; margin-right:20px;">롯데마트</button>\n            <button ion-item (click)="martmap(\'emart\')">\n                <img src="./assets/imgs/010.png" style="width:120px; height: 60px; margin-right:20px;">이마트</button>\n            <button ion-item (click)="martmap(\'homeplus\')">\n                <img src="./assets/imgs/011.png" style="width:120px; height: 60px; margin-right:20px;">홈플러스</button>\n            <button ion-item (click)="martmap(\'costco\')">\n                <img src="./assets/imgs/012.png" style="width:120px; height: 60px; margin-right:20px;">코스트코</button>\n            <button ion-item (click)="martmap(\'traders\')">\n                <img src="./assets/imgs/013.png" style="width:120px; height: 60px; margin-right:20px;">이마트 트레이더스</button>\n            <button ion-item (click)="martmap(\'nobrand\')">\n                <img src="./assets/imgs/014.png" style="width:120px; height:60px; margin-right:20px;">이마트 노브랜드</button>\n            <button ion-item (click)="martmap(\'everyday\')">\n                <img src="./assets/imgs/015.png" style="width:120px; height:60px; margin-right:20px;">이마트 에브리데이</button>\n            <button ion-item (click)="martmap(\'topmart\')">\n                <img src="./assets/imgs/016.png" style="width:120px; height:60px; margin-right:20px;">탑마트</button>\n            <button ion-item (click)="martmap(\'gs\')">\n                <img src="./assets/imgs/017.png" style="width:120px; height:60px; margin-right:20px;">GS수퍼마켓</button>\n            <button ion-item (click)="martmap(\'express\')">\n                <img src="./assets/imgs/018.png" style="width:120px; height:60px; margin-right:20px;">홈플러스 익스프레스</button>\n            <button ion-item (click)="martmap(\'vicmarket\')">\n                <img src="./assets/imgs/019.png" style="width:120px; height:60px; margin-right:20px;">롯데 빅마켓</button>\n\n\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">백화점</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottedep\')"><img src="./assets/imgs/020.png" style="width:120px; \n                height: 60px; margin-right:20px;">롯데 백화점</button>\n            <button ion-item (click)="martmap(\'ssgdep\')"><img src="./assets/imgs/021.png" style="width:120px; \n                height: 60px; margin-right:20px;">신세계 백화점</button>\n            <button ion-item (click)="martmap(\'hyundep\')"><img src="./assets/imgs/022.png" style="width:120px; \n                height: 60px; margin-right:20px;">현대 백화점</button>\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light" style="margin-left:10px;">아울렛</ion-item-divider>\n            <button ion-item (click)="martmap(\'lotteout\')"><img src="./assets/imgs/023.png" style="width:120px; \n                height: 60px; margin-right:20px;">롯데 아울렛</button>\n            <button ion-item (click)="martmap(\'ssgout\')"><img src="./assets/imgs/025.png" style="width:120px; \n                height: 60px; margin-right:20px;">신세계 아울렛</button>\n            <button ion-item (click)="martmap(\'hyunout\')"><img src="./assets/imgs/024.png" style="width:120px; \n                height: 60px;  margin-right:20px;">현대 아울렛</button>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martlist/martlist.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__["a" /* AdMobFree */]])
@@ -2877,7 +2910,7 @@ var MartlistPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ad_ad__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rate_rate__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3222,6 +3255,7 @@ var MartmapPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__martinfoview_martinfoview__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_home__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3240,6 +3274,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the MartinfoPage page.
  *
@@ -3247,7 +3282,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MartinfoPage = /** @class */ (function () {
-    function MartinfoPage(app, platform, view, navCtrl, navParams, toastCtrl, socialSharing, modal) {
+    function MartinfoPage(app, platform, view, navCtrl, navParams, toastCtrl, socialSharing, modal, admobFree) {
         var _this = this;
         this.app = app;
         this.platform = platform;
@@ -3257,6 +3292,7 @@ var MartinfoPage = /** @class */ (function () {
         this.toastCtrl = toastCtrl;
         this.socialSharing = socialSharing;
         this.modal = modal;
+        this.admobFree = admobFree;
         this.day = new Date();
         this.martArray = [];
         this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
@@ -3306,19 +3342,31 @@ var MartinfoPage = /** @class */ (function () {
                 }
             }
         });
-        // this.firemain.child("mart").child("emart24").once("value", (sn)=>{
-        //   console.log(sn.val());
-        //   for(var i in sn.val()){
-        //     console.log(i);
-        //     this.firemain.child("mart").child("emart24").child(i).update({"favorite":false}).then(()=>{
-        //       console.log("Success");
-        //     })
-        //   }
-        // });
         this.favchange();
         console.log(this.favoriteList);
         console.log(this.martArray);
         this.newDate();
+        setTimeout(function () {
+            var bannerConfig = {
+                // add your config here
+                // for the sake of this example we will just use the test config
+                isTesting: true,
+                autoShow: true
+            };
+            _this.admobFree.banner.config(bannerConfig);
+            _this.admobFree.banner.prepare()
+                .then(function () {
+                // banner Ad is ready
+                console.log("ok");
+                _this.admobFree.banner.show().then(function () {
+                    console.log("success");
+                }).catch(function (e) {
+                    console.log(e);
+                });
+                // if we set autoShow to false, then we will need to call the show method here
+            })
+                .catch(function (e) { return console.log(e); });
+        }, 500);
     }
     MartinfoPage.prototype.goback = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__home_home__["a" /* HomePage */]);
@@ -4064,7 +4112,7 @@ var MartinfoPage = /** @class */ (function () {
                 console.log(_this.martArray);
                 console.log(listarray);
                 console.log(listarray);
-                if (listarray.length < 5) {
+                if (listarray.length < 20) {
                     _this.martArray[idx].favorite = true;
                     _this.firemain.child("users").child(_this.userId).child("favorite").child(newnametoinput).child(a.key).update(_this.martArray[idx]);
                     console.log(_this.martArray[idx]);
@@ -4075,8 +4123,9 @@ var MartinfoPage = /** @class */ (function () {
                     });
                     toast.present();
                 }
-                else if (listarray.length >= 5) {
+                else if (listarray.length >= 20) {
                     console.log("sizeover");
+                    _this.admobFree.banner.hide();
                     var modal = _this.modal.create(__WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__["a" /* FavoritemodalPage */], null, {
                         cssClass: "modalSize"
                     });
@@ -4101,7 +4150,7 @@ var MartinfoPage = /** @class */ (function () {
             selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008.png" (click)="goback()" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider style="  display: flex;\n        align-items:center;   background-color: white;\n        height: 50px;" color="light"><img src="{{img}}" style="margin-left:10px; width:120px; height:100%; margin-right:10px;"> <span>{{name}}</span> </ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray; let idx = index " class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname" style="margin-top: 10px;" (click)="martview(i)">\n                        {{i.storename}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img (click)="martview(i)"*ngIf="today==\'영업\'" src="./assets/imgs/043.png" style="width:60%;">\n                        <img (click)="martview(i)" *ngIf="today==\'휴무\'" src="./assets/imgs/044.png" style="width:60%;">\n                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">\n                          <img class="heart" *ngIf="i.favorite==\'false\'" src="./assets/imgs/045.png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046.png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045.png" style="width:100%;" alt="">\n                        </button>\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            <td class="tabletd" *ngFor="let i of todayy" style="margin-top:10px;">\n                                <span *ngIf="i!=\'오늘\'" style="color:red; font-weight: 500;">{{i}}</span>\n                                <span *ngIf="i==\'오늘\'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.dayofweek}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.month}}/{{j.day}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of i.dayoffarray" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/martinfo/martinfo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_admob_free__["a" /* AdMobFree */]])
     ], MartinfoPage);
     return MartinfoPage;
 }());
@@ -4110,100 +4159,13 @@ var MartinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 288:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeletemodalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_unique_device_id__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(34);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var DeletemodalPage = /** @class */ (function () {
-    function DeletemodalPage(navCtrl, navParams, uniqueDeviceID, admobFree) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.uniqueDeviceID = uniqueDeviceID;
-        this.admobFree = admobFree;
-        this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
-        this.id = this.navParams.get("Id");
-        this.key = this.navParams.get("key");
-        this.nextdirectory = this.firemain.child("users").child(this.id);
-        console.log(this.key);
-    }
-    DeletemodalPage.prototype.goback = function () {
-        this.navCtrl.pop();
-    };
-    DeletemodalPage.prototype.delete = function () {
-        console.log(this.key.flag);
-        console.log(this.key.title);
-        if (this.key.flag == "mart") {
-            this.nextdirectory.child("mart").child(this.key.title).remove().then(function () {
-                console.log("success mart");
-            }).catch(function (e) {
-                console.log("error" + e);
-            });
-        }
-        if (this.key.flag == "dep") {
-            this.nextdirectory.child("dep").child(this.key.title).remove().then(function () {
-                console.log("success dep");
-            }).catch(function (e) {
-                console.log("error" + e);
-            });
-        }
-        if (this.key.flag == "outlet") {
-            this.nextdirectory.child("outlet").child(this.key.title).remove().then(function () {
-                console.log("success");
-            }).catch(function (e) {
-                console.log("error" + e);
-            });
-        }
-        if (this.key.flag == "etc") {
-            this.nextdirectory.child("etc").child(this.key.title).remove().then(function () {
-                console.log("success");
-            }).catch(function (e) {
-                console.log("error" + e);
-            });
-        }
-        this.goback();
-    };
-    DeletemodalPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-deletemodal',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/deletemodal/deletemodal.html"*/'<ion-content class="main-view" style="background: transparent;\n  background-color: rgb(240, 240, 240);\n  outline-color:rgb(0, 167, 179);\n  border: solid 2px;\n  border-color:rgb(0, 167, 179);\n  height: 60%;\n  width:80%;\n  top: 10%;\n  left:10%;\n  " padding>\n    <div>\n        <span>"{{key.title}}"</span><br>\n        <span>쇼핑 목록이 삭제 됩니다.</span>\n    </div>\n    <div>\n        <button class="place" (click)="goback()">취소</button>\n        <button class="place2" (click)="delete()">삭제</button>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/deletemodal/deletemodal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_unique_device_id__["a" /* UniqueDeviceID */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */]])
-    ], DeletemodalPage);
-    return DeletemodalPage;
-}());
-
-//# sourceMappingURL=deletemodal.js.map
-
-/***/ }),
-
-/***/ 387:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(391);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -4211,7 +4173,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 392:
+/***/ 391:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4224,17 +4186,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(443);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(445);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(730);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(729);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(277);
@@ -4250,10 +4212,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_martinfo_martinfo__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_martinfoview_martinfoview__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_favoritemodal_favoritemodal__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_long_press__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ionic_long_press__ = __webpack_require__(738);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_keyboard__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ionic_native_screen_orientation__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_deletemodal_deletemodal__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_deletemodal_deletemodal__ = __webpack_require__(739);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4386,7 +4348,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 444:
+/***/ 443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4546,7 +4508,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 445:
+/***/ 444:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4598,7 +4560,7 @@ var ViewlimitmodalPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
@@ -4618,7 +4580,6 @@ var ViewlimitmodalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__martlist_martlist__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__martinfoview_martinfoview__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__favoritemodal_favoritemodal__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__deletemodal_deletemodal__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4628,7 +4589,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -5212,6 +5172,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.addlist = function (value) {
         var _this = this;
+        this.admobFree.banner.hide();
         this.selectedvalue = value;
         var alert = this.alertCtrl.create({
             title: '쇼핑 목록 명을 적어주세요',
@@ -5280,18 +5241,73 @@ var HomePage = /** @class */ (function () {
         console.log(this.nextdirectory);
         console.log(key.title);
         console.log(key.flag);
-        var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_20__deletemodal_deletemodal__["a" /* DeletemodalPage */], { "key": key, "Id": this.id });
-        modal.onDidDismiss(function () {
-            var toast = _this.toastCtrl.create({
-                message: '삭제되었습니다.',
-                duration: 2000,
-                position: 'top',
-                cssClass: 'deletemodalToast'
-            });
-            toast.present();
-            _this.refreshname();
+        var alert = this.alertCtrl.create({
+            title: '삭제하시겠습니까?',
+            buttons: [
+                {
+                    text: '취소',
+                    role: 'cancel',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                        var toast = _this.toastCtrl.create({
+                            message: '취소되었습니다.',
+                            duration: 2000,
+                            position: 'top',
+                            cssClass: 'deletemodalToast'
+                        });
+                        toast.present();
+                    }
+                },
+                {
+                    text: '확인',
+                    handler: function (data) {
+                        if (key.flag == "mart") {
+                            _this.nextdirectory.child("mart").child(key.title).remove().then(function () {
+                                console.log("success mart");
+                                _this.refreshname();
+                                toast.present();
+                            }).catch(function (e) {
+                                console.log("error" + e);
+                            });
+                        }
+                        if (key.flag == "dep") {
+                            _this.nextdirectory.child("dep").child(key.title).remove().then(function () {
+                                console.log("success dep");
+                                _this.refreshname();
+                                toast.present();
+                            }).catch(function (e) {
+                                console.log("error" + e);
+                            });
+                        }
+                        if (key.flag == "outlet") {
+                            _this.nextdirectory.child("outlet").child(key.title).remove().then(function () {
+                                console.log("success");
+                                _this.refreshname();
+                                toast.present();
+                            }).catch(function (e) {
+                                console.log("error" + e);
+                            });
+                        }
+                        if (key.flag == "etc") {
+                            _this.nextdirectory.child("etc").child(key.title).remove().then(function () {
+                                console.log("success");
+                                _this.refreshname();
+                                toast.present();
+                            }).catch(function (e) {
+                                console.log("error" + e);
+                            });
+                        }
+                    }
+                }
+            ]
         });
-        modal.present();
+        alert.present();
+        var toast = this.toastCtrl.create({
+            message: '삭제되었습니다.',
+            duration: 2000,
+            position: 'top',
+            cssClass: 'deletemodalToast'
+        });
     };
     HomePage.prototype.viewshoppinglist = function (a) {
         var _this = this;
@@ -5916,7 +5932,7 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_purchase__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6110,7 +6126,7 @@ var AdPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6178,7 +6194,94 @@ var RatePage = /** @class */ (function () {
 
 //# sourceMappingURL=rate.js.map
 
+/***/ }),
+
+/***/ 739:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeletemodalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_unique_device_id__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(26);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DeletemodalPage = /** @class */ (function () {
+    function DeletemodalPage(navCtrl, navParams, uniqueDeviceID, admobFree) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.uniqueDeviceID = uniqueDeviceID;
+        this.admobFree = admobFree;
+        this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
+        this.id = this.navParams.get("Id");
+        this.key = this.navParams.get("key");
+        this.nextdirectory = this.firemain.child("users").child(this.id);
+        console.log(this.key);
+    }
+    DeletemodalPage.prototype.goback = function () {
+        this.navCtrl.pop();
+    };
+    DeletemodalPage.prototype.delete = function () {
+        console.log(this.key.flag);
+        console.log(this.key.title);
+        if (this.key.flag == "mart") {
+            this.nextdirectory.child("mart").child(this.key.title).remove().then(function () {
+                console.log("success mart");
+            }).catch(function (e) {
+                console.log("error" + e);
+            });
+        }
+        if (this.key.flag == "dep") {
+            this.nextdirectory.child("dep").child(this.key.title).remove().then(function () {
+                console.log("success dep");
+            }).catch(function (e) {
+                console.log("error" + e);
+            });
+        }
+        if (this.key.flag == "outlet") {
+            this.nextdirectory.child("outlet").child(this.key.title).remove().then(function () {
+                console.log("success");
+            }).catch(function (e) {
+                console.log("error" + e);
+            });
+        }
+        if (this.key.flag == "etc") {
+            this.nextdirectory.child("etc").child(this.key.title).remove().then(function () {
+                console.log("success");
+            }).catch(function (e) {
+                console.log("error" + e);
+            });
+        }
+        this.goback();
+    };
+    DeletemodalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-deletemodal',template:/*ion-inline-start:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/deletemodal/deletemodal.html"*/'<ion-content class="main-view" style="background: transparent;\n  background-color: rgb(240, 240, 240);\n  outline-color:rgb(0, 167, 179);\n  border: solid 2px;\n  border-color:rgb(0, 167, 179);\n  height: 60%;\n  width:80%;\n  top: 10%;\n  left:10%;\n  " padding>\n    <div>\n        <span>"{{key.title}}"</span><br>\n        <span>쇼핑 목록이 삭제 됩니다.</span>\n    </div>\n    <div>\n        <button class="place" (click)="goback()">취소</button>\n        <button class="place2" (click)="delete()">삭제</button>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/Documents/05 Project/martappsecond/src/pages/deletemodal/deletemodal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_unique_device_id__["a" /* UniqueDeviceID */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */]])
+    ], DeletemodalPage);
+    return DeletemodalPage;
+}());
+
+//# sourceMappingURL=deletemodal.js.map
+
 /***/ })
 
-},[387]);
+},[386]);
 //# sourceMappingURL=main.js.map

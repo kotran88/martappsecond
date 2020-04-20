@@ -8,6 +8,7 @@ import { RatePage } from '../rate/rate';
 import { MartinfoviewPage } from '../martinfoview/martinfoview';
 import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
 import { HomePage } from '../home/home';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the MartinfoPage page.
@@ -21,6 +22,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'martinfo.html',
 })
 export class MartinfoPage {
+  [x: string]: any;
   area: any;
   mart: any;
   img: any;
@@ -46,7 +48,7 @@ export class MartinfoPage {
 
 
   constructor(public app:App,public platform:Platform,public view:ViewController,public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
-    private socialSharing: SocialSharing, public modal: ModalController) {
+    private socialSharing: SocialSharing, public modal: ModalController, public admobFree: AdMobFree) {
     this.mart = this.navParams.get("mart");
     this.area = this.navParams.get("area");
     this.userId=this.navParams.get("id");
@@ -82,22 +84,33 @@ export class MartinfoPage {
       }
     });
 
-    // this.firemain.child("mart").child("emart24").once("value", (sn)=>{
-    //   console.log(sn.val());
-    //   for(var i in sn.val()){
-    //     console.log(i);
-    //     this.firemain.child("mart").child("emart24").child(i).update({"favorite":false}).then(()=>{
-    //       console.log("Success");
-    //     })
-    //   }
-    // });
-      
-
     this.favchange();
     console.log(this.favoriteList);
     console.log(this.martArray);
     this.newDate();
    
+    setTimeout(() => {
+      const bannerConfig: AdMobFreeBannerConfig = {
+        // add your config here
+        // for the sake of this example we will just use the test config
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          console.log("ok")
+          this.admobFree.banner.show().then(() => {
+            console.log("success");
+          }).catch((e) => {
+            console.log(e);
+          })
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
+    }, 500)
 
   }
 
@@ -857,7 +870,7 @@ export class MartinfoPage {
         console.log(listarray);
      
       console.log(listarray);
-        if (listarray.length < 5) {
+        if (listarray.length < 20) {
           this.martArray[idx].favorite = true;
           this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
           console.log(this.martArray[idx]);
@@ -869,15 +882,16 @@ export class MartinfoPage {
           });
           toast.present();
         }
-        else if (listarray.length >= 5) {
+        else if (listarray.length >= 20) {
           console.log("sizeover");
+          this.admobFree.banner.hide();
           let modal = this.modal.create(FavoritemodalPage, null, {
             cssClass: "modalSize"
           });
           modal.present();
+          
         }
       })
-
     }
     else {
       flag = false;
@@ -890,8 +904,8 @@ export class MartinfoPage {
       });
       toast.present();
     }
-
   }
+
 
 }
 

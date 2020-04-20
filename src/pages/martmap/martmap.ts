@@ -32,7 +32,6 @@ export class MartmapPage {
     this.userid = this.navParams.get("userid");
     
     setTimeout(() => {
-     
       const bannerConfig: AdMobFreeBannerConfig = {
         // add your config here
         // for the sake of this example we will just use the test config
