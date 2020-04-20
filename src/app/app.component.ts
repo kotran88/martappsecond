@@ -23,13 +23,13 @@ export class MyApp {
 
       this.mobiel.setTextZoom(100)
       if(platform.is('android') ) {
-        // statusBar.backgroundColorByHexString('#ffffff');
+        statusBar.backgroundColorByHexString('#ffffff');
       };
      
 
       if(platform.is("android")||platform.is("ios")){
     
-        // screen.lock(screen.ORIENTATIONS.PORTRAIT_PRIMARY);
+        screen.lock(screen.ORIENTATIONS.PORTRAIT);
   
       }
       platform.registerBackButtonAction(() => {
