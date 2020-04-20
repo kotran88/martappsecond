@@ -38,13 +38,21 @@
         </ion-item>
     </div>
     <div *ngIf="flag!=true" style="margin-left:10px; position: absolute;bottom: 110px;width: 80%; border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190)" class="bottom">
-        <ion-input *ngIf="flag!=true" style="color:#808080; width: 83%;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>
+        <ion-input #input *ngIf="flag!=true" style="color:#808080; width: 83%;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>
         <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-top: 5px;" (click)="speeching()">
                 <img src="./assets/imgs/086.png" style="width:30px;" alt="">
             </button>
     </div>
-    <div style="margin-left:300px; position: absolute;bottom: 110px;width: 20%;" class="bottom">
-        <button *ngIf="flag!=true" style="font-size:11px; margin-bottom:-60px; height: 80px;background-color:#71E8E8;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>
+    <div style="margin-left:300px; position: absolute;bottom: 110px;width: 20%; height: 40px;" class="bottom">
+        <button *ngIf="flag!=true" style="font-size: 11px;
+        margin-bottom: -60px;
+        height: 80px;
+        background-color: #71E8E8;
+        border-radius: 7px;
+        /* margin-top: 20px; */
+        margin-left: 40px;
+        display: flow-root;
+        width: 80%;" (click)="add()">추가하기</button>
     </div>
     <div style="margin-left:10px; position: absolute;bottom: 70px;width: 80%;" *ngIf="flag!=true&&flagInput==false" class="inputprice">
         <img *ngIf="flag!=true&&flagInput==false" src="./assets/imgs/084.png " style="width:30px; " alt=" ">

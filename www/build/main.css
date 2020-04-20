@@ -28268,6 +28268,14 @@ img.imgindiv {
   vertical-align: middle;
 }
 
+.select-icon-inner {
+  left: -5px;
+  margin-top: -6px;
+  border-top: 14px solid;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+
 div.segmentText {
   position: relative;
   top: 0px;

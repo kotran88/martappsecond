@@ -39,7 +39,6 @@ export class MyApp {
       console.log("back pressed");
       console.log(activeView)
             if(activeView != null){
-              window.alert(nav.getActive().component.name)
               if (nav.getActive().component.name=="HomePage"){
 
 

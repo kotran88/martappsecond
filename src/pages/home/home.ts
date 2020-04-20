@@ -22,6 +22,7 @@ import { MartinfoviewPage } from '../martinfoview/martinfoview';
 import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
 import { DeletemodalPage } from '../deletemodal/deletemodal';
 
+import { Keyboard } from '@ionic-native/keyboard'
 
 @Component({
   selector: 'page-home',
@@ -1328,12 +1329,12 @@ export class HomePage {
 
 
   constructor(public fab: FabContainer, public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
-    public alertCtrl: AlertController, public callnumber: CallNumber,
+    public alertCtrl: AlertController, public callnumber: CallNumber, public keyboard:Keyboard,
     public admobFree: AdMobFree, public navCtrl: NavController,
     public platform: Platform, public navParams: NavParams,
     public oneSignal: OneSignal, public toastCtrl: ToastController,
     public loadingCtrl: LoadingController) {
-
+    
     $('#fabb').click(function (event) {
       event.stopPropagation();
     });

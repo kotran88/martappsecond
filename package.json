@@ -41,6 +41,7 @@
         "angularfire2": "^5.2.3",
         "call-number": "^1.0.1",
         "cordova-admob-sdk": "0.24.1",
+        "cordova-android": "^8.0.0",
         "cordova-plugin-admob-free": "^0.27.0",
         "cordova-plugin-calendar": "^4.6.0",
         "cordova-plugin-compat": "^1.2.0",

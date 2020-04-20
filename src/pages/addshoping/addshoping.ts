@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild} from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard'
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
@@ -41,17 +41,23 @@ export class AddshopingPage {
   month: any;
   date: any;
   quantityArray: any;
-
+  @ViewChild('input') myInput ;
   constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController,
     public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController,
     private keyboard: Keyboard, public admobFree: AdMobFree) {
     this.a = this.navParams.get("obj");
+    this.keyboard.onKeyboardWillShow().subscribe(()=>{
+      this.admobFree.banner.hide();
+      this.myInput.setFocus();
+    })
     this.id = this.navParams.get("id");
     this.title = this.navParams.get("title");
     this.value = this.navParams.get("flag");
     console.log("this.flag:" + this.value)
     this.key = this.navParams.get("key");
-    this.keyboard.show();
+      setTimeout(() => {
+        this.myInput.setFocus();
+      },500);
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
     this.month = thisday.getMonth() + 1;
@@ -80,7 +86,7 @@ export class AddshopingPage {
   }
 
   add() {
-    this.admobFree.banner.show();
+
 
     console.log(this.adding);
     if (this.price < 1 || this.price > 99999999) {
@@ -101,7 +107,10 @@ export class AddshopingPage {
     this.adding = "";
     this.price = "";
     this.quantity = "";
+    setTimeout(()=>{
 
+    this.keyboard.show()
+    },500)
   }
   addprice() {
     /*가격받아오기*/
