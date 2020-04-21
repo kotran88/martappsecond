@@ -1,7 +1,7 @@
 <div class="up">
     <div class="upper" style="background-color: #71E8E8; display:flex;">
         <ion-searchbar *ngIf="tab=='tab1'" style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>
-        <img *ngIf="tab=='tab2'||tab=='tab3'" src="./assets/imgs/008.png" style="width:50px; margin:5px;" alt="">
+        <img *ngIf="tab=='tab2'||tab=='tab3'" src="./assets/imgs/008.png" style="width:44px; margin:5px;" alt="">
         <span *ngIf="tab=='tab2'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">목록을 추가해주세요</span>
         <span *ngIf="tab=='tab3'" style="color:white; font-size:16px; font-weight: 900; margin-left:-10px; margin-right:auto; margin-top:auto; margin-bottom:auto">물품을 검색해주세요</span>
         <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004.png" style="width:25px;"></button>
