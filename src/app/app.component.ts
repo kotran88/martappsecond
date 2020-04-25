@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { MobileAccessibility } from '@ionic-native/mobile-accessibility';
 
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { HomePage } from '../pages/home/home';
 import { MartinfoviewPage } from '../pages/martinfoview/martinfoview'
 @Component({
@@ -14,13 +15,23 @@ export class MyApp {
   rootPage:any = HomePage;
   // rootPage:any = MartinfoviewPage;
 
-  constructor(public mobiel:MobileAccessibility,public screen:ScreenOrientation,public alertCtrl : AlertController,public app:App,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public uniqueDeviceID : UniqueDeviceID,public mobiel:MobileAccessibility,public screen:ScreenOrientation,public alertCtrl : AlertController,public app:App,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      // this.uniqueDeviceID.get()
+      // .then((uuid: any) => {console.log("get uniquedi well");
+      // window.alert(uuid);
+      // localStorage.setItem("id",uuid)
+      //  })
+      // .catch((error: any) => {
+      //   console.log("error in uniquedevice")
+      //   console.log(error)
 
+
+      // });
       this.mobiel.setTextZoom(100)
       if(platform.is('android') ) {
         statusBar.backgroundColorByHexString('#ffffff');

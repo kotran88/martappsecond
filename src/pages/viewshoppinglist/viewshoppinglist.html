@@ -29,11 +29,11 @@
     </ion-row>
     <div>
 
-        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">
-            <div class="wrap_chkbox">
+        <ion-item  ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">
+            <div [ngClass]="att.checked? 'list card animated rollIn':'b'" >
                 <div class="chkbox">
                     <input *ngIf="flag==false" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val">
-                    <button *ngIf="delflag1==false" (click)="addValue(att,idx)" style="background-color:white;width:30px; height: 30px;">
+                    <button class="a"  *ngIf="delflag1==false" (click)="addValue(att,idx,$event)" style="background-color:white;width:30px; height: 30px;">
                         <img *ngIf="att.checked==true" style="width:30px; height:20px"src="./assets/imgs/090.png" alt=" ">
                         <img *ngIf="att.checked==false" style="width:30px; height:20px" src="./assets/imgs/089.png" alt=" ">
                     </button>

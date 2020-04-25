@@ -5,7 +5,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import 'rxjs/add/operator/map';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 
-
+import firebase from "firebase"
 import { HomePage } from '../home/home';
 
 /**
@@ -21,11 +21,14 @@ import { HomePage } from '../home/home';
 export class SettingPage {
   DateTime : any;
 
+  firemain = firebase.database().ref();
+  id:any;
   constructor(public modal:ModalController,
     private iab:InAppBrowser,private socialSharing:SocialSharing,private alertCtrl:AlertController,
     public navCtrl: NavController, public navParams: NavParams, public admobFree: AdMobFree) {
       this.DateTime = '11:50';
       console.log(this.DateTime);
+      this.id=localStorage.getItem("id");
       setTimeout(() => {
         const bannerConfig: AdMobFreeBannerConfig = {
           // add your config here
@@ -104,6 +107,7 @@ export class SettingPage {
     }
     this.shownGroup=false;
     this.flag=false;
+    this.firemain.child("users").child(this.id).child("setting").update({"alarm":this.buttontoggle[0].check+","+this.buttontoggle[1].check+","+this.buttontoggle[2].check+","+this.buttontoggle[3].check,"time":this.DateTime})
   }
 
   
