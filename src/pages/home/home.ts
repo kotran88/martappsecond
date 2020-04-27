@@ -180,9 +180,23 @@ export class HomePage {
           this.vacationFunc(this.week, sn.val()[i][j], count);
         }
       }
-
+      console.log("favorite list is")
+      console.log(this.favoriteList);
+      console.log("first is : ");
+      console.log(this.favoriteList[0])
+      this.firemain.child("users").child(this.id).child("setting").update({"first":this.favoriteList[0]});
     })
 
+    var count=0;
+   
+
+    for(var a in this.favoriteList){
+      count++;
+      console.log("count is : "+count);
+      if(count==1){
+        console.log("first is : "+this.favoriteList[a])
+      }
+    }
     if (this.favoriteList.length >= 20) {
       let modal = this.modal.create(FavoritemodalPage);
       modal.present();
@@ -1292,7 +1306,7 @@ export class HomePage {
 
   OneSignalInstall() {
     console.log("start Signal")
-    this.oneSignal.startInit('2a4ab592-b87f-474a-9b98-77a1983d4b38', '552511846926');
+    this.oneSignal.startInit('a6cc4273-cded-4f39-a0a9-00c2086c1a08', '552511846926');
     // this.oneSignal.clearOneSignalNotifications();
     var iosSettings = {
       "kOSSettingsKeyAutoPrompt": true,
@@ -1316,8 +1330,8 @@ export class HomePage {
 
     this.oneSignal.getIds().then(data => {
       console.log("get id success" + data.userId)
-      window.alert(data.userId);
-      this.firemain.child("users").child(this.id).child("setting").update({ "user id": data.userId });
+      console.log(this.id)
+      this.firemain.child("users").child(this.id).child("setting").update({ "deviceId": data.userId });
       let sendData = [];
       localStorage.setItem("tokenvalue", data.userId);
       //디비에 토큰값을 넣음
@@ -1338,17 +1352,23 @@ export class HomePage {
     $('#fabb').click(function (event) {
       event.stopPropagation();
     });
-
-    setTimeout(() => {
-      this.uniqueDeviceID.get()
-        .then((uuid: any) => { this.id = uuid; console.log(uuid); this.init(); })
+    this.uniqueDeviceID.get()
+        .then((uuid: any) => {console.log("get uniquedi well");
+         this.id = uuid; console.log(uuid);
+         localStorage.setItem("id",this.id);
+         this.init(); })
         .catch((error: any) => {
+          console.log("error in uniquedevice")
           console.log(error)
 
 
           this.id = "00000000-0000-0000-39d1-f26acbf711b3";
           this.init();
         });
+        
+    setTimeout(() => {
+      console.log("settimeout odne")
+  
       const bannerConfig: AdMobFreeBannerConfig = {
         // add your config here
         // for the sake of this example we will just use the test config
@@ -1369,7 +1389,9 @@ export class HomePage {
           // if we set autoShow to false, then we will need to call the show method here
         })
         .catch(e => console.log(e));
-    }, 500)
+    
+        this.OneSignalInstall();
+    }, 1000)
 
 
 

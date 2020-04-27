@@ -900,7 +900,8 @@ export class MartinfoPage {
       this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).remove();
       const toast = this.toastCtrl.create({
         message: '삭제되었습니다.',
-        duration: 2000,
+        position:"middle",
+        duration: 2000
       });
       toast.present();
     }

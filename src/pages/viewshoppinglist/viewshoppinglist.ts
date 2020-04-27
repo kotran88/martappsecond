@@ -286,9 +286,11 @@ export class ViewshoppinglistPage {
   cancel() {
     this.flagInput = false;
   }
-  addValue(v, idx) {
+  addValue(v, idx,t) {
+    console.log(t);
     var count = 0;
     console.log(v);
+    console.log(t.class)
     console.log(v.checked);
     console.log(idx)
     if (v.checked) {
